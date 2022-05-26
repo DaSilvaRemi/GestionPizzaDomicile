@@ -6,6 +6,7 @@ module org.gestionrapizz.gestionpizzadomicile {
     requires com.dlsc.formsfx;
     requires validatorfx;
     requires org.kordamp.ikonli.javafx;
+    requires java.sql;
 
     opens org.gestionrapizz.gestionpizzadomicile to javafx.fxml;
     exports org.gestionrapizz.gestionpizzadomicile;
