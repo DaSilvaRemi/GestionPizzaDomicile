@@ -10,7 +10,7 @@ import java.io.IOException;
 public class ClientMenuBarApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ClientMenuBarApplication.class.getResource("clientmenubar-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ClientMenuBarApplication.class.getResource("client_menubar-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();

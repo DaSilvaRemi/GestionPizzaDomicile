@@ -43,12 +43,12 @@ public abstract class GestionBDDModele {
         return this;
     }
 
-    public Connection Connect() throws SQLException {
+    public Connection connect() throws SQLException {
         this.db = DriverManager.getConnection("jdbc:mariadb://" + this.urlHote, this.user, this.password);
         return this.getDb();
     }
 
-    public void Disconnect() throws SQLException {
+    public void disconnect() throws SQLException {
         this.closeMyStatement();
         this.db.close();
     }
@@ -58,8 +58,8 @@ public abstract class GestionBDDModele {
         this.getMyStatement().close();
     }
 
-    protected boolean executeRequest() throws SQLException {
-        return this.getMyStatement().execute();
+    protected void executeRequest() throws SQLException {
+        this.getMyStatement().execute();
     }
 
     protected ResultSet getRequestResult() throws SQLException {

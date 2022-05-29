@@ -9,10 +9,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.gestionrapizz.gestionpizzadomicile.models.ClientModel;
 import org.gestionrapizz.gestionpizzadomicile.models.DialogUtils;
-import org.gestionrapizz.gestionpizzadomicile.models.UserModel;
+import org.gestionrapizz.gestionpizzadomicile.models.JavaFXOpenWindowTool;
+import org.gestionrapizz.gestionpizzadomicile.models.UtilisateurModel;
 
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SigninController {
@@ -45,6 +45,7 @@ public class SigninController {
 
         ClientModel clientModel = new ClientModel();
         try {
+            clientModel.connect();
             clientModel.insertClient(
                     name_input.getText(),
                     adress_input.getText(),
@@ -56,18 +57,15 @@ public class SigninController {
             );
 
             this.onReturnInButtonClick(event);
+            clientModel.disconnect();
+            DialogUtils.showDialog("Signin successful !", "Welcom to our community !");
+            this.onReturnInButtonClick(event);
         } catch (SQLException e) {
             DialogUtils.showDialog(e.getMessage(), "Error : Account creation failed !", Alert.AlertType.ERROR);
         }
     }
 
     protected void onReturnInButtonClick(MouseEvent event){
-        MainApplication mainApplication  = new MainApplication();
-        try {
-            mainApplication.start(new Stage());
-            ((Node) event.getSource()).getScene().getWindow().hide();
-        } catch (IOException e) {
-            DialogUtils.showDialog(e.getMessage(), "Error : Cannot start the new application", Alert.AlertType.ERROR);
-        }
+        JavaFXOpenWindowTool.openAndCloseAWindow( new MainApplication(), ((Node) event.getSource()));
     }
 }

@@ -2,14 +2,19 @@ package org.gestionrapizz.gestionpizzadomicile;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import javafx.scene.Node;
+import org.gestionrapizz.gestionpizzadomicile.models.DialogUtils;
+import org.gestionrapizz.gestionpizzadomicile.models.JavaFXOpenWindowTool;
+import org.gestionrapizz.gestionpizzadomicile.models.UserSession;
+import org.gestionrapizz.gestionpizzadomicile.models.UtilisateurModel;
 
-import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class MainController {
     @FXML
@@ -25,12 +30,27 @@ public class MainController {
 
     @FXML
     protected void onLoginButtonClick(MouseEvent event) {
-        ClientAccountApplication clientAccountApplication  = new ClientAccountApplication();
+        UtilisateurModel utilisateurModel = new UtilisateurModel();
         try {
-            clientAccountApplication.start(new Stage());
-            ((Node) event.getSource()).getScene().getWindow().hide();
-        } catch (IOException e) {
-            e.printStackTrace();
+            utilisateurModel.connect();
+            int nbUtilisateurs = utilisateurModel
+                    .countUtilisateurWithEmailAndPassword(emailadress_input.getText(), password_input.getText())
+                    .getInt("nbUsersWithGoodCredential");
+
+            ResultSet resultSet = utilisateurModel.getUtilisateurByEmail(emailadress_input.getText());
+            int idUser = resultSet.getInt("id_utilisateur");
+            Boolean isAdmin = nbUtilisateurs == 1 && resultSet.getBoolean("is_admin");
+            utilisateurModel.disconnect();
+
+            if(nbUtilisateurs != 1){
+                DialogUtils.showDialog("Incorrect credentials pls retry !", "Error : incorrect credentials", Alert.AlertType.ERROR);
+                return;
+            }
+
+            UserSession.getInstance(idUser, isAdmin);
+            JavaFXOpenWindowTool.openAndCloseAWindow( new ClientAccountApplication(), ((Node) event.getSource()));
+        } catch (SQLException e) {
+           DialogUtils.showDialog(e.getMessage(), "Error : Login Failed !", Alert.AlertType.ERROR);
         }
     }
 
@@ -42,12 +62,6 @@ public class MainController {
 
     @FXML
     protected void onSigninButtonClick(MouseEvent event){
-        SigninApplication signinApplication = new SigninApplication();
-        try {
-            signinApplication.start(new Stage());
-            ((Node) event.getSource()).getScene().getWindow().hide();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        JavaFXOpenWindowTool.openAndCloseAWindow( new SigninApplication(), ((Node) event.getSource()));
     }
 }
