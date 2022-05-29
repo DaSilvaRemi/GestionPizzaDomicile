@@ -3,7 +3,7 @@ package org.gestionrapizz.gestionpizzadomicile.models;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public final class ClientModel extends GestionBDDModele{
+public final class ClientModel extends GestionBDDModele {
 
     public ClientModel(){
         super();
@@ -14,7 +14,7 @@ public final class ClientModel extends GestionBDDModele{
     }
 
     public ResultSet getInfosClient() throws SQLException {
-        return super.setMyStatement("SELECT c.nom, c.adresse, c.city, c.zipCode, client.phoneNumber, client.solde " +
+        return super.setMyStatement("SELECT c.nom, c.adresse, c.city, c.zipCode c.phoneNumber, c.solde " +
                 "FROM client c;").getRequestResult();
     }
 
@@ -32,13 +32,15 @@ public final class ClientModel extends GestionBDDModele{
         return super.getRequestResult();
     }
 
-    public boolean insertClient(String nom, String adresse, String zipCode, String city, String phoneNumber) throws SQLException {
+    public void insertClient(String nom, String adresse, String zipCode, String city, String phoneNumber, String emailAdress, String password) throws SQLException {
         super.setMyStatement("INSERT INTO client(nom, adresse, zipCode, city, phoneNumber) VALUES(?, ?, ?, ?, ?)");
         super.getMyStatement().setString(1, nom);
         super.getMyStatement().setString(2, adresse);
         super.getMyStatement().setString(3, zipCode);
         super.getMyStatement().setString(4, city);
         super.getMyStatement().setString(5, phoneNumber);
-        return super.executeRequest();
+        super.getMyStatement().setString(6, emailAdress);
+        super.getMyStatement().setString(7, password);
+        super.executeRequest();
     }
 }
