@@ -8,6 +8,10 @@ public class UtilisateurModel extends GestionBDDModele {
         super();
     }
 
+    public UtilisateurModel(String urlHote, String user, String motdepasse) {
+        super(urlHote, user, motdepasse);
+    }
+
     public ResultSet getUtilisateurById(int id) throws SQLException {
         super.setMyStatement("SELECT u.id, u.name, u.emailAdress FROM users FROM utilisateur u WHERE u.id = ?;");
         super.getMyStatement().setInt(1, id);
@@ -38,9 +42,17 @@ public class UtilisateurModel extends GestionBDDModele {
     }
 
     public void insertUser(String email, String password, Boolean isAdmin) throws SQLException {
-        super.setMyStatement("INSERT INTO utilisateur (u.email, u.motdepasse, u.is_admin) VALUES(?, ?, ?);");
+        super.setMyStatement("INSERT INTO utilisateur (email, motdepasse, is_admin) VALUES(?, ?, ?);");
         super.getMyStatement().setString(1, email);
         super.getMyStatement().setString(2, password);
         super.getMyStatement().setBoolean(3, isAdmin);
+    }
+
+    public void updateUser(int idUtilisateur, String email, String password, Boolean isAdmin) throws SQLException {
+        super.setMyStatement("UPDATE utilisateur AS u SET email = ?, motdepasse = ?, is_admin = ? WHERE id_utilisateur = ?;");
+        super.getMyStatement().setString(1, email);
+        super.getMyStatement().setString(2, password);
+        super.getMyStatement().setBoolean(3, isAdmin);
+        super.getMyStatement().setInt(4, idUtilisateur);
     }
 }

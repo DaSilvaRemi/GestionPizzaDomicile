@@ -1,5 +1,9 @@
 package org.gestionrapizz.gestionpizzadomicile.models;
 
+import javafx.application.Application;
+import javafx.stage.Window;
+import javafx.scene.Node;
+
 public final class UserSession {
     private static UserSession instance;
     private int idUser;
@@ -36,5 +40,27 @@ public final class UserSession {
     public void clearUserSession(){
         this.setIdUser(-1);
         this.setAdmin(false);
+    }
+
+    public void LoginVerification(Application redirectionApplication, Window windowsToCloseIfFailed){
+        this.LoginVerification(redirectionApplication, windowsToCloseIfFailed, this.getIdUser(), this.getAdmin());
+    }
+
+    public void LoginVerification(Application redirectionApplication, Window windowsToCloseIfFailed, int idUser, boolean isAdmin){
+        if(!this.isLogged() || !this.hasId(idUser) || !this.hasGoodRights(isAdmin)){
+            JavaFXOpenWindowTool.openAndCloseAWindow(redirectionApplication, windowsToCloseIfFailed);
+        }
+    }
+
+    public boolean isLogged(){
+        return !this.hasId(-1);
+    }
+
+    public boolean hasId(int idUser){
+        return this.getIdUser() == idUser;
+    }
+
+    public boolean hasGoodRights(boolean isAdmin){
+        return  this.getAdmin() == isAdmin;
     }
 }
