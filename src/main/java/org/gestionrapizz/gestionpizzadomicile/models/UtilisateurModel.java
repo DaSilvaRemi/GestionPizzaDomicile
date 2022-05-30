@@ -3,7 +3,7 @@ package org.gestionrapizz.gestionpizzadomicile.models;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UtilisateurModel extends GestionBDDModele {
+public class UtilisateurModel extends GestionBDDModel {
     public UtilisateurModel(){
         super();
     }

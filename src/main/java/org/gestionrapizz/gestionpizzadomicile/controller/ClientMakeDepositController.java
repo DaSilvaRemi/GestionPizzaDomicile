@@ -1,4 +1,4 @@
-package org.gestionrapizz.gestionpizzadomicile;
+package org.gestionrapizz.gestionpizzadomicile.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -6,8 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import org.gestionrapizz.gestionpizzadomicile.application.MainApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.ClientModel;
-import org.gestionrapizz.gestionpizzadomicile.models.DialogUtils;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.UserSession;
 
 import java.sql.SQLException;

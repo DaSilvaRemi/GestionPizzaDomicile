@@ -5,18 +5,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 
-public abstract class GestionBDDModele {
+public abstract class GestionBDDModel {
     private String urlHote;
     private String user;
     private String password;
     private Connection db;
     private PreparedStatement myStatement;
 
-    public GestionBDDModele(){
+    public GestionBDDModel(){
         this("localhost", "test", "test");
     }
 
-    public GestionBDDModele(String urlHote, String user, String password) {
+    public GestionBDDModel(String urlHote, String user, String password) {
         this.urlHote = urlHote;
         this.user = user;
         this.password = password;
@@ -38,7 +38,7 @@ public abstract class GestionBDDModele {
         return myStatement;
     }
 
-    public GestionBDDModele setMyStatement(String query) throws SQLException {
+    public GestionBDDModel setMyStatement(String query) throws SQLException {
         this.myStatement = this.getDb().prepareStatement(query);
         return this;
     }

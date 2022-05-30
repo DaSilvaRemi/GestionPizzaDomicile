@@ -1,4 +1,4 @@
-package org.gestionrapizz.gestionpizzadomicile;
+package org.gestionrapizz.gestionpizzadomicile.controller;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -6,13 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
+import org.gestionrapizz.gestionpizzadomicile.application.MainApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.ClientModel;
-import org.gestionrapizz.gestionpizzadomicile.models.DialogUtils;
-import org.gestionrapizz.gestionpizzadomicile.models.JavaFXOpenWindowTool;
-import org.gestionrapizz.gestionpizzadomicile.models.UtilisateurModel;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 public class SigninController {
@@ -66,6 +64,6 @@ public class SigninController {
     }
 
     protected void onReturnInButtonClick(MouseEvent event){
-        JavaFXOpenWindowTool.openAndCloseAWindow( new MainApplication(), ((Node) event.getSource()));
+        JavaFXOpenWindowUtil.openAndCloseAWindow( new MainApplication(), ((Node) event.getSource()));
     }
 }

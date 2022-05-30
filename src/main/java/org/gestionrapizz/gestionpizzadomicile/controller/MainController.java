@@ -1,4 +1,4 @@
-package org.gestionrapizz.gestionpizzadomicile;
+package org.gestionrapizz.gestionpizzadomicile.controller;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -8,8 +8,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Node;
-import org.gestionrapizz.gestionpizzadomicile.models.DialogUtils;
-import org.gestionrapizz.gestionpizzadomicile.models.JavaFXOpenWindowTool;
+import org.gestionrapizz.gestionpizzadomicile.application.ClientAccountApplication;
+import org.gestionrapizz.gestionpizzadomicile.application.SigninApplication;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 import org.gestionrapizz.gestionpizzadomicile.models.UserSession;
 import org.gestionrapizz.gestionpizzadomicile.models.UtilisateurModel;
 
@@ -48,7 +50,7 @@ public class MainController {
             }
 
             UserSession.getInstance(idUser, isAdmin);
-            JavaFXOpenWindowTool.openAndCloseAWindow( new ClientAccountApplication(), ((Node) event.getSource()));
+            JavaFXOpenWindowUtil.openAndCloseAWindow( new ClientAccountApplication(), ((Node) event.getSource()));
         } catch (SQLException e) {
            DialogUtils.showDialog(e.getMessage(), "Error : Login Failed !", Alert.AlertType.ERROR);
         }
@@ -62,6 +64,6 @@ public class MainController {
 
     @FXML
     protected void onSigninButtonClick(MouseEvent event){
-        JavaFXOpenWindowTool.openAndCloseAWindow( new SigninApplication(), ((Node) event.getSource()));
+        JavaFXOpenWindowUtil.openAndCloseAWindow( new SigninApplication(), ((Node) event.getSource()));
     }
 }

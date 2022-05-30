@@ -1,4 +1,4 @@
-package org.gestionrapizz.gestionpizzadomicile;
+package org.gestionrapizz.gestionpizzadomicile.controller;
 
 import javafx.scene.layout.VBox;
 

@@ -1,4 +1,4 @@
-package org.gestionrapizz.gestionpizzadomicile.models;
+package org.gestionrapizz.gestionpizzadomicile.models.utils;
 
 import javafx.application.Application;
 import javafx.scene.Node;
@@ -6,11 +6,9 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-import java.io.IOException;
-
-public abstract class JavaFXOpenWindowTool {
+public abstract class JavaFXOpenWindowUtil {
     public static void openAndCloseAWindow(Application applicationWillBeOpen, Node nodewillBeClose){
-        JavaFXOpenWindowTool.openAndCloseAWindow(applicationWillBeOpen, nodewillBeClose.getScene().getWindow());
+        JavaFXOpenWindowUtil.openAndCloseAWindow(applicationWillBeOpen, nodewillBeClose.getScene().getWindow());
     }
 
     public static void openAndCloseAWindow(Application applicationWillBeOpen, Window windowWillBeClose){

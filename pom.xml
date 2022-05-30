@@ -98,7 +98,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                org.gestionrapizz.gestionpizzadomicile/org.gestionrapizz.gestionpizzadomicile.MainApplication
+                                org.gestionrapizz.gestionpizzadomicile/org.gestionrapizz.gestionpizzadomicile.application.MainApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

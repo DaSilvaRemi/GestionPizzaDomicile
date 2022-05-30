@@ -2,7 +2,7 @@ package org.gestionrapizz.gestionpizzadomicile.models;
 
 import javafx.application.Application;
 import javafx.stage.Window;
-import javafx.scene.Node;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 
 public final class UserSession {
     private static UserSession instance;
@@ -48,7 +48,7 @@ public final class UserSession {
 
     public void LoginVerification(Application redirectionApplication, Window windowsToCloseIfFailed, int idUser, boolean isAdmin){
         if(!this.isLogged() || !this.hasId(idUser) || !this.hasGoodRights(isAdmin)){
-            JavaFXOpenWindowTool.openAndCloseAWindow(redirectionApplication, windowsToCloseIfFailed);
+            JavaFXOpenWindowUtil.openAndCloseAWindow(redirectionApplication, windowsToCloseIfFailed);
         }
     }
 

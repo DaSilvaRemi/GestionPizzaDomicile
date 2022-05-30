@@ -1,4 +1,4 @@
-package org.gestionrapizz.gestionpizzadomicile.models;
+package org.gestionrapizz.gestionpizzadomicile.models.utils;
 
 import javafx.scene.control.Alert;
 

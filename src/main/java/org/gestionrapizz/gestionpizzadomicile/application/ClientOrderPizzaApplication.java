@@ -1,4 +1,4 @@
-package org.gestionrapizz.gestionpizzadomicile;
+package org.gestionrapizz.gestionpizzadomicile.application;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,17 +7,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainApplication extends Application {
+public class ClientOrderPizzaApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ClientMakeDepositApplication.class.getResource("client_orderpizzas-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Gestion Pizzas");
         stage.setScene(scene);
         stage.show();
-    }
-
-    public static void main(String[] args) {
-        launch();
     }
 }
