@@ -6,28 +6,30 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 
 public abstract class GestionBDDModel {
-    private String urlHote;
-    private String user;
-    private String password;
+    private final String URL_HOTE;
+    private final String DATABASE_NAME;
+    private final String USER_NAME;
+    private final String PASSWORD;
     private Connection db;
     private PreparedStatement myStatement;
 
     public GestionBDDModel(){
-        this("localhost", "test", "test");
+        this("mysql-remidasilva.alwaysdata.net", "remidasilva_rapizz", "220877_rapizz", "rapizzAdmin");
     }
 
-    public GestionBDDModel(String urlHote, String user, String password) {
-        this.urlHote = urlHote;
-        this.user = user;
-        this.password = password;
+    public GestionBDDModel(String URL_HOTE, String DATABASE_NAME, String USER_NAME, String PASSWORD) {
+        this.URL_HOTE = URL_HOTE;
+        this.DATABASE_NAME = DATABASE_NAME;
+        this.USER_NAME = USER_NAME;
+        this.PASSWORD = PASSWORD;
     }
 
-    public String getUrlHote() {
-        return urlHote;
+    public String getURL_HOTE() {
+        return URL_HOTE;
     }
 
-    public String getUser() {
-        return user;
+    public String getUSER_NAME() {
+        return USER_NAME;
     }
 
     public Connection getDb() {
@@ -38,13 +40,17 @@ public abstract class GestionBDDModel {
         return myStatement;
     }
 
+    public String getDATABASE_NAME() {
+        return DATABASE_NAME;
+    }
+
     public GestionBDDModel setMyStatement(String query) throws SQLException {
         this.myStatement = this.getDb().prepareStatement(query);
         return this;
     }
 
     public Connection connect() throws SQLException {
-        this.db = DriverManager.getConnection("jdbc:mariadb://" + this.urlHote, this.user, this.password);
+        this.db = DriverManager.getConnection("jdbc:mariadb://" + this.URL_HOTE + "/" + DATABASE_NAME, this.USER_NAME, this.PASSWORD);
         return this.getDb();
     }
 
@@ -58,11 +64,11 @@ public abstract class GestionBDDModel {
         this.getMyStatement().close();
     }
 
-    protected void executeRequest() throws SQLException {
+    protected void executeQuery() throws SQLException {
         this.getMyStatement().execute();
     }
 
-    protected ResultSet getRequestResult() throws SQLException {
+    protected ResultSet getQueryResult() throws SQLException {
         ResultSet result = this.getMyStatement().executeQuery();
         return result.next() ? result : null;
     }

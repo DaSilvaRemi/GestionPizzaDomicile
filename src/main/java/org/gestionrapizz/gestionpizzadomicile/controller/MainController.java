@@ -12,7 +12,7 @@ import org.gestionrapizz.gestionpizzadomicile.application.ClientAccountApplicati
 import org.gestionrapizz.gestionpizzadomicile.application.SigninApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
-import org.gestionrapizz.gestionpizzadomicile.models.UserSession;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSession;
 import org.gestionrapizz.gestionpizzadomicile.models.UtilisateurModel;
 
 import java.sql.ResultSet;

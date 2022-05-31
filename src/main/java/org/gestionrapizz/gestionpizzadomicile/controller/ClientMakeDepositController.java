@@ -9,7 +9,7 @@ import javafx.scene.input.MouseEvent;
 import org.gestionrapizz.gestionpizzadomicile.application.MainApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.ClientModel;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
-import org.gestionrapizz.gestionpizzadomicile.models.UserSession;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSession;
 
 import java.sql.SQLException;
 

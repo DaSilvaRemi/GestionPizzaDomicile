@@ -4,19 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public final class ClientModel extends UtilisateurModel {
-
-    public ClientModel(){
-        super();
-    }
-
-    public ClientModel(String urlHote, String user, String motdepasse) {
-        super(urlHote, user, motdepasse);
-    }
-
     public ResultSet getInfosClient() throws SQLException {
         super.setMyStatement("SELECT u.nom, u.email, c.telephone, c.adresse_rue, c.adresse_ville, c.adresse_codepostal, c.solde " +
                 "FROM client c INNER JOIN utilisateur u ON c.id_utilisateur = u.id_utilisateur;");
-        return super.getRequestResult();
+        return super.getQueryResult();
     }
 
     public ResultSet getInfosClientsById(int id) throws SQLException {
@@ -24,7 +15,7 @@ public final class ClientModel extends UtilisateurModel {
                 "FROM client c INNER JOIN utilisateur u ON c.id_utilisateur = u.id_utilisateur " +
                 "WHERE c.id_utilisateur = ?;");
         super.getMyStatement().setInt(1, id);
-        return super.getRequestResult();
+        return super.getQueryResult();
     }
 
     public ResultSet getInfosClientsBytelephone(String telephone) throws SQLException {
@@ -32,12 +23,12 @@ public final class ClientModel extends UtilisateurModel {
                 "FROM client c INNER JOIN utilisateur u ON c.id_utilisateur = u.id_utilisateur " +
                 "WHERE c.telephone = ?;");
         super.getMyStatement().setString(1, telephone);
-        return super.getRequestResult();
+        return super.getQueryResult();
     }
 
     public void insertClient(String nom, String adresse, String codePostal, String ville, String telephone, String email, String motdepasse) throws SQLException {
         super.insertUser(email, motdepasse);
-        super.setMyStatement("INSERT INTO client(id_utilisateur, nom, adress_rue, adresse_codepostal, adresse_ville, telephone) VALUES(?, ?, ?, ?, ?, ?)");
+        super.setMyStatement("INSERT INTO client(id_utilisateur, nom, adresse_rue, adresse_codepostal, adresse_ville, telephone) VALUES(?, ?, ?, ?, ?, ?)");
         super.getMyStatement().setInt(1, super.getUtilisateurByEmail(email).getInt("id_utilisateur"));
         super.getMyStatement().setString(2, nom);
         super.getMyStatement().setString(3, adresse);
@@ -46,7 +37,7 @@ public final class ClientModel extends UtilisateurModel {
         super.getMyStatement().setString(6, telephone);
         super.getMyStatement().setString(7, email);
         super.getMyStatement().setString(8, motdepasse);
-        super.executeRequest();
+        super.executeQuery();
     }
 
     public void updateClient(int idClient, String nom, String adresse, String codePostal, String ville, String telephone, double solde, String email, String motdepasse) throws SQLException {

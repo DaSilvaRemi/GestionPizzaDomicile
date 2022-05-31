@@ -1,8 +1,7 @@
-package org.gestionrapizz.gestionpizzadomicile.models;
+package org.gestionrapizz.gestionpizzadomicile.models.utils;
 
 import javafx.application.Application;
 import javafx.stage.Window;
-import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 
 public final class UserSession {
     private static UserSession instance;
