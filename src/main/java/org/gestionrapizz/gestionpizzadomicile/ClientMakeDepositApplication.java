@@ -1,4 +1,4 @@
-package org.gestionrapizz.gestionpizzadomicile.application;
+package org.gestionrapizz.gestionpizzadomicile;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

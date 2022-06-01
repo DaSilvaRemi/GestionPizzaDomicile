@@ -8,12 +8,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Node;
-import org.gestionrapizz.gestionpizzadomicile.application.ClientAccountApplication;
-import org.gestionrapizz.gestionpizzadomicile.application.SigninApplication;
+import org.gestionrapizz.gestionpizzadomicile.ClientAccountApplication;
+import org.gestionrapizz.gestionpizzadomicile.SigninApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
-import org.gestionrapizz.gestionpizzadomicile.models.UserSession;
-import org.gestionrapizz.gestionpizzadomicile.models.UtilisateurModel;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,7 +48,7 @@ public class MainController {
                 return;
             }
 
-            UserSession.getInstance(idUser, isAdmin);
+            UserSessionUtil.getInstance(idUser, isAdmin);
             JavaFXOpenWindowUtil.openAndCloseAWindow( new ClientAccountApplication(), ((Node) event.getSource()));
         } catch (SQLException e) {
            DialogUtils.showDialog(e.getMessage(), "Error : Login Failed !", Alert.AlertType.ERROR);

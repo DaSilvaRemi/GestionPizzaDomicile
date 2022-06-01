@@ -6,10 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import org.gestionrapizz.gestionpizzadomicile.application.MainApplication;
-import org.gestionrapizz.gestionpizzadomicile.models.ClientModel;
+import org.gestionrapizz.gestionpizzadomicile.MainApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
-import org.gestionrapizz.gestionpizzadomicile.models.UserSession;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
 import java.sql.SQLException;
 
@@ -22,17 +21,17 @@ public class ClientMakeDepositController {
     private Label walletamount_label;
 
     public ClientMakeDepositController(){
-        this.verifySession(UserSession.getInstance(-1, false));
+        this.verifySession(UserSessionUtil.getInstance(-1, false));
     }
 
-    private void verifySession(UserSession userSession){
-        userSession.LoginVerification(new MainApplication(), this.deposit_button.getScene().getWindow());
+    private void verifySession(UserSessionUtil userSessionUtil){
+        userSessionUtil.LoginVerification(new MainApplication(), this.deposit_button.getScene().getWindow());
     }
 
     @FXML
     protected void onDepositButtonClick(MouseEvent mouseEvent){
-        UserSession userSession = UserSession.getInstance(-1, false);
-        this.verifySession(userSession);
+        UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(-1, false);
+        this.verifySession(userSessionUtil);
         String amounttodepositInputText = amounttodeposit_input.getText();
         if(!amounttodepositInputText.matches("-?\\d+(\\.\\d+)?")){
             DialogUtils.showDialog("The amount entered is not a number ! ", "Error : Number Format invalid", Alert.AlertType.ERROR);
@@ -42,8 +41,8 @@ public class ClientMakeDepositController {
         ClientModel clientModel = new ClientModel();
         try {
             clientModel.connect();
-            clientModel.addSoldeClient(userSession.getIdUser(), Double.parseDouble(amounttodepositInputText));
-            String newSolde = String.format("%.2f $", clientModel.getInfosClientsById(userSession.getIdUser()).getDouble("c.solde"));
+            clientModel.addSoldeClient(userSessionUtil.getIdUser(), Double.parseDouble(amounttodepositInputText));
+            String newSolde = String.format("%.2f $", clientModel.getInfosClientsById(userSessionUtil.getIdUser()).getDouble("c.solde"));
             walletamount_label.setText(newSolde);
             clientModel.disconnect();
         } catch (SQLException e) {
