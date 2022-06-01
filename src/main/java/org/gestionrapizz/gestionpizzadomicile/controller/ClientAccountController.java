@@ -8,6 +8,7 @@ import javafx.scene.control.TableView;
 import org.gestionrapizz.gestionpizzadomicile.models.*;
 import javafx.scene.input.MouseEvent;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,16 +34,16 @@ public class ClientAccountController {
     }
 
     private void loadDatas(){
-        UserSession userSession = UserSession.getInstance(-1, false);
+        UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(-1, false);
 
-        if(userSession.getIdUser() == -1){
+        if(userSessionUtil.getIdUser() == -1){
             return;
         }
 
         ClientModel clientModel = new ClientModel();
         try {
             clientModel.connect();
-            ResultSet resultSet = clientModel.getInfosClientsById(userSession.getIdUser());
+            ResultSet resultSet = clientModel.getInfosClientsById(userSessionUtil.getIdUser());
             clientname_label.setText(resultSet.getString("u.name"));
             soldeclient_label.setText(String.valueOf(resultSet.getInt("c.solde")));
             clientModel.disconnect();
