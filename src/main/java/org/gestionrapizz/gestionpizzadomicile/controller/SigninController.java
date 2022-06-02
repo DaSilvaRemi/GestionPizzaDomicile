@@ -7,6 +7,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import org.gestionrapizz.gestionpizzadomicile.MainApplication;
+import org.gestionrapizz.gestionpizzadomicile.models.ClientDAO;
+import org.gestionrapizz.gestionpizzadomicile.models.entity.Client;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 
@@ -36,30 +38,26 @@ public class SigninController {
 
     protected void onSignInButtonClick(MouseEvent event){
         if(!password_input.getText().equals(confirmpassword_input.getText())){
-            DialogUtils.showDialog("Enter passwords don't matche !", "Error : password verification", Alert.AlertType.ERROR);
+            DialogUtils.showDialog("Entered passwords don't matche !", "Error : password verification", Alert.AlertType.ERROR);
             return;
         }
 
-        ClientModel clientModel = new ClientModel();
-        try {
-            clientModel.connect();
-            clientModel.insertClient(
-                    name_input.getText(),
-                    adress_input.getText(),
-                    zipcode_input.getText(),
-                    city_input.getText(),
-                    phonenumber_input.getText(),
-                    emailadress_input.getText(),
-                    password_input.getText()
-            );
+        ClientDAO clientDAO = ClientDAO.getInstance();
+        clientDAO.insert(
+                new Client(
+                        0,
+                        name_input.getText(),
+                        emailadress_input.getText(),
+                        password_input.getText(),
+                        phonenumber_input.getText(),
+                        adress_input.getText(),
+                        city_input.getText(),
+                        zipcode_input.getText()
+                )
+        );
 
-            this.onReturnInButtonClick(event);
-            clientModel.disconnect();
-            DialogUtils.showDialog("Signin successful !", "Welcom to our community !");
-            this.onReturnInButtonClick(event);
-        } catch (SQLException e) {
-            DialogUtils.showDialog(e.getMessage(), "Error : Account creation failed !", Alert.AlertType.ERROR);
-        }
+        DialogUtils.showDialog("Signin successful !", "Welcom to our community !");
+        this.onReturnInButtonClick(event);
     }
 
     protected void onReturnInButtonClick(MouseEvent event){

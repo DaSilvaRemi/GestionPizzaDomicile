@@ -2,64 +2,73 @@ package org.gestionrapizz.gestionpizzadomicile.models.utils;
 
 import javafx.application.Application;
 import javafx.stage.Window;
+import org.gestionrapizz.gestionpizzadomicile.models.entity.Administrateur;
+import org.gestionrapizz.gestionpizzadomicile.models.entity.Client;
+import org.gestionrapizz.gestionpizzadomicile.models.entity.Livreur;
+import org.gestionrapizz.gestionpizzadomicile.models.entity.Utilisateur;
 
 public final class UserSessionUtil {
     private static UserSessionUtil instance;
-    private int idUser;
-    private Boolean isAdmin;
+    private Utilisateur utilisateur;
 
-    private UserSessionUtil(int idUser, Boolean isAdmin) {
-        this.setIdUser(idUser);
-        this.setAdmin(isAdmin);
+    private UserSessionUtil(Utilisateur utilisateur) {
+        this.setUtilisateur(utilisateur);
     }
 
-    public static UserSessionUtil getInstance(int idUser, Boolean isAdmin) {
+    public static UserSessionUtil getInstance(Utilisateur utilisateur) {
         if (instance == null) {
-            instance = new UserSessionUtil(idUser, isAdmin);
+            instance = new UserSessionUtil(utilisateur);
         }
         return instance;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
     }
 
-    private void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public RolesEnum getRoleUtilisateur(){
+        return getRoleUtilisateur(this.getUtilisateur());
     }
 
-    public Boolean getAdmin() {
-        return isAdmin;
+    public static RolesEnum getRoleUtilisateur(Utilisateur utilisateur){
+        if(utilisateur instanceof Livreur){
+            return RolesEnum.LIVREUR;
+        }
+
+        if(utilisateur instanceof Administrateur){
+            return RolesEnum.ADMIN;
+        }
+
+        return RolesEnum.CLIENT;
     }
 
-    private void setAdmin(Boolean admin) {
-        isAdmin = admin;
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
     public void clearUserSession() {
-        this.setIdUser(-1);
-        this.setAdmin(false);
+        this.setUtilisateur(null);
     }
 
     public void LoginVerification(Application redirectionApplication, Window windowsToCloseIfFailed) {
-        this.LoginVerification(redirectionApplication, windowsToCloseIfFailed, this.getIdUser(), this.getAdmin());
+        this.LoginVerification(redirectionApplication, windowsToCloseIfFailed, this.getUtilisateur());
     }
 
-    public void LoginVerification(Application redirectionApplication, Window windowsToCloseIfFailed, int idUser, boolean isAdmin) {
-        if (!this.isLogged() || !this.hasId(idUser) || !this.hasGoodRights(isAdmin)) {
+    public void LoginVerification(Application redirectionApplication, Window windowsToCloseIfFailed, Utilisateur utilisateur) {
+        if (!this.isLogged() || !hasId(utilisateur.getId()) && !this.hasGoodRights(UserSessionUtil.getRoleUtilisateur(utilisateur))) {
             JavaFXOpenWindowUtil.openAndCloseAWindow(redirectionApplication, windowsToCloseIfFailed);
         }
     }
 
     public boolean isLogged() {
-        return !this.hasId(-1);
+        return this.utilisateur != null;
     }
 
-    public boolean hasId(int idUser) {
-        return this.getIdUser() == idUser;
+    public boolean hasId(int id){
+        return this.utilisateur.getId() == id;
     }
 
-    public boolean hasGoodRights(boolean isAdmin) {
-        return this.getAdmin() == isAdmin;
+    public boolean hasGoodRights(RolesEnum rolesEnum) {
+        return this.getRoleUtilisateur().equals(rolesEnum);
     }
 }

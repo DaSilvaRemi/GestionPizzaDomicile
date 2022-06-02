@@ -5,8 +5,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import org.gestionrapizz.gestionpizzadomicile.MainApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.*;
 import javafx.scene.input.MouseEvent;
+import org.gestionrapizz.gestionpizzadomicile.models.entity.Client;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
@@ -34,24 +36,15 @@ public class ClientAccountController {
     }
 
     private void loadDatas(){
-        UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(-1, false);
+        UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
+        userSessionUtil.LoginVerification(new MainApplication(), this.makeadeposit_button.getScene().getWindow());
 
-        if(userSessionUtil.getIdUser() == -1){
-            return;
-        }
+        ClientDAO clientDAO = ClientDAO.getInstance();
+        Client client = clientDAO.getById(userSessionUtil.getUtilisateur().getId());
+        clientname_label.setText(client.getNom());
+        soldeclient_label.setText(String.valueOf(client.getSolde()));
 
-        ClientModel clientModel = new ClientModel();
-        try {
-            clientModel.connect();
-            ResultSet resultSet = clientModel.getInfosClientsById(userSessionUtil.getIdUser());
-            clientname_label.setText(resultSet.getString("u.name"));
-            soldeclient_label.setText(String.valueOf(resultSet.getInt("c.solde")));
-            clientModel.disconnect();
-
-            //TODO Add commandes dates on tabs
-        } catch (SQLException e) {
-            DialogUtils.showDialog(e.getMessage(), "Error : Client BDD problem", Alert.AlertType.ERROR);
-        }
+        //TODO Add commandes dates on tabs
     }
 
     @FXML
