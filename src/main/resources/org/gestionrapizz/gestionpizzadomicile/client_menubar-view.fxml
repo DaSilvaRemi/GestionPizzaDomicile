@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="menubar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.ClientMenuBarController">
+<children>
+    <MenuBar maxWidth="800.0" minWidth="800.0" prefWidth="800.0" style="-fx-background-color: #dd4135;">
+        <menus>
+            <Menu fx:id="menu_menuitem" mnemonicParsing="false" text="Menu" />
+            <Menu fx:id="orderpizza_menuitem" mnemonicParsing="false" text="Order Pizza" />
+            <Menu fx:id="myorder_menuitem" mnemonicParsing="false" text="My Orders" />
+            <Menu fx:id="makeadeposit_menuitem" mnemonicParsing="false" text="Make a Deposit" />
+            <Menu fx:id="logout_menuitem" mnemonicParsing="false" text="Log out" />
+        </menus>
+    </MenuBar>
+</children>
+</VBox>

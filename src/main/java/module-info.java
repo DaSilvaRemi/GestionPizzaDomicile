@@ -10,4 +10,6 @@ module org.gestionrapizz.gestionpizzadomicile {
 
     opens org.gestionrapizz.gestionpizzadomicile to javafx.fxml;
     exports org.gestionrapizz.gestionpizzadomicile;
+    exports org.gestionrapizz.gestionpizzadomicile.controller;
+    opens org.gestionrapizz.gestionpizzadomicile.controller to javafx.fxml;
 }
