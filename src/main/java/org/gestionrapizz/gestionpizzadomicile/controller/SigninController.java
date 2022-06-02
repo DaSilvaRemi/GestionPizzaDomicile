@@ -36,6 +36,7 @@ public class SigninController {
     @FXML
     private Button return_button;
 
+    @FXML
     protected void onSignInButtonClick(MouseEvent event){
         if(!password_input.getText().equals(confirmpassword_input.getText())){
             DialogUtils.showDialog("Entered passwords don't matche !", "Error : password verification", Alert.AlertType.ERROR);
@@ -60,6 +61,7 @@ public class SigninController {
         this.onReturnInButtonClick(event);
     }
 
+    @FXML
     protected void onReturnInButtonClick(MouseEvent event){
         JavaFXOpenWindowUtil.openAndCloseAWindow( new MainApplication(), ((Node) event.getSource()));
     }

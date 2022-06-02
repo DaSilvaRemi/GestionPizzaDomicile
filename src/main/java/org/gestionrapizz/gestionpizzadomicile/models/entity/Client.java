@@ -24,10 +24,6 @@ public class Client extends Utilisateur {
         this.solde = solde;
     }
 
-    public Utilisateur getUtilisateur(){
-        return new Utilisateur(super.getId(), super.getNom(), super.getEmail(), super.getMotdepasse());
-    }
-
     public String getTelephone() {
         return telephone;
     }

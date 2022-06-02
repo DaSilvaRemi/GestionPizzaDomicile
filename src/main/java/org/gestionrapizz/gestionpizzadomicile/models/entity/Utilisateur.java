@@ -13,6 +13,14 @@ public class Utilisateur {
         this.motdepasse = motdepasse;
     }
 
+    public Utilisateur(Utilisateur utilisateur){
+        this(utilisateur.getId(), utilisateur.getNom(), utilisateur.getEmail(), utilisateur.getMotdepasse());
+    }
+
+    public final Utilisateur getUtilisateur(){
+        return new Utilisateur(this);
+    }
+
     public int getId() {
         return id;
     }

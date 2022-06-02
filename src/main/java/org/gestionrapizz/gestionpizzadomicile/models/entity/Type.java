@@ -1,19 +1,19 @@
 package org.gestionrapizz.gestionpizzadomicile.models.entity;
 
 public class Type {
-    private String id;
+    private int id;
     private String nom;
 
-    public Type(String id, String nom) {
+    public Type(int id, String nom) {
         this.id = id;
         this.nom = nom;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

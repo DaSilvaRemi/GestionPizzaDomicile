@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class UtilisateurDAO extends DAO<Utilisateur, UtilisateurDAO> {
-    public static UtilisateurDAO instance;
+public class UtilisateurDAO extends DAO<Utilisateur> {
+    private static UtilisateurDAO instance;
 
     private UtilisateurDAO() {
     }
@@ -43,15 +43,14 @@ public class UtilisateurDAO extends DAO<Utilisateur, UtilisateurDAO> {
     public Utilisateur getByEmailAndPassword(String email, String password){
         String query = "SELECT Utilisateur.* FROM Utilisateur WHERE " +
                 "Utilisateur.email = ? AND " +
-                "Utilisateur.motdepasse = ?;";
+                "Utilisateur.motdepasse = PASSWORD(?);";
         List<Utilisateur> result =  super.find(query, List.of(email, password));
         return result.size() == 1 ? result.get(0) : null;
     }
 
     @Override
     public int insert(Utilisateur obj) {
-        super.modify("INSERT (nom, email, motdepasse) VALUES(?, ?, ?, ?);", Arrays.asList(obj.getNom(), obj.getEmail(), obj.getMotdepasse()));
-        return this.getByEmail(obj.getEmail()).getId();
+        return super.add("INSERT INTO Utilisateur (nom, email, motdepasse) VALUES(?, ?, PASSWORD(?));", Arrays.asList(obj.getNom(), obj.getEmail(), obj.getMotdepasse()));
     }
 
     @Override

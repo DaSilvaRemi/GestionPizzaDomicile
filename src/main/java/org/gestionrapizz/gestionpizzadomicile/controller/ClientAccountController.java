@@ -5,15 +5,18 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.gestionrapizz.gestionpizzadomicile.MainApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.*;
 import javafx.scene.input.MouseEvent;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Client;
+import org.gestionrapizz.gestionpizzadomicile.models.entity.Commande;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.net.URL;
+import java.util.List;
 
 public class ClientAccountController {
     @FXML
@@ -27,17 +30,12 @@ public class ClientAccountController {
     @FXML
     public Button orderpizza_button;
     @FXML
-    public TableView lastorders_tab;
+    public TableView<Object> lastorders_tab;
     @FXML
-    public TableView trendings_tabs;
+    public TableView<Object> trendings_tabs;
 
-    public ClientAccountController(){
-        this.loadDatas();
-    }
-
-    private void loadDatas(){
+    public void initialize(){
         UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
-        userSessionUtil.LoginVerification(new MainApplication(), this.makeadeposit_button.getScene().getWindow());
 
         ClientDAO clientDAO = ClientDAO.getInstance();
         Client client = clientDAO.getById(userSessionUtil.getUtilisateur().getId());
@@ -45,6 +43,8 @@ public class ClientAccountController {
         soldeclient_label.setText(String.valueOf(client.getSolde()));
 
         //TODO Add commandes dates on tabs
+        CommandeDAO commandeDAO = CommandeDAO.getInstance();
+        List<Commande> commandes = commandeDAO.getCommandesByIdUtilisateur(userSessionUtil.getUtilisateur().getId());
     }
 
     @FXML

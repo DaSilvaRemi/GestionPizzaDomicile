@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ClientDAO extends DAO<Client, ClientDAO> {
+public class ClientDAO extends DAO<Client> {
     private static ClientDAO instance;
 
     private ClientDAO() {
@@ -25,7 +25,7 @@ public class ClientDAO extends DAO<Client, ClientDAO> {
 
     @Override
     public List<Client> get() {
-        String query = "SELECT Utilisateur.*, Client.telephone, Client.adresse_rue, Client.adresse_ville, Client.adresse_codepostal, client.solde " +
+        String query = "SELECT Utilisateur.*, Client.telephone, Client.adresse_rue, Client.adresse_ville, Client.adresse_codepostal, Client.solde " +
                 "FROM Client " +
                 "INNER JOIN Utilisateur ON Client.id_utilisateur = Utilisateur.id_utilisateur;";
         return super.find(query, new ArrayList<>());
@@ -33,23 +33,23 @@ public class ClientDAO extends DAO<Client, ClientDAO> {
 
     @Override
     public Client getById(int id) {
-        String query = "SELECT Utilisateur.*, Client.telephone, Client.adresse_rue, Client.adresse_ville, Client.adresse_codepostal, client.solde " +
+        String query = "SELECT Utilisateur.*, Client.telephone, Client.adresse_rue, Client.adresse_ville, Client.adresse_codepostal, Client.solde " +
                 "FROM Client " +
-                "INNER JOIN Utilisateur ON Client.id_utilisateur = Utilisateur.id_utilisateur" +
-                "WHERE Client.id_utilisateur = ?;";
+                "INNER JOIN Utilisateur ON Client.id_utilisateur = Utilisateur.id_utilisateur " +
+                "WHERE Utilisateur.id_utilisateur = ?;";
         return super.find(query, List.of(id)).get(0);
     }
 
     public Client getByEmail(String email) {
-        String query = "SELECT Utilisateur.*, Client.telephone, Client.adresse_rue, Client.adresse_ville, Client.adresse_codepostal, client.solde " +
+        String query = "SELECT Utilisateur.*, Client.telephone, Client.adresse_rue, Client.adresse_ville, Client.adresse_codepostal, Client.solde " +
                 "FROM Client " +
-                "INNER JOIN Utilisateur ON Client.id_utilisateur = Utilisateur.id_utilisateur" +
+                "INNER JOIN Utilisateur ON Client.id_utilisateur = Utilisateur.id_utilisateur " +
                 "WHERE Utilisateur.email = ?;";
         return super.find(query, List.of(email)).get(0);
     }
 
     public Client getByTelephone(String telephone) {
-        String query = "SELECT Utilisateur.*, Client.telephone, Client.adresse_rue, Client.adresse_ville, Client.adresse_codepostal, client.solde " +
+        String query = "SELECT Utilisateur.*, Client.telephone, Client.adresse_rue, Client.adresse_ville, Client.adresse_codepostal, Client.solde " +
                 "FROM Client " +
                 "INNER JOIN Utilisateur ON Client.id_utilisateur = Utilisateur.id_utilisateur" +
                 "WHERE Client.id_telephone = ?;";
@@ -68,8 +68,7 @@ public class ClientDAO extends DAO<Client, ClientDAO> {
                 obj.getVille(),
                 obj.getCodePostal(),
                 obj.getSolde());
-        super.modify(query, params);
-        return this.getByTelephone(obj.getTelephone()).getId();
+        return super.add(query, params);
     }
 
     @Override
@@ -94,10 +93,9 @@ public class ClientDAO extends DAO<Client, ClientDAO> {
 
     @Override
     public boolean delete(Client obj) {
-        UtilisateurDAO.getInstance().update(obj.getUtilisateur());
-        String query = "DELETE FROM Client WHERE id_utilisateur = ?;";
+        String query = "DELETE FROM Client WHERE Client.id_utilisateur = ?;";
         List<Object> params = List.of(obj.getId());
-        return super.modify(query, params) > 0;
+        return super.modify(query, params) > 0 && UtilisateurDAO.getInstance().delete(obj.getUtilisateur());
     }
 
     @Override

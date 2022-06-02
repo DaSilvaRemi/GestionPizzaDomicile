@@ -22,10 +22,6 @@ public class ClientMakeDepositController {
     @FXML
     private Label walletamount_label;
 
-    public ClientMakeDepositController(){
-        this.verifySession(UserSessionUtil.getInstance(null));
-    }
-
     private void verifySession(UserSessionUtil userSessionUtil){
         userSessionUtil.LoginVerification(new MainApplication(), this.deposit_button.getScene().getWindow());
     }
