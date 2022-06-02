@@ -1,5 +1,6 @@
 package org.gestionrapizz.gestionpizzadomicile.models.entity;
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class Commande {
     private int id;
@@ -7,22 +8,24 @@ public class Commande {
     private Timestamp dateHeureLivraison;
     private double montant;
     private boolean retard;
-    private Client client;
     private Livreur livreur;
+    private Vehicule vehicule;
+    private Client client;
     private Statut statut;
 
-    public Commande(int id, Timestamp dateHeure, Client client, Livreur livreur, Statut statut) {
-        this(id, dateHeure, null, 0.0, false, client, livreur, statut);
+    public Commande(Timestamp dateHeure, Livreur livreur, Vehicule vehicule, Client client, Statut statut) {
+        this(0, dateHeure, null, 0.0, false, livreur, vehicule, client, statut);
     }
 
-    public Commande(int id, Timestamp dateHeure, Timestamp dateHeureLivraison, double montant, boolean retard, Client client, Livreur livreur, Statut statut) {
+    public Commande(int id, Timestamp dateHeure, Timestamp dateHeureLivraison, double montant, boolean retard, Livreur livreur, Vehicule vehicule, Client client, Statut statut) {
         this.id = id;
         this.dateHeure = dateHeure;
         this.dateHeureLivraison = dateHeureLivraison;
         this.montant = montant;
         this.retard = retard;
-        this.client = client;
         this.livreur = livreur;
+        this.vehicule = vehicule;
+        this.client = client;
         this.statut = statut;
     }
 
@@ -90,6 +93,14 @@ public class Commande {
         this.statut = statut;
     }
 
+    public Vehicule getVehicule() {
+        return vehicule;
+    }
+
+    public void setVehicule(Vehicule vehicule) {
+        this.vehicule = vehicule;
+    }
+
     @Override
     public String toString() {
         return "Commande{" +
@@ -101,6 +112,7 @@ public class Commande {
                 ", client=" + client +
                 ", livreur=" + livreur +
                 ", statut=" + statut +
+                ", vehicule=" + vehicule +
                 '}';
     }
 }

@@ -10,6 +10,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.Node;
 import org.gestionrapizz.gestionpizzadomicile.ClientAccountApplication;
 import org.gestionrapizz.gestionpizzadomicile.SigninApplication;
+import org.gestionrapizz.gestionpizzadomicile.models.UtilisateurDAO;
+import org.gestionrapizz.gestionpizzadomicile.models.entity.Utilisateur;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
@@ -31,28 +33,16 @@ public class MainController {
 
     @FXML
     protected void onLoginButtonClick(MouseEvent event) {
-        UtilisateurModel utilisateurModel = new UtilisateurModel();
-        try {
-            utilisateurModel.connect();
-            int nbUtilisateurs = utilisateurModel
-                    .countUtilisateurWithEmailAndPassword(emailadress_input.getText(), password_input.getText())
-                    .getInt("nbUsersWithGoodCredential");
+        UtilisateurDAO utilisateurDAO = UtilisateurDAO.getInstance();
+        Utilisateur utilisateur = utilisateurDAO.getByEmailAndPassword(emailadress_input.getText(), password_input.getText());
 
-            ResultSet resultSet = utilisateurModel.getUtilisateurByEmail(emailadress_input.getText());
-            int idUser = resultSet.getInt("id_utilisateur");
-            Boolean isAdmin = nbUtilisateurs == 1 && resultSet.getBoolean("is_admin");
-            utilisateurModel.disconnect();
-
-            if(nbUtilisateurs != 1){
-                DialogUtils.showDialog("Incorrect credentials pls retry !", "Error : incorrect credentials", Alert.AlertType.ERROR);
-                return;
-            }
-
-            UserSessionUtil.getInstance(idUser, isAdmin);
-            JavaFXOpenWindowUtil.openAndCloseAWindow( new ClientAccountApplication(), ((Node) event.getSource()));
-        } catch (SQLException e) {
-           DialogUtils.showDialog(e.getMessage(), "Error : Login Failed !", Alert.AlertType.ERROR);
+        if(utilisateur == null){
+            DialogUtils.showDialog("Incorrect credentials pls retry !", "Error : incorrect credentials", Alert.AlertType.ERROR);
+            return;
         }
+
+        UserSessionUtil.getInstance(utilisateur);
+        JavaFXOpenWindowUtil.openAndCloseAWindow( new ClientAccountApplication(), ((Node) event.getSource()));
     }
 
     @FXML

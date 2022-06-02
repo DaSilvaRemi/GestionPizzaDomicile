@@ -7,6 +7,10 @@ public class Client extends Utilisateur {
     private String codePostal;
     private Double solde;
 
+    public Client(Utilisateur utilisateur, String telephone, String adresseRue, String ville, String codePostal) {
+        this(utilisateur.getId(), utilisateur.getNom(), utilisateur.getEmail(), utilisateur.getMotdepasse(), telephone, adresseRue, ville, codePostal, 0.0);
+    }
+
     public Client(int id, String nom, String email, String motdepasse, String telephone, String adresseRue, String ville, String codePostal) {
         this(id, nom, email, motdepasse, telephone, adresseRue, ville, codePostal, 0.0);
     }
