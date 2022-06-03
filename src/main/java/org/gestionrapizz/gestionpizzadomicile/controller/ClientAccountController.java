@@ -1,18 +1,20 @@
 package org.gestionrapizz.gestionpizzadomicile.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import org.gestionrapizz.gestionpizzadomicile.MainApplication;
+import org.gestionrapizz.gestionpizzadomicile.*;
 import org.gestionrapizz.gestionpizzadomicile.models.*;
 import javafx.scene.input.MouseEvent;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Client;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Commande;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
 import java.net.URL;
@@ -48,16 +50,18 @@ public class ClientAccountController {
     }
 
     @FXML
-    protected void onMyOldOrdersButtonClick(MouseEvent mouseEvent) {
+    protected void onMyOldOrdersButtonClick(MouseEvent event) {
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientMyOrdersApplication(), ((Node) event.getSource()));
     }
 
     @FXML
-    protected void onMakeADepositButtonClick(MouseEvent mouseEvent) {
+    protected void onMakeADepositButtonClick(MouseEvent event) {
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientMakeDepositApplication(), ((Node) event.getSource()));
 
     }
 
     @FXML
-    protected void onOrderPizzaButtonClick(MouseEvent mouseEvent) {
-
+    protected void onOrderPizzaButtonClick(MouseEvent event) {
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientOrderPizzaApplication(), ((Node) event.getSource()));
     }
 }
