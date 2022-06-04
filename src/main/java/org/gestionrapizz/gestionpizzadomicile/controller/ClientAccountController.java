@@ -1,11 +1,13 @@
 package org.gestionrapizz.gestionpizzadomicile.controller;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.gestionrapizz.gestionpizzadomicile.*;
@@ -22,19 +24,21 @@ import java.util.List;
 
 public class ClientAccountController {
     @FXML
-    public Button myoldorders_button;
+    private Button myoldorders_button;
     @FXML
-    public Label clientname_label;
+    private Label clientname_label;
     @FXML
-    public Label soldeclient_label;
+    private Label soldeclient_label;
     @FXML
-    public Button makeadeposit_button;
+    private Button makeadeposit_button;
     @FXML
-    public Button orderpizza_button;
+    private Button orderpizza_button;
     @FXML
-    public TableView<Object> lastorders_tab;
+    private TableView<Object> lastorders_tab;
     @FXML
-    public TableView<Object> trendings_tabs;
+    private TableView<Object> trendings_tabs;
+    @FXML
+    private VBox ClientMenuBar;
 
     public void initialize(){
         UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);

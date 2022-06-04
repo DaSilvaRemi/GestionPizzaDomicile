@@ -42,47 +42,47 @@ public class SigninController {
     @FXML
     protected void onSignInButtonClick(MouseEvent event){
         if(name_input.getText().isBlank()){
-            DialogUtils.showDialog("Le nom est vide !", "Erreur : champ vide", Alert.AlertType.ERROR);
+            DialogUtils.showDialog("Le nom n'est pas renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
             return;
         }
 
         if(prenom_input.getText().isBlank()){
-            DialogUtils.showDialog("Le prénom est vide !", "Erreur : champ vide", Alert.AlertType.ERROR);
+            DialogUtils.showDialog("Le prénom n'est pas renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
             return;
         }
 
         if(emailadress_input.getText().isBlank()){
-            DialogUtils.showDialog("Le nom est non renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
+            DialogUtils.showDialog("L'adresse email n'est pas renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
             return;
         }
 
         if(zipcode_input.getText().isBlank()){
-            DialogUtils.showDialog("Le nom est non renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
-            return;
-        }
-
-        if(phonenumber_input.getText().isBlank()){
-            DialogUtils.showDialog("Le nom est non renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
-            return;
-        }
-
-        if(adress_input.getText().isBlank()){
-            DialogUtils.showDialog("L'adresse est non renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
-            return;
-        }
-
-        if(city_input.getText().isBlank()){
             DialogUtils.showDialog("Le code postal est non renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
             return;
         }
 
+        if(phonenumber_input.getText().isBlank()){
+            DialogUtils.showDialog("Le numéro de téléphone n'est pas renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
+            return;
+        }
+
+        if(adress_input.getText().isBlank()){
+            DialogUtils.showDialog("L'adresse n'est pas renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
+            return;
+        }
+
+        if(city_input.getText().isBlank()){
+            DialogUtils.showDialog("La ville n'est pas renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
+            return;
+        }
+
         if(password_input.getText().isBlank()){
-            DialogUtils.showDialog("Le mot de passe est non renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
+            DialogUtils.showDialog("Le mot de passe n'est pas renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
             return;
         }
 
         if(confirmpassword_input.getText().isBlank()){
-            DialogUtils.showDialog("La confirmation mot de passe est non renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
+            DialogUtils.showDialog("La confirmation mot de passe n'est pas renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
             return;
         }
 
