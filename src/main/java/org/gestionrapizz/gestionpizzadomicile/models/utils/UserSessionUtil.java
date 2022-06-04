@@ -48,6 +48,7 @@ public final class UserSessionUtil {
 
     public void clearUserSession() {
         this.setUtilisateur(null);
+        UserSessionUtil.instance = null;
     }
 
     public void LoginVerification(Application redirectionApplication, Window windowsToCloseIfFailed) {

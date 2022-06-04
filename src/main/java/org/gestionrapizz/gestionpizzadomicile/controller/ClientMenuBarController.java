@@ -1,5 +1,6 @@
 package org.gestionrapizz.gestionpizzadomicile.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Menu;
@@ -7,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import org.gestionrapizz.gestionpizzadomicile.*;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
 public class ClientMenuBarController extends VBox {
     @FXML
@@ -21,27 +23,28 @@ public class ClientMenuBarController extends VBox {
     private Menu logout_menuitem;
 
     @FXML
-    protected void onMenuClick(MouseEvent event){
+    protected void onMenuClick(ActionEvent event){
         JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientAccountApplication(), ((Node) event.getSource()));
     }
 
     @FXML
-    protected void onOrderPizzaClick(MouseEvent event){
+    protected void onOrderPizzaClick(ActionEvent event){
         JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientOrderPizzaApplication(), ((Node) event.getSource()));
     }
 
     @FXML
-    protected void onMyOrderClick(MouseEvent event){
+    protected void onMyOrderClick(ActionEvent event){
         JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientMyOrdersApplication(), ((Node) event.getSource()));
     }
 
     @FXML
-    protected void onMakeADepositClick(MouseEvent event){
+    protected void onMakeADepositClick(ActionEvent event){
         JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientMakeDepositApplication(), ((Node) event.getSource()));
     }
 
     @FXML
-    protected void onLogoutClick(MouseEvent event){
+    protected void onLogoutClick(ActionEvent event){
+        UserSessionUtil.getInstance(null).clearUserSession();
         JavaFXOpenWindowUtil.openAndCloseAWindow(new MainApplication(), ((Node) event.getSource()));
     }
 }

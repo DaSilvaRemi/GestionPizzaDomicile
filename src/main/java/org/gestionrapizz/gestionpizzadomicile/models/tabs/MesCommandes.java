@@ -1,11 +1,10 @@
 package org.gestionrapizz.gestionpizzadomicile.models.tabs;
 
-import org.gestionrapizz.gestionpizzadomicile.models.entity.Client;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Commande;
 
 import java.sql.Timestamp;
 
-public class MyOrders {
+public class MesCommandes {
     private int id;
     private Timestamp dateHeureCommande;
     private Timestamp dateHeureLivraison;
@@ -13,7 +12,7 @@ public class MyOrders {
     private String nomLivreur;
 
 
-    public MyOrders(Commande commande){
+    public MesCommandes(Commande commande){
         this.id = commande.getId();
         this.dateHeureCommande = commande.getDateHeure();
         this.dateHeureLivraison = commande.getDateHeureLivraison();

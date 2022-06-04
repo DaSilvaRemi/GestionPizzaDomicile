@@ -1,70 +1,68 @@
 package org.gestionrapizz.gestionpizzadomicile.models;
 
-import org.gestionrapizz.gestionpizzadomicile.models.entity.Client;
+import org.gestionrapizz.gestionpizzadomicile.models.entity.Administrateur;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Livreur;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class LivreurDAO extends DAO<Livreur> {
-    private static LivreurDAO instance;
+public class AdministrateurDAO extends DAO<Administrateur> {
+    private static AdministrateurDAO instance;
 
-    private LivreurDAO() {
+    private AdministrateurDAO() {
     }
 
-    public static LivreurDAO getInstance() {
-        if(LivreurDAO.instance == null){
-            LivreurDAO.instance = new LivreurDAO();
+    public static AdministrateurDAO getInstance() {
+        if(AdministrateurDAO.instance == null){
+            AdministrateurDAO.instance = new AdministrateurDAO();
         }
 
-        return LivreurDAO.instance;
+        return AdministrateurDAO.instance;
     }
 
     @Override
-    public List<Livreur> get() {
+    public List<Administrateur> get() {
         String query = "SELECT Utilisateur.*" +
-                "FROM Livreur " +
-                "INNER JOIN Utilisateur ON Livreur.id_utilisateur = Utilisateur.id_utilisateur;";
+                "FROM Administrateur " +
+                "INNER JOIN Utilisateur ON Administrateur.id_utilisateur = Utilisateur.id_utilisateur;";
         return super.find(query, new ArrayList<>());
     }
 
     @Override
-    public Livreur getById(int id) {
+    public Administrateur getById(int id) {
         String query = "SELECT Utilisateur.*" +
-                "FROM Livreur " +
-                "INNER JOIN Utilisateur ON Livreur.id_utilisateur = Utilisateur.id_utilisateur " +
+                "FROM Administrateur " +
+                "INNER JOIN Utilisateur ON Administrateur.id_utilisateur = Utilisateur.id_utilisateur " +
                 "WHERE Utilisateur.id_utilisateur = ?;";
         return super.find(query, List.of(id)).get(0);
     }
 
     @Override
-    public int insert(Livreur obj) {
+    public int insert(Administrateur obj) {
         int idUser = UtilisateurDAO.getInstance().insert(obj.getUtilisateur());
         if(idUser == 0) return 0;
 
-        String query = "INSERT INTO Livreur (id_utilisateur) " +
-                "VALUES(?);";
+        String query = "INSERT INTO Administrateur (id_utilisateur) VALUES(?);";
         return super.add(query, List.of(idUser));
     }
 
     @Override
-    public boolean update(Livreur obj) {
+    public boolean update(Administrateur obj) {
         return  UtilisateurDAO.getInstance().update(obj.getUtilisateur());
     }
 
     @Override
-    public boolean delete(Livreur obj) {
-        String query = "DELETE FROM Livreur WHERE Livreur.id_utilisateur = ?;";
+    public boolean delete(Administrateur obj) {
+        String query = "DELETE FROM Administrateur WHERE Administrateur.id_utilisateur = ?;";
         List<Object> params = List.of(obj.getId());
         return super.modify(query, params) > 0 && UtilisateurDAO.getInstance().delete(obj.getUtilisateur());
     }
 
     @Override
-    public Livreur resultSetToAbstract(ResultSet resultSet) throws SQLException {
-        return new Livreur(
+    public Administrateur resultSetToAbstract(ResultSet resultSet) throws SQLException {
+        return new Administrateur(
                 resultSet.getInt("id_utilisateur"),
                 resultSet.getString("nom"),
                 resultSet.getString("email"),

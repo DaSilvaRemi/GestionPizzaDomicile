@@ -59,6 +59,8 @@ public class ClientDAO extends DAO<Client> {
     @Override
     public int insert(Client obj) {
         int idUser = UtilisateurDAO.getInstance().insert(obj.getUtilisateur());
+        if(idUser == 0) return 0;
+
         String query = "INSERT INTO Client (id_utilisateur, telephone, adresse_rue, adresse_ville, adresse_codepostal, solde) " +
                 "VALUES(?, ?, ?, ?, ?, ?);";
         List<Object> params = Arrays.asList(
@@ -103,6 +105,7 @@ public class ClientDAO extends DAO<Client> {
         return new Client(
                 resultSet.getInt("id_utilisateur"),
                 resultSet.getString("nom"),
+                resultSet.getString("prenom"),
                 resultSet.getString("email"),
                 resultSet.getString("motdepasse"),
                 resultSet.getString("telephone"),

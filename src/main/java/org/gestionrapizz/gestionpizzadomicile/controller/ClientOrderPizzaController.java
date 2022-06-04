@@ -6,10 +6,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import org.gestionrapizz.gestionpizzadomicile.models.tabs.LignePanier;
 
 public class ClientOrderPizzaController {
     @FXML
-    private TableView<String> cart_tableview;
+    private TableView<LignePanier> cart_tableview;
     @FXML
     private Button addpizza_button;
     @FXML
@@ -23,8 +24,13 @@ public class ClientOrderPizzaController {
     @FXML
     private Label totalAmount_label;
 
+    public void initialize(){
+
+    }
+
     protected void onClickAddPizzaButton(MouseEvent event){
         String selectedPizza = pizzaschoice_selector.getSelectionModel().getSelectedItem();
+
     }
 
     protected void onClickRemovePizzaButton(MouseEvent event){
@@ -36,6 +42,6 @@ public class ClientOrderPizzaController {
     }
 
     protected void onClearCartButton(MouseEvent event){
-
+        cart_tableview.getItems().clear();
     }
 }
