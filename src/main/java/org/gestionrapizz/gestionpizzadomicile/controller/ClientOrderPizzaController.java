@@ -28,19 +28,23 @@ public class ClientOrderPizzaController {
 
     }
 
+    @FXML
     protected void onClickAddPizzaButton(MouseEvent event){
         String selectedPizza = pizzaschoice_selector.getSelectionModel().getSelectedItem();
 
     }
 
+    @FXML
     protected void onClickRemovePizzaButton(MouseEvent event){
 
     }
 
+    @FXML
     protected void onConfirmOrderButton(MouseEvent event){
 
     }
 
+    @FXML
     protected void onClearCartButton(MouseEvent event){
         cart_tableview.getItems().clear();
     }

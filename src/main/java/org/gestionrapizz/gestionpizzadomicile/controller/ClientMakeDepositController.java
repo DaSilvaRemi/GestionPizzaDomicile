@@ -22,26 +22,21 @@ public class ClientMakeDepositController {
     @FXML
     private Label walletamount_label;
 
-    private void verifySession(UserSessionUtil userSessionUtil){
-        userSessionUtil.LoginVerification(new MainApplication(), this.deposit_button.getScene().getWindow());
-    }
-
     @FXML
     protected void onDepositButtonClick(MouseEvent mouseEvent){
-        UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
-        this.verifySession(userSessionUtil);
-
         String amounttodepositInputText = amounttodeposit_input.getText();
         if(!amounttodepositInputText.matches("-?\\d+(\\.\\d+)?")){
             DialogUtils.showDialog("The amount entered is not a number ! ", "Error : Number Format invalid", Alert.AlertType.ERROR);
             return;
         }
 
+        UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
+
         ClientDAO clientDAO = ClientDAO.getInstance();
         Client client = clientDAO.getById(userSessionUtil.getUtilisateur().getId());
         client.setSolde(client.getSolde() + Double.parseDouble(amounttodepositInputText));
         clientDAO.update(client);
-        String newSolde = String.format("%.2f $", clientDAO.getById(userSessionUtil.getUtilisateur().getId()).getSolde());
+        String newSolde = String.format("%.2f €", clientDAO.getById(client.getId()).getSolde());
         walletamount_label.setText(newSolde);
     }
 }

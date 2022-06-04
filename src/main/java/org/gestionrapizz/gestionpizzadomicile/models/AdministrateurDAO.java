@@ -65,6 +65,7 @@ public class AdministrateurDAO extends DAO<Administrateur> {
         return new Administrateur(
                 resultSet.getInt("id_utilisateur"),
                 resultSet.getString("nom"),
+                resultSet.getString("prenom"),
                 resultSet.getString("email"),
                 resultSet.getString("motdepasse")
         );

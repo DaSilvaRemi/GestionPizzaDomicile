@@ -42,7 +42,7 @@ public class ClientAccountController {
         ClientDAO clientDAO = ClientDAO.getInstance();
         Client client = clientDAO.getById(userSessionUtil.getUtilisateur().getId());
         clientname_label.setText(client.getNom());
-        soldeclient_label.setText(String.valueOf(client.getSolde()));
+        soldeclient_label.setText(String.valueOf(String.format("%.2f €", client.getSolde())));
 
         //TODO Add commandes dates on tabs
         CommandeDAO commandeDAO = CommandeDAO.getInstance();

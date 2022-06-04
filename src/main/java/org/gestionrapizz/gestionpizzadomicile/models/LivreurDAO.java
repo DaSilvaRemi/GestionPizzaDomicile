@@ -67,6 +67,7 @@ public class LivreurDAO extends DAO<Livreur> {
         return new Livreur(
                 resultSet.getInt("id_utilisateur"),
                 resultSet.getString("nom"),
+                resultSet.getString("prenom"),
                 resultSet.getString("email"),
                 resultSet.getString("motdepasse")
         );

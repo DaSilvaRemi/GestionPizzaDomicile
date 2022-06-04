@@ -74,6 +74,7 @@ public class Client extends Utilisateur {
                 ", solde=" + solde +
                 ", id=" + id +
                 ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
                 ", email='" + email + '\'' +
                 ", motdepasse='" + motdepasse + '\'' +
                 '}';
