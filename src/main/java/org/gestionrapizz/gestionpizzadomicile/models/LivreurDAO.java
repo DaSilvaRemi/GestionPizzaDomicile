@@ -31,6 +31,17 @@ public class LivreurDAO extends DAO<Livreur> {
         return super.find(query, new ArrayList<>());
     }
 
+    public List<Livreur> getLivreurDisponible() {
+        String query = "SELECT Utilisateur.*" +
+                "FROM Livreur " +
+                "INNER JOIN Utilisateur ON Livreur.id_utilisateur = Utilisateur.id_utilisateur " +
+                "INNER JOIN Commande ON Commande.id_utilisateur = Livreur.id_utilisateur " +
+                "INNER JOIN Statut ON Commande.id_statut = Statut.id_statut " +
+                "WHERE Statut.nom == ? OR statut.nom = ? " +
+                "GROUP BY Utilisateur.id_utilisateur, Utilisateur.nom, Utilisateur.prenom, Utilisateur.email, Utilisateur.motdepasse;";
+        return super.find(query, Arrays.asList("Livré", "Refusé"));
+    }
+
     @Override
     public Livreur getById(int id) {
         String query = "SELECT Utilisateur.*" +

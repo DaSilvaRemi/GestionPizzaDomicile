@@ -10,6 +10,7 @@ module org.gestionrapizz.gestionpizzadomicile {
     requires commons.validator;
 
     opens org.gestionrapizz.gestionpizzadomicile to javafx.fxml;
+    opens org.gestionrapizz.gestionpizzadomicile.models.tabs to javafx.base;
     exports org.gestionrapizz.gestionpizzadomicile;
     exports org.gestionrapizz.gestionpizzadomicile.controller;
     opens org.gestionrapizz.gestionpizzadomicile.controller to javafx.fxml;

@@ -29,8 +29,14 @@ public class TailleDAO extends DAO<Taille>{
 
     @Override
     public Taille getById(int id) {
-        String query = "SELECT Pizza.* FROM Taille WHERE Taille.id_taille = ?;";
+        String query = "SELECT Taille.* FROM Taille WHERE Taille.id_taille = ?;";
         List<Taille> result = super.find(query, List.of(id));
+        return result.size() == 1 ? result.get(0) : null;
+    }
+
+    public Taille getByNom(String nom) {
+        String query = "SELECT Taille.* FROM Taille WHERE Taille.nom = ?;";
+        List<Taille> result = super.find(query, List.of(nom));
         return result.size() == 1 ? result.get(0) : null;
     }
 

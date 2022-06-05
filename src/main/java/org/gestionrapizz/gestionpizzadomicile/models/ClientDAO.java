@@ -81,7 +81,7 @@ public class ClientDAO extends DAO<Client> {
                 "adresse_rue = ?, " +
                 "adresse_ville = ?, " +
                 "adresse_codepostal = ?, " +
-                "solde = ?," +
+                "solde = ? " +
                 "WHERE id_utilisateur = ?;";
         List<Object> params = Arrays.asList(
                 obj.getTelephone(),

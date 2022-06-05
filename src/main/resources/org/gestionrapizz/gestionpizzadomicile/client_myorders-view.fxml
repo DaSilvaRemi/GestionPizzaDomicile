@@ -17,11 +17,11 @@
                <content>
                   <TableView fx:id="orders_tableview" prefHeight="410.0" prefWidth="775.0">
                     <columns>
-                      <TableColumn prefWidth="86.60000991821289" text="ID Commande" />
-                        <TableColumn prefWidth="172.40003967285156" text="Date Heure Commande" />
-                        <TableColumn prefWidth="141.20001220703125" text="Date Heure Livraison" />
-                      <TableColumn minWidth="0.0" prefWidth="139.79998779296875" text="Statut" />
-                        <TableColumn prefWidth="232.5999755859375" text="Livreur" />
+                      <TableColumn fx:id="id_commande_tablecolumn" prefWidth="98.0" text="ID Commande" />
+                        <TableColumn fx:id="dateheure_commande_tablecolumn" prefWidth="172.0" text="Date Heure Commande" />
+                        <TableColumn fx:id="dateheure_livraison_tablecolumn" prefWidth="149.0" text="Date Heure Livraison" />
+                      <TableColumn fx:id="statut_commande_tablecolumn" minWidth="0.0" prefWidth="169.0" text="Statut" />
+                        <TableColumn fx:id="livreur_commande_tablecolumn" prefWidth="187.0" text="Livreur" />
                     </columns>
                   </TableView>
                </content>

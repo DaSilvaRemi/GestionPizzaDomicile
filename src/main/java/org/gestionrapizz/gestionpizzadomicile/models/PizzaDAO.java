@@ -34,6 +34,13 @@ public class PizzaDAO extends DAO<Pizza> {
         return result.size() == 1 ? result.get(0) : null;
     }
 
+    public Pizza getByNom(String nom) {
+        String query = "SELECT Pizza.* FROM Pizza WHERE Pizza.nom = ?;";
+        List<Pizza> result = super.find(query, List.of(nom));
+        return result.size() == 1 ? result.get(0) : null;
+    }
+
+
     @Override
     public int insert(Pizza obj) {
         String query = "INSERT INTO Pizza(nom, prix) VALUES(?, ?);";

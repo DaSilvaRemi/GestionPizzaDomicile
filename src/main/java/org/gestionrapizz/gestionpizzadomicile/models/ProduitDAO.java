@@ -25,7 +25,16 @@ public class ProduitDAO extends DAO<Produit> {
 
     @Override
     public List<Produit> get() {
-        return super.find("SELECT Produit.* FROM Produit;", new ArrayList<>());
+        String query = "SELECT Produit.*, " +
+                "CASE Taille.nom " +
+                "WHEN 'Naine' THEN ROUND(prix * 1.33, 2) " +
+                "WHEN 'Ogresse' THEN ROUND(prix * 0.67, 2) " +
+                "ELSE prix " +
+                "END AS prix_produit "+
+                "FROM Produit " +
+                "INNER JOIN Taille ON Taille.id_taille = Produit.id_taille " +
+                "INNER JOIN Pizza ON Pizza.id_pizza = Produit.id_pizza;";
+        return super.find(query, new ArrayList<>());
     }
 
     @Override
@@ -34,16 +43,45 @@ public class ProduitDAO extends DAO<Produit> {
     }
 
     public List<Produit> getByIdTaille(int id) {
-        return super.find("SELECT Produit.* FROM Type WHERE Produit.id_taille = ?;", List.of(id));
+        String query = "SELECT Produit.*, " +
+                "CASE Taille.nom " +
+                "WHEN 'Naine' THEN ROUND(Pizza.prix * 1.33, 2) " +
+                "WHEN 'Ogresse' THEN ROUND(Pizza.prix * 0.67, 2) " +
+                "ELSE Pizza.prix " +
+                "END AS prix_produit"+
+                "FROM Produit " +
+                "INNER JOIN Taille ON Taille.id_taille = Produit.id_taille " +
+                "INNER JOIN Pizza ON Pizza.id_pizza = Produit.id_pizza " +
+                "WHERE Produit.id_taille = ?;";
+        return super.find(query, List.of(id));
     }
 
 
     public List<Produit> getByIdPizza(int id) {
-        return super.find("SELECT Produit.* FROM Composer WHERE Produit.id_pizza = ?;", List.of(id));
+        String query = "SELECT Produit.*, " +
+                "CASE Taille.nom " +
+                "WHEN 'Naine' THEN ROUND(Pizza.prix * 1.33, 2) " +
+                "WHEN 'Ogresse' THEN ROUND(Pizza.prix * 0.67, 2) " +
+                "ELSE Pizza.prix " +
+                "END AS prix_produit"+
+                "FROM Produit " +
+                "INNER JOIN Taille ON Taille.id_taille = Produit.id_taille " +
+                "INNER JOIN Pizza ON Pizza.id_pizza = Produit.id_pizza " +
+                "WHERE Produit.id_pizza = ?;";
+        return super.find(query, List.of(id));
     }
 
     public Produit getByIdTailleAndPizza(int idTaille, int idPizza) {
-        String query = "SELECT Produit.* FROM Type WHERE Produit.id_taille = ? AND Produit.id_pizza = ?;";
+        String query = "SELECT Produit.*, " +
+                "CASE Taille.nom " +
+                "WHEN 'Naine' THEN ROUND(Pizza.prix * 1.33, 2) " +
+                "WHEN 'Ogresse' THEN ROUND(Pizza.prix * 0.67, 2) " +
+                "ELSE Pizza.prix " +
+                "END AS prix_produit "+
+                "FROM Produit " +
+                "INNER JOIN Taille ON Taille.id_taille = Produit.id_taille " +
+                "INNER JOIN Pizza ON Pizza.id_pizza = Produit.id_pizza " +
+                "WHERE Produit.id_taille = ? AND Produit.id_pizza = ?;";
         List<Produit> result = super.find(query, Arrays.asList(idTaille, idPizza));
         return result.size() == 1 ? result.get(0) : null;
     }
@@ -78,7 +116,8 @@ public class ProduitDAO extends DAO<Produit> {
     public Produit resultSetToAbstract(ResultSet resultSet) throws SQLException {
         return new Produit(
                 PizzaDAO.getInstance().getById(resultSet.getInt("id_pizza")),
-                TailleDAO.getInstance().getById(resultSet.getInt("id_taille"))
+                TailleDAO.getInstance().getById(resultSet.getInt("id_taille")),
+                resultSet.getDouble("prix_produit")
                 );
     }
 }

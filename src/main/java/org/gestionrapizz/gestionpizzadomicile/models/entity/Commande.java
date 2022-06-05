@@ -13,6 +13,11 @@ public class Commande {
     private Client client;
     private Statut statut;
 
+    public Commande(Livreur livreur, Vehicule vehicule, Client client, Statut statut) {
+        this(0, null, null, 0.0, false, livreur, vehicule, client, statut);
+    }
+
+
     public Commande(Timestamp dateHeure, Livreur livreur, Vehicule vehicule, Client client, Statut statut) {
         this(0, dateHeure, null, 0.0, false, livreur, vehicule, client, statut);
     }
