@@ -75,7 +75,6 @@ public class ClientDAO extends DAO<Client> {
 
     @Override
     public boolean update(Client obj) {
-        UtilisateurDAO.getInstance().update(obj.getUtilisateur());
         String query = "UPDATE Client " +
                 "SET telephone = ?, " +
                 "adresse_rue = ?, " +
@@ -90,7 +89,7 @@ public class ClientDAO extends DAO<Client> {
                 obj.getCodePostal(),
                 obj.getSolde(),
                 obj.getId());
-        return super.modify(query, params) > 0;
+        return UtilisateurDAO.getInstance().updateWithoutPassword(obj.getUtilisateur()) && super.modify(query, params) > 0;
     }
 
     @Override

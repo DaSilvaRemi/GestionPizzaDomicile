@@ -24,7 +24,7 @@ public class ContenirDAO extends DAO<Contenir> {
 
     @Override
     public List<Contenir> get() {
-        return super.find("SELECT Produit.* FROM Produit;", new ArrayList<>());
+        return super.find("SELECT Contenir.* FROM Contenir;", new ArrayList<>());
     }
 
     @Override
@@ -32,27 +32,27 @@ public class ContenirDAO extends DAO<Contenir> {
         return this.getByIdTailleAndPizza(id, id);
     }
 
-    public List<Contenir> getIdCommande(int id) {
-        return super.find("SELECT Contenir.* FROM Composer WHERE Contenir.id_commande = ?;", List.of(id));
+    public List<Contenir> getByIdCommande(int id) {
+        return super.find("SELECT Contenir.* FROM Contenir WHERE Contenir.id_commande = ?;", List.of(id));
     }
 
     public List<Contenir> getByIdTaille(int id) {
-        return super.find("SELECT Contenir.* FROM Type WHERE Contenir.id_taille = ?;", List.of(id));
+        return super.find("SELECT Contenir.* FROM Contenir WHERE Contenir.id_taille = ?;", List.of(id));
     }
 
 
     public List<Contenir> getByIdPizza(int id) {
-        return super.find("SELECT Contenir.* FROM Composer WHERE Contenir.id_pizza = ?;", List.of(id));
+        return super.find("SELECT Contenir.* FROM Contenir WHERE Contenir.id_pizza = ?;", List.of(id));
     }
 
     public Contenir getByIdTailleAndPizza(int idTaille, int idPizza) {
-        String query = "SELECT Contenir.* FROM Type WHERE Contenir.id_taille = ? AND Contenir.id_pizza = ?;";
+        String query = "SELECT Contenir.* FROM Contenir WHERE Contenir.id_taille = ? AND Contenir.id_pizza = ?;";
         List<Contenir> result = super.find(query, Arrays.asList(idTaille, idPizza));
         return result.size() == 1 ? result.get(0) : null;
     }
 
     public Contenir getByIdCommandeAndIdTailleAndPizza(int idCommande, int idTaille, int idPizza) {
-        String query = "SELECT Contenir.* FROM Type WHERE Contenir.id_commande = ? AND Contenir.id_taille = ? AND Contenir.id_pizza = ?;";
+        String query = "SELECT Contenir.* FROM Contenir WHERE Contenir.id_commande = ? AND Contenir.id_taille = ? AND Contenir.id_pizza = ?;";
         List<Contenir> result = super.find(query, Arrays.asList(idCommande, idTaille, idPizza));
         return result.size() == 1 ? result.get(0) : null;
     }

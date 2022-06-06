@@ -24,7 +24,7 @@ public class TailleDAO extends DAO<Taille>{
 
     @Override
     public List<Taille> get() {
-        return super.find("SELECT Taille.* FROM Taille;", new ArrayList<>());
+        return super.find("SELECT Taille.* FROM Taille ORDER BY Taille.id_taille ASC;", new ArrayList<>());
     }
 
     @Override

@@ -71,10 +71,14 @@ public class ClientOrderPizzaController {
         //Get entities
         Statut statut = statutDAO.getByNom("En attente");
         Client client = clientDAO.getById(userSessionUtil.getUtilisateur().getId());
-        Vehicule vehiculeDisponible = vehiculeDAO.getVehiculesDisponible().get(0);
-        Livreur livreurDisponible = livreurDAO.getLivreurDisponible().get(0);
+        List<Vehicule> vehiculesDisponible = vehiculeDAO.getVehiculesDisponible();
+        List<Livreur> livreurDisponible = livreurDAO.getLivreurDisponible();
+
+        Vehicule vehicule = vehiculesDisponible.size() > 0 ? vehiculesDisponible.get(0) : vehiculeDAO.get().get(0);
+        Livreur livreur = livreurDisponible.size() > 0 ? livreurDisponible.get(0) : livreurDAO.get().get(0);
+
         List<Commande> commandes = commandeDAO.getByIdClientAndIdStatus(client.getId(), statut.getId());
-        this.currentCommande = commandes.size() > 0 ? commandes.get(0) : commandeDAO.getById(commandeDAO.insert(new Commande(livreurDisponible, vehiculeDisponible, client, statut)));
+        this.currentCommande = commandes.size() > 0 ? commandes.get(0) : commandeDAO.getById(commandeDAO.insert(new Commande(livreur, vehicule, client, statut)));
     }
 
     private void updateMontant(){
@@ -84,12 +88,13 @@ public class ClientOrderPizzaController {
     }
 
     private void updateCart(){
+        this.cart_tableview.getItems().clear();
         ContenirDAO contenirDAO = ContenirDAO.getInstance();
-        List<Contenir> contenirs = contenirDAO.getIdCommande(this.currentCommande.getId());
+        List<Contenir> contenirs = contenirDAO.getByIdCommande(this.currentCommande.getId());
 
         for (Contenir contenir: contenirs) {
             Produit produit = contenir.getProduit();
-            cart_tableview.getItems().add(new LignePanier(produit.getPizza().getNom(), produit.getTaille().getNom(), produit.getPrixProduit()));
+            this.cart_tableview.getItems().add(new LignePanier(produit.getPizza().getNom(), produit.getTaille().getNom(), produit.getPrixProduit()));
         }
     }
 
@@ -108,8 +113,12 @@ public class ClientOrderPizzaController {
 
         Produit produit = produitDAO.getByIdTailleAndPizza(idTaille, idPizza);
         this.currentCommande.setMontant(this.currentCommande.getMontant() + produit.getPrixProduit());
-        commandeDAO.update(this.currentCommande);
-        contenirDAO.insert(new Contenir(this.currentCommande, produit));
+        boolean isUpdate = commandeDAO.update(this.currentCommande);
+        if(!isUpdate){
+            DialogUtils.showDialog("Impossible de mettre à jour la table !", "");
+        }
+
+        int idGenerated = contenirDAO.insert(new Contenir(this.currentCommande, produit));
         this.updateCart();
         this.updateMontant();
     }
@@ -141,25 +150,34 @@ public class ClientOrderPizzaController {
     @FXML
     protected void onConfirmOrderButton(MouseEvent event){
         UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
-        Client client = ClientDAO.getInstance().getById(userSessionUtil.getUtilisateur().getId());
+        ClientDAO clientDAO = ClientDAO.getInstance();
+        StatutDAO statutDAO = StatutDAO.getInstance();
+        CommandeDAO commandeDAO = CommandeDAO.getInstance();
+        ContenirDAO contenirDAO = ContenirDAO.getInstance();
+
+        Client client = clientDAO.getById(userSessionUtil.getUtilisateur().getId());
 
         if(client.getSolde() < this.currentCommande.getMontant()){
             DialogUtils.showDialog("Votre solde est insuffisant pour cette commande !", "Erreur : solde insuffisant !", Alert.AlertType.ERROR);
             return;
         }
 
-        this.currentCommande.setStatut(StatutDAO.getInstance().getByNom("Livraison en cours"));
-        boolean isConfirm = CommandeDAO.getInstance().confirmACommand(this.currentCommande);
+        if(this.cart_tableview.getItems().size() == 0 || contenirDAO.getByIdCommande(this.currentCommande.getId()).size() == 0){
+            DialogUtils.showDialog("Aucun produits sélectionnés !", "Erreur : commande vide !", Alert.AlertType.ERROR);
+            return;
+        }
+
+        this.currentCommande.setStatut(statutDAO.getByNom("Livraison en cours"));
+        boolean isConfirm = commandeDAO.confirmACommand(this.currentCommande);
 
         if(isConfirm){
-            DialogUtils.showDialog("Commande confirmé !");
+            DialogUtils.showDialog("Commande confirmé ! \n Votre commande sera débité lors de la livraison !");
             this.onClearCartButton(event);
         }
     }
 
     @FXML
     protected void onClearCartButton(MouseEvent event){
-        cart_tableview.getItems().clear();
         this.updateCommmande();
         this.updateMontant();
         this.updateCart();

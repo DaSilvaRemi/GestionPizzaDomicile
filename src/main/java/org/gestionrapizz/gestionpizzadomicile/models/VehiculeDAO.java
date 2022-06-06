@@ -46,7 +46,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
                 "FROM Vehicule " +
                 "INNER JOIN Commande ON Commande.immatriculation = Vehicule.immatriculation " +
                 "INNER JOIN Statut ON Commande.id_statut = Statut.id_statut " +
-                "WHERE Statut.nom == ? OR statut.nom = ? " +
+                "WHERE Statut.nom = ? OR Statut.nom = ? " +
                 "GROUP BY Vehicule.immatriculation;";
         return super.find(query, Arrays.asList("Livré", "Refusé"));
     }

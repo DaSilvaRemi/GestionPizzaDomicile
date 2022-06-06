@@ -16,8 +16,8 @@ public class MesCommandes {
 
     public MesCommandes(Commande commande){
         this.id = new SimpleIntegerProperty(commande.getId());
-        this.dateHeureCommande = new SimpleStringProperty(commande.getDateHeure().toString());
-        this.dateHeureLivraison = new SimpleStringProperty(commande.getDateHeureLivraison().toString());
+        this.dateHeureCommande = new SimpleStringProperty(commande.getDateHeure() == null ? "Aucune date" : commande.getDateHeure().toString());
+        this.dateHeureLivraison = new SimpleStringProperty(commande.getDateHeureLivraison() == null ? "Aucune date" : commande.getDateHeureLivraison().toString());
         this.statut = new SimpleStringProperty(commande.getStatut().getNom());
         this.livreur = new SimpleStringProperty(commande.getLivreur().getNom());
     }

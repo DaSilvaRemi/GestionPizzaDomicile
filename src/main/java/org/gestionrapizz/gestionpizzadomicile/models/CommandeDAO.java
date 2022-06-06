@@ -98,6 +98,38 @@ public class CommandeDAO extends DAO<Commande> {
         return super.find(query, Arrays.asList(idClient, idStatut));
     }
 
+    public Commande getTotMontantCommandeEnCoursByClient(int id)  {
+        String query = "SELECT Commande.id_commande, Commande.dateHeure_commande, Commande.dateHeureLivraison, SUM(Commande.montant) AS montant, Commande.retard," +
+                "Commande.id_utilisateur, Commande.immatriculation, Commande.id_utilisateur_1, Commande.id_statut " +
+                "FROM Commande " +
+                "INNER JOIN Livreur ON Commande.id_utilisateur = Livreur.id_utilisateur " +
+                "INNER JOIN Vehicule ON Commande.immatriculation = Vehicule.immatriculation " +
+                "INNER JOIN Client ON Commande.id_utilisateur_1 = Client.id_utilisateur " +
+                "INNER JOIN Statut ON Commande.id_statut = Statut.id_statut " +
+                "WHERE Commande.id_utilisateur_1 = ? AND Statut.nom = ? OR Statut.nom = ?" +
+                "GROUP BY Commande.id_utilisateur_1 " +
+                "ORDER BY Commande.dateHeure_commande DESC;";
+        List<Object> params = Arrays.asList(id, "En cours de préparation", "Livraison en cours");
+        List<Commande> result = super.find(query, params);
+        return result.size() == 1 ? result.get(0) : null;
+    }
+
+    public Commande getTotMontantCommandeEnCoursOuLivreByClient(int id)  {
+        String query = "SELECT Commande.id_commande, Commande.dateHeure_commande, Commande.dateHeureLivraison, SUM(Commande.montant) AS montant, Commande.retard," +
+                "Commande.id_utilisateur, Commande.immatriculation, Commande.id_utilisateur_1, Commande.id_statut " +
+                "FROM Commande " +
+                "INNER JOIN Livreur ON Commande.id_utilisateur = Livreur.id_utilisateur " +
+                "INNER JOIN Vehicule ON Commande.immatriculation = Vehicule.immatriculation " +
+                "INNER JOIN Client ON Commande.id_utilisateur_1 = Client.id_utilisateur " +
+                "INNER JOIN Statut ON Commande.id_statut = Statut.id_statut " +
+                "WHERE Commande.id_utilisateur_1 = ? AND Statut.nom != ? OR Statut.nom != ?" +
+                "GROUP BY Commande.id_utilisateur_1 " +
+                "ORDER BY Commande.dateHeure_commande DESC;";
+        List<Object> params = Arrays.asList(id, "En attente", "Refusé");
+        List<Commande> result = super.find(query, params);
+        return result.size() == 1 ? result.get(0) : null;
+    }
+
     @Override
     public int insert(Commande obj) {
         String query = "INSERT INTO Commande (montant, retard, id_statut, id_utilisateur, immatriculation, id_utilisateur_1) " +
@@ -116,14 +148,14 @@ public class CommandeDAO extends DAO<Commande> {
     @Override
     public boolean update(Commande obj) {
         String query = "UPDATE Commande SET " +
-                "dateHeure_commande = ?" +
+                "dateHeure_commande = ?, " +
                 "dateHeure_livraison = ?," +
                 "montant = ?, " +
                 "retard = ?, " +
                 "id_statut = ?, " +
                 "id_utilisateur = ?, " +
                 "immatriculation = ?, " +
-                "id_utilisateur_1 = ?" +
+                "id_utilisateur_1 = ? " +
                 "WHERE Commande.id_commande = ?;";
         List<Object> params = Arrays.asList(
                 obj.getDateHeure(),
@@ -147,11 +179,9 @@ public class CommandeDAO extends DAO<Commande> {
                 "id_statut = ?, " +
                 "id_utilisateur = ?, " +
                 "immatriculation = ?, " +
-                "id_utilisateur_1 = ?" +
+                "id_utilisateur_1 = ? " +
                 "WHERE Commande.id_commande = ?;";
         List<Object> params = Arrays.asList(
-                obj.getDateHeure(),
-                obj.getDateHeureLivraison(),
                 obj.getMontant(),
                 obj.isRetard(),
                 obj.getStatut().getId(),

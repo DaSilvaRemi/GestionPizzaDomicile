@@ -27,8 +27,8 @@ public class ProduitDAO extends DAO<Produit> {
     public List<Produit> get() {
         String query = "SELECT Produit.*, " +
                 "CASE Taille.nom " +
-                "WHEN 'Naine' THEN ROUND(prix * 1.33, 2) " +
-                "WHEN 'Ogresse' THEN ROUND(prix * 0.67, 2) " +
+                "WHEN 'Naine' THEN ROUND(prix * 0.67, 2) " +
+                "WHEN 'Ogresse' THEN ROUND(prix * 1.33, 2) " +
                 "ELSE prix " +
                 "END AS prix_produit "+
                 "FROM Produit " +
@@ -45,8 +45,8 @@ public class ProduitDAO extends DAO<Produit> {
     public List<Produit> getByIdTaille(int id) {
         String query = "SELECT Produit.*, " +
                 "CASE Taille.nom " +
-                "WHEN 'Naine' THEN ROUND(Pizza.prix * 1.33, 2) " +
-                "WHEN 'Ogresse' THEN ROUND(Pizza.prix * 0.67, 2) " +
+                "WHEN 'Naine' THEN ROUND(prix * 0.67, 2) " +
+                "WHEN 'Ogresse' THEN ROUND(prix * 1.33, 2) " +
                 "ELSE Pizza.prix " +
                 "END AS prix_produit"+
                 "FROM Produit " +
@@ -60,8 +60,8 @@ public class ProduitDAO extends DAO<Produit> {
     public List<Produit> getByIdPizza(int id) {
         String query = "SELECT Produit.*, " +
                 "CASE Taille.nom " +
-                "WHEN 'Naine' THEN ROUND(Pizza.prix * 1.33, 2) " +
-                "WHEN 'Ogresse' THEN ROUND(Pizza.prix * 0.67, 2) " +
+                "WHEN 'Naine' THEN ROUND(prix * 0.67, 2) " +
+                "WHEN 'Ogresse' THEN ROUND(prix * 1.33, 2) " +
                 "ELSE Pizza.prix " +
                 "END AS prix_produit"+
                 "FROM Produit " +
@@ -74,8 +74,8 @@ public class ProduitDAO extends DAO<Produit> {
     public Produit getByIdTailleAndPizza(int idTaille, int idPizza) {
         String query = "SELECT Produit.*, " +
                 "CASE Taille.nom " +
-                "WHEN 'Naine' THEN ROUND(Pizza.prix * 1.33, 2) " +
-                "WHEN 'Ogresse' THEN ROUND(Pizza.prix * 0.67, 2) " +
+                "WHEN 'Naine' THEN ROUND(prix * 0.67, 2) " +
+                "WHEN 'Ogresse' THEN ROUND(prix * 1.33, 2) " +
                 "ELSE Pizza.prix " +
                 "END AS prix_produit "+
                 "FROM Produit " +

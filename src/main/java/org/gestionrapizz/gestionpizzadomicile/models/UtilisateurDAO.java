@@ -62,7 +62,18 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
                 "Utilisateur.email = ?, " +
                 "Utilisateur.motdepasse = PASSWORD(?) " +
                 "WHERE Utilisateur.id_utilisateur = ?;";
-        return super.modify(query, Arrays.asList(obj.getNom(), obj.getPrenom(), obj.getEmail(), obj.getMotdepasse())) > 0;
+        List<Object> params = Arrays.asList(obj.getNom(), obj.getPrenom(), obj.getEmail(), obj.getMotdepasse(), obj.getId());
+        return super.modify(query, params) > 0;
+    }
+
+    public boolean updateWithoutPassword(Utilisateur obj) {
+        String query = "UPDATE Utilisateur SET " +
+                "Utilisateur.nom = ?, " +
+                "Utilisateur.prenom = ?, " +
+                "Utilisateur.email = ? " +
+                "WHERE Utilisateur.id_utilisateur = ?;";
+        List<Object> params = Arrays.asList(obj.getNom(), obj.getPrenom(), obj.getEmail(), obj.getId());
+        return super.modify(query, params) > 0;
     }
 
     @Override
