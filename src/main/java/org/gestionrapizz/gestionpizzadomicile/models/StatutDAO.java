@@ -25,14 +25,20 @@ public class StatutDAO extends DAO<Statut> {
 
     @Override
     public List<Statut> get() {
-        String query = "SELECT Statut.* FROM Commande;";
+        String query = "SELECT Statut.* FROM Statut;";
         return super.find(query, new ArrayList<>());
     }
 
     @Override
     public Statut getById(int id) {
-        String query = "SELECT Statut.* FROM Commande WHERE Statut.id_statut = ?;";
+        String query = "SELECT Statut.* FROM Statut WHERE Statut.id_statut = ?;";
         List<Statut> statuts = super.find(query, List.of(id));
+        return statuts.size() == 1 ? statuts.get(0) : null;
+    }
+
+    public Statut getByNom(String nom) {
+        String query = "SELECT Statut.* FROM Statut WHERE Statut.nom = ?;";
+        List<Statut> statuts = super.find(query, List.of(nom));
         return statuts.size() == 1 ? statuts.get(0) : null;
     }
 

@@ -58,7 +58,10 @@ public abstract class DAO<Entity> {
                 preparedStatement.setObject(i + 1, params.get(i));
             }
 
-            return preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            rs.next();
+            return rs.getInt(1);
         } catch (SQLException e) {
             DialogUtils.showDialog(e.getMessage(), "SQL EXCEPTION !", Alert.AlertType.ERROR);
             return 0;
