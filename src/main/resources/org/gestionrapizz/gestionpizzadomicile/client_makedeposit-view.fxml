@@ -4,33 +4,35 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<?import javafx.scene.control.SpinnerValueFactory.DoubleSpinnerValueFactory?>
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.ClientMakeDepositController">
    <children>
       <fx:include fx:id="ClientMenuBar" source="client_menubar-view.fxml" />
       <Pane maxHeight="500.0" maxWidth="800.0" minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0">
          <children>
-            <Label layoutX="257.0" layoutY="72.0" text="Your wallet : ">
+            <Label layoutX="257.0" layoutY="72.0" text="Votre solde : ">
                <font>
                   <Font name="Source Code Pro Black" size="24.0" />
                </font></Label>
-            <Button fx:id="deposit_button" layoutX="259.0" layoutY="235.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: #1E9F00;" text="Deposit" textFill="WHITE">
+            <Button fx:id="deposit_button" layoutX="259.0" layoutY="235.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: #1E9F00;" text="Déposer" textFill="WHITE" onMouseClicked="#onDepositButtonClick">
                <font>
                   <Font name="Source Code Pro Medium" size="13.0" />
                </font></Button>
-            <TextField fx:id="amounttodeposit_input" layoutX="259.0" layoutY="188.0" prefHeight="30.0" prefWidth="300.0" promptText="0.00">
-               <font>
-                  <Font name="Source Code Pro Medium" size="13.0" />
-               </font></TextField>
-            <Label layoutX="333.0" layoutY="134.0" text="Make a deposit">
+            <Label layoutX="333.0" layoutY="134.0" text="Faire un dépot">
                <font>
                   <Font name="Source Code Pro Medium" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="walletamount_label" layoutX="471.0" layoutY="72.0" text="0.00 $">
+            <Label fx:id="walletamount_label" layoutX="471.0" layoutY="72.0" text="0.00 €">
                <font>
                   <Font name="Source Code Pro Black" size="24.0" />
                </font>
             </Label>
+            <Spinner fx:id="amounttodeposit_input" editable="true" layoutX="259.0" layoutY="193.0" prefHeight="25.0" prefWidth="300.0">
+               <valueFactory>
+                  <SpinnerValueFactory.DoubleSpinnerValueFactory min="1.0" max="1000.0" initialValue="1.0" amountToStepBy="1"/>
+               </valueFactory>
+            </Spinner>
          </children></Pane>
    </children>
 </VBox>

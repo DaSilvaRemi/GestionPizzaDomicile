@@ -12,19 +12,19 @@
                <font>
                   <Font name="Source Code Pro Medium" size="24.0" />
                </font></Label>
-            <TextField fx:id="name_input" layoutX="61.0" layoutY="102.0" prefHeight="25.0" prefWidth="250.0" promptText="My Name">
+            <TextField fx:id="name_input" layoutX="61.0" layoutY="102.0" prefHeight="25.0" prefWidth="250.0" promptText="Mon nom">
                <font>
                   <Font name="Source Code Pro Medium" size="12.0" />
                </font></TextField>
-            <Label layoutX="61.0" layoutY="85.0" text="Name">
+            <Label layoutX="61.0" layoutY="85.0" text="Nom">
                <font>
                   <Font name="Source Code Pro Medium" size="12.0" />
                </font></Label>
-            <TextField fx:id="emailadress_input" layoutX="61.0" layoutY="176.0" prefHeight="25.0" prefWidth="250.0" promptText="myemailadress">
+            <TextField fx:id="emailadress_input" layoutX="61.0" layoutY="176.0" prefHeight="25.0" prefWidth="250.0" promptText="email@email.com">
                <font>
                   <Font name="Source Code Pro Medium" size="12.0" />
                </font></TextField>
-            <Label layoutX="61.0" layoutY="159.0" text="Email Address">
+            <Label layoutX="61.0" layoutY="159.0" text="Adresse email">
                <font>
                   <Font name="Source Code Pro Medium" size="12.0" />
                </font></Label>
@@ -32,62 +32,68 @@
                <font>
                   <Font name="Source Code Pro Medium" size="12.0" />
                </font></TextField>
-            <Label layoutX="61.0" layoutY="233.0" text="ZipCode">
+            <Label layoutX="61.0" layoutY="233.0" text="Code postal">
                <font>
                   <Font name="Source Code Pro Medium" size="12.0" />
                </font></Label>
-            <TextField fx:id="phonenumber_input" layoutX="442.0" layoutY="102.0" prefHeight="25.0" prefWidth="250.0" promptText="06XXXXXXXX">
+            <TextField fx:id="phonenumber_input" layoutX="448.0" layoutY="170.0" prefHeight="25.0" prefWidth="250.0" promptText="06XXXXXXXX">
                <font>
                   <Font name="Source Code Pro Medium" size="12.0" />
                </font></TextField>
-            <Label layoutX="445.0" layoutY="85.0" text="Phone Number">
+            <Label layoutX="451.0" layoutY="153.0" text="Numéro téléphone">
                <font>
                   <Font name="Source Code Pro Medium" size="12.0" />
                </font></Label>
-            <TextField fx:id="adress_input" layoutX="442.0" layoutY="176.0" prefHeight="25.0" prefWidth="250.0" promptText="My adress">
+            <TextField fx:id="adress_input" layoutX="448.0" layoutY="244.0" prefHeight="25.0" prefWidth="250.0" promptText="Mon adresse">
                <font>
                   <Font name="Source Code Pro Medium" size="12.0" />
                </font></TextField>
-            <Label layoutX="448.0" layoutY="159.0" text="Adress">
+            <Label layoutX="454.0" layoutY="227.0" text="Adresse">
                <font>
                   <Font name="Source Code Pro Medium" size="12.0" />
                </font></Label>
-            <TextField fx:id="city_input" layoutX="445.0" layoutY="254.0" prefHeight="25.0" prefWidth="250.0" promptText="My City">
+            <TextField fx:id="city_input" layoutX="451.0" layoutY="322.0" prefHeight="25.0" prefWidth="250.0" promptText="Ma ville">
                <font>
                   <Font name="Source Code Pro Medium" size="12.0" />
                </font></TextField>
-            <Label layoutX="445.0" layoutY="233.0" text="City">
+            <Label layoutX="451.0" layoutY="301.0" text="Ville">
                <font>
                   <Font name="Source Code Pro Medium" size="12.0" />
                </font></Label>
-            <Label layoutX="61.0" layoutY="316.0" text="Password">
+            <Label layoutX="61.0" layoutY="301.0" text="Mot de passe">
                <font>
                   <Font name="Source Code Pro Medium" size="12.0" />
                </font>
             </Label>
-            <PasswordField fx:id="password_input" layoutX="61.0" layoutY="334.0" prefHeight="25.0" prefWidth="250.0" promptText="password">
+            <PasswordField fx:id="password_input" layoutX="61.0" layoutY="319.0" prefHeight="25.0" prefWidth="250.0" promptText="mot de passe">
                <font>
                   <Font name="Source Code Pro Medium" size="12.0" />
                </font>
             </PasswordField>
-            <Label layoutX="448.0" layoutY="316.0" text="Confirm Password">
+            <Label layoutX="64.0" layoutY="372.0" text="Confirmer mot de passe">
                <font>
                   <Font name="Source Code Pro Medium" size="12.0" />
                </font>
             </Label>
-            <PasswordField fx:id="confirmpassword_input" layoutX="445.0" layoutY="334.0" prefHeight="25.0" prefWidth="250.0" promptText="confirmpassword">
+            <PasswordField fx:id="confirmpassword_input" layoutX="61.0" layoutY="390.0" prefHeight="25.0" prefWidth="250.0" promptText="mot de passe">
                <font>
                   <Font name="Source Code Pro Medium" size="12.0" />
                </font>
             </PasswordField>
-            <Button fx:id="signin_button" layoutX="243.0" layoutY="411.0" mnemonicParsing="false" onMouseClicked="#onSignInButtonClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #1E9F00;" text="Sign In" textFill="WHITE">
+            <Button fx:id="signin_button" layoutX="244.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#onSignInButtonClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #1E9F00;" text="S'enregistrer" textFill="WHITE">
                <font>
                   <Font name="Source Code Pro Medium" size="12.0" />
                </font></Button>
-            <Button fx:id="return_button" layoutX="388.0" layoutY="411.0" mnemonicParsing="false" onMouseClicked="#onReturnInButtonClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #f44336;" text="Return" textFill="WHITE">
+            <Button fx:id="return_button" layoutX="388.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#onReturnInButtonClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #f44336;" text="Retour" textFill="WHITE">
                <font>
                   <Font name="Source Code Pro Medium" size="12.0" />
                </font></Button>
+            <TextField fx:id="prenom_input" layoutX="451.0" layoutY="102.0" prefHeight="25.0" prefWidth="250.0" promptText="Mon prenom">
+               <font>
+                  <Font name="Source Code Pro Medium" size="12.0" />
+               </font>
+            </TextField>
+            <Label layoutX="451.0" layoutY="85.0" text="Prenom" />
          </children></Pane>
    </children>
 </VBox>
