@@ -1,8 +1,8 @@
-DROP PROCEDURE IF EXISTS VerifSoldeClientOnCommande
-DROP PROCEDURE IF EXISTS VerifFideliteClientOnCommande
-DROP PROCEDURE IF EXISTS VerifRetardCommande
-DROP TRIGGER IF EXISTS verifdatas_commande_insert_trigger
-DROP TRIGGER IF EXISTS verifdatas_commande_update_trigger
+DROP PROCEDURE IF EXISTS VerifSoldeClientOnCommande;
+DROP PROCEDURE IF EXISTS VerifFideliteClientOnCommande;
+DROP PROCEDURE IF EXISTS VerifRetardCommande;
+DROP TRIGGER IF EXISTS verifdatas_commande_insert_trigger;
+DROP TRIGGER IF EXISTS verifdatas_commande_update_trigger;
 
 
 DROP TABLE IF EXISTS Composer;
