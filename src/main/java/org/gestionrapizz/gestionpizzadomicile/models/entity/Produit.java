@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Produit {
-    Pizza pizza;
-    Taille taille;
+    private Pizza pizza;
+    private Taille taille;
 
-    public Produit(Pizza pizza, Taille taille) {
+    private double prixProduit;
+
+    public Produit(Pizza pizza, Taille taille, double prixProduit) {
         this.pizza = pizza;
         this.taille = taille;
+        this.prixProduit = prixProduit;
     }
 
     public Pizza getPizza() {
@@ -26,5 +29,13 @@ public class Produit {
 
     public void setTaille(Taille taille) {
         this.taille = taille;
+    }
+
+    public double getPrixProduit() {
+        return prixProduit;
+    }
+
+    public void setPrixProduit(double prixProduit) {
+        this.prixProduit = prixProduit;
     }
 }

@@ -31,6 +31,17 @@ public class LivreurDAO extends DAO<Livreur> {
         return super.find(query, new ArrayList<>());
     }
 
+    public List<Livreur> getLivreurDisponible() {
+        String query = "SELECT Utilisateur.* FROM Livreur " +
+                "INNER JOIN Utilisateur ON Livreur.id_utilisateur = Utilisateur.id_utilisateur " +
+                "WHERE Utilisateur.id_utilisateur NOT IN " +
+                "(SELECT Commande.id_utilisateur " +
+                "FROM Commande " +
+                "WHERE Commande.id_statut IN " +
+                "(SELECT Statut.id_statut FROM Statut WHERE Statut.nom = ?))";
+        return super.find(query, List.of("Livraison en cours"));
+    }
+
     @Override
     public Livreur getById(int id) {
         String query = "SELECT Utilisateur.*" +
@@ -43,6 +54,8 @@ public class LivreurDAO extends DAO<Livreur> {
     @Override
     public int insert(Livreur obj) {
         int idUser = UtilisateurDAO.getInstance().insert(obj.getUtilisateur());
+        if(idUser == 0) return 0;
+
         String query = "INSERT INTO Livreur (id_utilisateur) " +
                 "VALUES(?);";
         return super.add(query, List.of(idUser));
@@ -65,6 +78,7 @@ public class LivreurDAO extends DAO<Livreur> {
         return new Livreur(
                 resultSet.getInt("id_utilisateur"),
                 resultSet.getString("nom"),
+                resultSet.getString("prenom"),
                 resultSet.getString("email"),
                 resultSet.getString("motdepasse")
         );
