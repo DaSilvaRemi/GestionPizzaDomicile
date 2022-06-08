@@ -1,21 +1,21 @@
-DROP PROCEDURE VerifSoldeClientOnCommande;
-DROP PROCEDURE VerifFideliteClientOnCommande;
-DROP PROCEDURE VerifRetardCommande;
-DROP TRIGGER verifdatas_commande_insert_trigger;
-DROP TRIGGER verifdatas_commande_update_trigger;
+DROP PROCEDURE IF EXISTS VerifSoldeClientOnCommande
+DROP PROCEDURE IF EXISTS VerifFideliteClientOnCommande
+DROP PROCEDURE IF EXISTS VerifRetardCommande
+DROP TRIGGER IF EXISTS verifdatas_commande_insert_trigger
+DROP TRIGGER IF EXISTS verifdatas_commande_update_trigger
 
 
-DROP TABLE Composer;
-DROP TABLE Ingredients;
-DROP TABLE Administrateur;
-DROP TABLE Contenir;
-DROP TABLE Produit;
-DROP TABLE Taille;
-DROP TABLE Commande;
-DROP TABLE Client;
-DROP TABLE Statut;
-DROP TABLE Pizza;
-DROP TABLE Vehicule;
-DROP TABLE Type;
-DROP TABLE Livreur;
-DROP TABLE Utilisateur;
+DROP TABLE IF EXISTS Composer;
+DROP TABLE IF EXISTS Ingredients;
+DROP TABLE IF EXISTS Administrateur;
+DROP TABLE IF EXISTS Contenir;
+DROP TABLE IF EXISTS Produit;
+DROP TABLE IF EXISTS Taille;
+DROP TABLE IF EXISTS Commande;
+DROP TABLE IF EXISTS Client;
+DROP TABLE IF EXISTS Statut;
+DROP TABLE IF EXISTS Pizza;
+DROP TABLE IF EXISTS Vehicule;
+DROP TABLE IF EXISTS Type;
+DROP TABLE IF EXISTS Livreur;
+DROP TABLE IF EXISTS Utilisateur;
