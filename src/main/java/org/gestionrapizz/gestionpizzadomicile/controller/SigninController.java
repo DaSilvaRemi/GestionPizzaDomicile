@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import org.apache.commons.validator.routines.EmailValidator;
 import org.gestionrapizz.gestionpizzadomicile.MainApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.ClientDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.UtilisateurDAO;
@@ -41,18 +40,7 @@ public class SigninController {
 
     @FXML
     protected void onSignInButtonClick(MouseEvent event){
-        if(name_input.getText().isBlank()){
-            DialogUtils.showDialog("Le nom n'est pas renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
-            return;
-        }
-
-        if(prenom_input.getText().isBlank()){
-            DialogUtils.showDialog("Le prénom n'est pas renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
-            return;
-        }
-
-        if(emailadress_input.getText().isBlank()){
-            DialogUtils.showDialog("L'adresse email n'est pas renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
+        if (!UserCRUDController.verifyUsersFieldsToInsert(name_input, prenom_input, emailadress_input, password_input, confirmpassword_input))  {
             return;
         }
 
@@ -73,28 +61,6 @@ public class SigninController {
 
         if(city_input.getText().isBlank()){
             DialogUtils.showDialog("La ville n'est pas renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
-            return;
-        }
-
-        if(password_input.getText().isBlank()){
-            DialogUtils.showDialog("Le mot de passe n'est pas renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
-            return;
-        }
-
-        if(confirmpassword_input.getText().isBlank()){
-            DialogUtils.showDialog("La confirmation mot de passe n'est pas renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
-            return;
-        }
-
-
-        EmailValidator emailValidator = EmailValidator.getInstance();
-        if(!emailValidator.isValid(emailadress_input.getText())){
-            DialogUtils.showDialog("L'email entré n'est pas correcte !", "Erreur : verification email", Alert.AlertType.ERROR);
-            return;
-        }
-
-        if(!password_input.getText().equals(confirmpassword_input.getText())){
-            DialogUtils.showDialog("Les mot de passes ne correspondent pas !", "Erreur : verification mot de passe", Alert.AlertType.ERROR);
             return;
         }
 
