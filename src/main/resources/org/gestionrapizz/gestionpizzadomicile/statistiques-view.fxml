@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.StatistiquesController">
+   <children>
+      <Pane maxHeight="500.0" maxWidth="800.0" minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0">
+         <children>
+            <Label fx:id="stats_chiffre_affaires_label" layoutX="207.0" layoutY="83.0" text="n/a (chiffre d'affaires)" />
+            <Label layoutX="111.0" layoutY="83.0" text="Chiffre d'affaires : " />
+            <Label layoutX="111.0" layoutY="100.0" text="Pizza la plus achetée : " />
+            <Label fx:id="stats_pizza_top1_label" layoutX="229.0" layoutY="100.0" text="n/a (pizza top1)" />
+            <Label fx:id="stats_meilleur_client_label" layoutX="195.0" layoutY="117.0" text="n/a (meilleur client)" />
+            <Label layoutX="111.0" layoutY="117.0" text="Meilleur client : " />
+            <Label layoutX="111.0" layoutY="134.0" text="Pire livreur : " />
+            <Label fx:id="stats_pire_livreur_label" layoutX="177.0" layoutY="134.0" text="n/a (pire livreur)" />
+            <Label fx:id="stats_meilleur_ingredient_label" layoutX="220.0" layoutY="151.0" text="n/a (meilleur ingrédient)" />
+            <Label layoutX="109.0" layoutY="151.0" text="Meilleur ingrédient : " />
+            <Label layoutX="109.0" layoutY="168.0" text="Pizza la moins achetée : " />
+            <Label fx:id="stats_pizza_moins_achetee_label" layoutX="237.0" layoutY="168.0" text="n/a (pizza moins achetée)" />
+         </children></Pane>
+   </children>
+</VBox>
