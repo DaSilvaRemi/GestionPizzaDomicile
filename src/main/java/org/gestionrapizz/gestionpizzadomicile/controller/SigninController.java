@@ -33,10 +33,6 @@ public class SigninController {
     private PasswordField password_input;
     @FXML
     private PasswordField confirmpassword_input;
-    @FXML
-    private Button signin_button;
-    @FXML
-    private Button return_button;
 
     @FXML
     protected void onSignInButtonClick(MouseEvent event){

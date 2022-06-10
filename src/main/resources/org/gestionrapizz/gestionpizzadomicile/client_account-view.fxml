@@ -28,17 +28,17 @@
                 <TableColumn prefWidth="184.0" text="Your Last Orders" />
               </columns>
             </TableView>
-            <Button fx:id="orderpizza_button" layoutX="214.0" layoutY="241.0" mnemonicParsing="false" onMouseClicked="#onOrderPizzaButtonClick" prefHeight="35.0" prefWidth="350.0" style="-fx-background-color: #e91e63" text="Commander des pizzas" textFill="WHITE">
+            <Button layoutX="214.0" layoutY="241.0" mnemonicParsing="false" onMouseClicked="#onOrderPizzaButtonClick" prefHeight="35.0" prefWidth="350.0" style="-fx-background-color: #e91e63" text="Commander des pizzas" textFill="WHITE">
                <font>
                   <Font name="Source Code Pro Medium" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="makeadeposit_button" layoutX="216.0" layoutY="304.0" mnemonicParsing="false" onMouseClicked="#onMakeADepositButtonClick" prefHeight="35.0" prefWidth="170.0" style="-fx-background-color: #9c27b0" text="Faire un dépot" textFill="WHITE">
+            <Button layoutX="216.0" layoutY="304.0" mnemonicParsing="false" onMouseClicked="#onMakeADepositButtonClick" prefHeight="35.0" prefWidth="170.0" style="-fx-background-color: #9c27b0" text="Faire un dépot" textFill="WHITE">
                <font>
                   <Font name="Source Code Pro Medium" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="myoldorders_button" layoutX="395.0" layoutY="304.0" mnemonicParsing="false" onMouseClicked="#onMyOldOrdersButtonClick" prefHeight="35.0" prefWidth="170.0" style="-fx-background-color: #9c27b0" text="Mes commandes" textFill="WHITE">
+            <Button layoutX="395.0" layoutY="304.0" mnemonicParsing="false" onMouseClicked="#onMyOldOrdersButtonClick" prefHeight="35.0" prefWidth="170.0" style="-fx-background-color: #9c27b0" text="Mes commandes" textFill="WHITE">
                <font>
                   <Font name="Source Code Pro Medium" size="14.0" />
                </font>

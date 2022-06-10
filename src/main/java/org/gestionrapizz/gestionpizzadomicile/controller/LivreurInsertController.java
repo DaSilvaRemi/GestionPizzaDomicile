@@ -29,7 +29,7 @@ public class LivreurInsertController {
     private Button return_button;
 
     @FXML
-    private void OnInsertButtonClick(MouseEvent event){
+    private void onInsertButtonClick(MouseEvent event){
         if (!UserCRUDController.verifyUsersFieldsToInsert(name_input, prenom_input, emailadress_input, password_input, confirmpassword_input))  {
             return;
         }
@@ -39,10 +39,8 @@ public class LivreurInsertController {
         DialogUtils.showDialog("Livreur inséré ! ", "Insertion réussi !");
     }
 
-
-
     @FXML
-    private void OnReturnButtonClick(MouseEvent event){
+    private void onReturnButtonClick(MouseEvent event){
         JavaFXOpenWindowUtil.openAndCloseAWindow(new LivreurCRUDApplication(), ((Node) event.getSource()));
     }
 }

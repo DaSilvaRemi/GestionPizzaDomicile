@@ -3,17 +3,11 @@ package org.gestionrapizz.gestionpizzadomicile.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import org.gestionrapizz.gestionpizzadomicile.MainApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.ClientDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Client;
-import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
-import java.sql.SQLException;
-
 public class ClientMakeDepositController {
-    @FXML
-    private Button deposit_button;
     @FXML
     private Spinner<Double> amounttodeposit_input;
     @FXML
@@ -37,7 +31,7 @@ public class ClientMakeDepositController {
         ClientDAO clientDAO = ClientDAO.getInstance();
         Client client = clientDAO.getById(userSessionUtil.getUtilisateur().getId());
         client.setSolde(client.getSolde() + amounttodeposit_input.getValue());
-        clientDAO.update(client);
+        clientDAO.updateWithoutPassword(client);
         this.updateSolde();
     }
 }

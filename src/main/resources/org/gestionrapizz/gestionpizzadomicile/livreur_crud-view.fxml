@@ -15,9 +15,9 @@
                   <TableColumn fx:id="email_tableColumn" prefWidth="397.0" text="Email" />
               </columns>
             </TableView>
-            <Button fx:id="ajouterLivreur_button" layoutX="32.0" layoutY="448.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Ajouter" />
-            <Button fx:id="modifierLivreur_button" layoutX="309.0" layoutY="448.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Modifier" />
-            <Button fx:id="supprimerLivreur_button" layoutX="567.0" layoutY="448.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Supprimer" />
+            <Button layoutX="32.0" layoutY="448.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Ajouter" onMouseClicked="#onAddLivreurButtonClick" />
+            <Button layoutX="309.0" layoutY="448.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Modifier" onMouseClicked="#onUpdateLivreurButtonClick" />
+            <Button layoutX="567.0" layoutY="448.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Supprimer" onMouseClicked="#onDeleteLivreurButtonClick" />
          </children>
       </Pane>
    </children>

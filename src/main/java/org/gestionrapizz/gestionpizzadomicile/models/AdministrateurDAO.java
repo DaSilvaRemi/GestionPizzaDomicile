@@ -1,7 +1,6 @@
 package org.gestionrapizz.gestionpizzadomicile.models;
 
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Administrateur;
-import org.gestionrapizz.gestionpizzadomicile.models.entity.Livreur;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -51,6 +50,10 @@ public class AdministrateurDAO extends DAO<Administrateur> {
     @Override
     public boolean update(Administrateur obj) {
         return  UtilisateurDAO.getInstance().update(obj.getUtilisateur());
+    }
+
+    public boolean updateWithoutPassword(Administrateur obj) {
+        return UtilisateurDAO.getInstance().updateWithoutPassword(obj.getUtilisateur());
     }
 
     @Override

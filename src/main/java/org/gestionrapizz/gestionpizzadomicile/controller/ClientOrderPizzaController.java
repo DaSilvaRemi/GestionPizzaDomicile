@@ -22,14 +22,6 @@ public class ClientOrderPizzaController {
     @FXML
     private TableColumn<LignePanier, Double> price_tablecolumn;
     @FXML
-    private Button addpizza_button;
-    @FXML
-    private Button removepizza_button;
-    @FXML
-    private Button confirmorder_button;
-    @FXML
-    private Button clearcart_button;
-    @FXML
     private ChoiceBox<String> pizzaschoice_selector;
     @FXML
     private ChoiceBox<String> sizepizzachoice_selector;
@@ -110,6 +102,11 @@ public class ClientOrderPizzaController {
         CommandeDAO commandeDAO = CommandeDAO.getInstance();
         ProduitDAO produitDAO = ProduitDAO.getInstance();
         ContenirDAO contenirDAO = ContenirDAO.getInstance();
+
+        Contenir contenir = contenirDAO.getByIdCommandeAndIdTailleAndPizza(this.currentCommande.getId(), idTaille, idPizza);
+        if(contenir == null){
+            DialogUtils.showDialog("Vous ne pouvez pas ajoutez deux fois la même pizza avec la même taille dans la même commande !", "Action impossible !", Alert.AlertType.WARNING);
+        }
 
         Produit produit = produitDAO.getByIdTailleAndPizza(idTaille, idPizza);
         this.currentCommande.setMontant(this.currentCommande.getMontant() + produit.getPrixProduit());
