@@ -1,5 +1,6 @@
 package org.gestionrapizz.gestionpizzadomicile.models;
 
+import org.gestionrapizz.gestionpizzadomicile.models.entity.Commande;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Contenir;
 
 import java.sql.ResultSet;
@@ -92,6 +93,13 @@ public class ContenirDAO extends DAO<Contenir> {
         List<Object> params = Arrays.asList(obj.getProduit().getTaille().getId(), obj.getProduit().getPizza().getId(), obj.getCommande().getId());
         return super.modify(query, params) > 0;
     }
+
+    public boolean deleteByCommande(Commande commande) {
+        String query = "DELETE FROM Contenir WHERE Contenir.id_commande = ?;";
+        List<Object> params = List.of(commande.getId());
+        return super.modify(query, params) > 0;
+    }
+
 
     @Override
     public Contenir resultSetToAbstract(ResultSet resultSet) throws SQLException {
