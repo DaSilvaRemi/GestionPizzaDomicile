@@ -24,7 +24,7 @@
                 <tooltip>
                   <Tooltip text="Sélectionnez un véhicule pour modifier son type ; supprimez le véhicule en cas de modification de la plaque" />
                </tooltip></Button>
-            <Button layoutX="57.0" layoutY="253.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="311.0" text="Supprimer" />
+            <Button layoutX="57.0" layoutY="253.0" mnemonicParsing="false" onMouseClicked="#onDeleteVehiculeButtonClick" prefHeight="67.0" prefWidth="311.0" text="Supprimer" />
             <Label layoutX="84.0" layoutY="101.0" text="Actions sur les véhicules :">
                <font>
                   <Font size="23.0" />
