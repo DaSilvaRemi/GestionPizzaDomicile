@@ -16,6 +16,7 @@ import org.gestionrapizz.gestionpizzadomicile.models.entity.Commande;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Vehicule;
 import org.gestionrapizz.gestionpizzadomicile.models.tabs.MesCommandes;
 import org.gestionrapizz.gestionpizzadomicile.models.tabs.MesVehicules;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
@@ -52,8 +53,17 @@ public class VehiculeMainController {
     @FXML
     protected void onUpdateVehiculeButtonClick(MouseEvent event){
         UserSessionUtil usu = UserSessionUtil.getInstance(null);
-        //usu.
         MesVehicules mesVehicules = vehicule_main_tableview.getSelectionModel().getSelectedItem();
+
+
+        if(mesVehicules == null){
+            DialogUtils.showDialog("Sélectionner un véhicule à modifier");
+            return;
+        }
+
+        usu.getVAR_SESSION().put("id_immatriculation", mesVehicules.getImmatriculation());
+        usu.getVAR_SESSION().put("id_type", mesVehicules.getType());
+
         JavaFXOpenWindowUtil.openAndCloseAWindow(new VehiculeUpdateApplication(), ((Node) event.getSource()));
     }
 }
