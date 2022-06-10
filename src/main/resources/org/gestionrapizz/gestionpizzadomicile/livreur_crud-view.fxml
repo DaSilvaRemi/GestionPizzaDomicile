@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.text.Font?>
 <VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.LivreurCRUDController">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0">
@@ -15,9 +16,21 @@
                   <TableColumn fx:id="email_tableColumn" prefWidth="397.0" text="Email" />
               </columns>
             </TableView>
-            <Button layoutX="32.0" layoutY="448.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Ajouter" onMouseClicked="#onAddLivreurButtonClick" />
-            <Button layoutX="309.0" layoutY="448.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Modifier" onMouseClicked="#onUpdateLivreurButtonClick" />
-            <Button layoutX="567.0" layoutY="448.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Supprimer" onMouseClicked="#onDeleteLivreurButtonClick" />
+            <Button layoutX="32.0" layoutY="448.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Ajouter" onMouseClicked="#onAddLivreurButtonClick">
+                <font>
+                    <Font name="Source Code Pro Medium" size="12.0" />
+                </font>
+            </Button>
+            <Button layoutX="309.0" layoutY="448.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Modifier" onMouseClicked="#onUpdateLivreurButtonClick">
+                <font>
+                    <Font name="Source Code Pro Medium" size="12.0" />
+                </font>
+            </Button>
+            <Button layoutX="567.0" layoutY="448.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Supprimer" onMouseClicked="#onDeleteLivreurButtonClick">
+                <font>
+                    <Font name="Source Code Pro Medium" size="12.0" />
+                </font>
+            </Button>
          </children>
       </Pane>
    </children>

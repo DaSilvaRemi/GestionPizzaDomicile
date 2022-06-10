@@ -54,9 +54,8 @@ public class LivreurDAO extends DAO<Livreur> {
         int idUser = UtilisateurDAO.getInstance().insert(obj.getUtilisateur());
         if(idUser == 0) return 0;
 
-        String query = "INSERT INTO Livreur (id_utilisateur) " +
-                "VALUES(?);";
-        return super.add(query, List.of(idUser));
+        String query = "INSERT INTO Livreur (id_utilisateur) VALUES(?);";
+        return super.modify(query, List.of(idUser));
     }
 
     @Override

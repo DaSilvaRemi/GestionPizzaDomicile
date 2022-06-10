@@ -38,14 +38,15 @@ public class LivreurUpdateController {
         if(userSessionUtil.getVAR_SESSION().isEmpty()){
             JavaFXOpenWindowUtil.openAndCloseAWindow(new LivreurCRUDApplication(), name_input.getScene().getWindow());
         }
-        userSessionUtil.LoginVerification(new MainApplication(), name_input.getScene().getWindow());
+        //userSessionUtil.LoginVerification(new MainApplication(), name_input.getScene().getWindow());
 
         LivreurDAO livreurDAO = LivreurDAO.getInstance();
         int idLivreur = (int) userSessionUtil.getVAR_SESSION().get("id_livreur");
         this.selectedLivreur = livreurDAO.getById(idLivreur);
         name_input.setText(this.selectedLivreur.getNom());
-        emailadress_input.setText(this.selectedLivreur.getNom());
         prenom_input.setText(this.selectedLivreur.getPrenom());
+        emailadress_input.setText(this.selectedLivreur.getEmail());
+        userSessionUtil.getVAR_SESSION().clear();
     }
 
     @FXML
