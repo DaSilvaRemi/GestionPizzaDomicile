@@ -23,6 +23,8 @@ public class ClientMyOrdersController {
     @FXML
     private TableColumn<MesCommandes, String> livreur_commande_tablecolumn;
     @FXML
+    private TableColumn<MesCommandes, Double> montant_commande_tablecolumn;
+    @FXML
     private TableView<MesCommandes> orders_tableview;
 
     public void initialize(){
@@ -31,6 +33,7 @@ public class ClientMyOrdersController {
         dateheure_livraison_tablecolumn.setCellValueFactory(new PropertyValueFactory<>("dateHeureLivraison"));
         statut_commande_tablecolumn.setCellValueFactory(new PropertyValueFactory<>("statut"));
         livreur_commande_tablecolumn.setCellValueFactory(new PropertyValueFactory<>("livreur"));
+        montant_commande_tablecolumn.setCellValueFactory(new PropertyValueFactory<>("montant"));
 
         UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
         CommandeDAO commandeDAO = CommandeDAO.getInstance();

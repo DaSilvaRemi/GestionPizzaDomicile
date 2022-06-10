@@ -22,14 +22,6 @@ public class ClientOrderPizzaController {
     @FXML
     private TableColumn<LignePanier, Double> price_tablecolumn;
     @FXML
-    private Button addpizza_button;
-    @FXML
-    private Button removepizza_button;
-    @FXML
-    private Button confirmorder_button;
-    @FXML
-    private Button clearcart_button;
-    @FXML
     private ChoiceBox<String> pizzaschoice_selector;
     @FXML
     private ChoiceBox<String> sizepizzachoice_selector;
@@ -101,7 +93,6 @@ public class ClientOrderPizzaController {
 
     @FXML
     protected void onClickAddPizzaButton(MouseEvent event){
-        this.updateCommmande();
         String selectedPizza = pizzaschoice_selector.getSelectionModel().getSelectedItem();
         String selectedTaille = sizepizzachoice_selector.getSelectionModel().getSelectedItem();
         int idPizza = Integer.parseInt(selectedPizza.substring(0, selectedPizza.indexOf("-") - 1));
@@ -111,6 +102,16 @@ public class ClientOrderPizzaController {
         ProduitDAO produitDAO = ProduitDAO.getInstance();
         ContenirDAO contenirDAO = ContenirDAO.getInstance();
 
+        Contenir contenir = contenirDAO.getByIdCommandeAndIdTailleAndPizza(this.currentCommande.getId(), idTaille, idPizza);
+        if(contenir != null){
+            DialogUtils.showDialog("Vous ne pouvez pas ajoutez deux fois la même pizza avec la même taille dans la même commande !", "Action impossible !", Alert.AlertType.WARNING);
+            return;
+        }
+
+        if(!this.verifySoldeClient()){
+            return;
+        }
+
         Produit produit = produitDAO.getByIdTailleAndPizza(idTaille, idPizza);
         this.currentCommande.setMontant(this.currentCommande.getMontant() + produit.getPrixProduit());
         boolean isUpdate = commandeDAO.update(this.currentCommande);
@@ -118,7 +119,7 @@ public class ClientOrderPizzaController {
             DialogUtils.showDialog("Impossible de mettre à jour la table !", "");
         }
 
-        int idGenerated = contenirDAO.insert(new Contenir(this.currentCommande, produit));
+        contenirDAO.insert(new Contenir(this.currentCommande, produit));
         this.updateCart();
         this.updateMontant();
     }
@@ -127,7 +128,7 @@ public class ClientOrderPizzaController {
     protected void onClickRemovePizzaButton(MouseEvent event){
         LignePanier lignePanier = cart_tableview.getSelectionModel().getSelectedItem();
 
-        if(lignePanier.getNomPizza().isBlank() || lignePanier.getTaillePizza().isBlank()) {
+        if(lignePanier == null || lignePanier.getNomPizza().isBlank() || lignePanier.getTaillePizza().isBlank()) {
             return;
         }
 
@@ -136,7 +137,6 @@ public class ClientOrderPizzaController {
         PizzaDAO pizzaDAO = PizzaDAO.getInstance();
         TailleDAO tailleDAO = TailleDAO.getInstance();
 
-        this.updateCommmande();
         Pizza pizza = pizzaDAO.getByNom(lignePanier.getNomPizza());
         Taille taille = tailleDAO.getByNom(lignePanier.getTaillePizza());
         Contenir contenir = contenirDAO.getByIdCommandeAndIdTailleAndPizza(this.currentCommande.getId(), taille.getId(), pizza.getId());
@@ -149,21 +149,16 @@ public class ClientOrderPizzaController {
 
     @FXML
     protected void onConfirmOrderButton(MouseEvent event){
-        UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
-        ClientDAO clientDAO = ClientDAO.getInstance();
         StatutDAO statutDAO = StatutDAO.getInstance();
         CommandeDAO commandeDAO = CommandeDAO.getInstance();
         ContenirDAO contenirDAO = ContenirDAO.getInstance();
 
-        Client client = clientDAO.getById(userSessionUtil.getUtilisateur().getId());
-
-        if(client.getSolde() < this.currentCommande.getMontant()){
-            DialogUtils.showDialog("Votre solde est insuffisant pour cette commande !", "Erreur : solde insuffisant !", Alert.AlertType.ERROR);
+        if(this.cart_tableview.getItems().size() == 0 || contenirDAO.getByIdCommande(this.currentCommande.getId()).size() == 0){
+            DialogUtils.showDialog("Aucun produits sélectionnés !", "Erreur : commande vide !", Alert.AlertType.ERROR);
             return;
         }
 
-        if(this.cart_tableview.getItems().size() == 0 || contenirDAO.getByIdCommande(this.currentCommande.getId()).size() == 0){
-            DialogUtils.showDialog("Aucun produits sélectionnés !", "Erreur : commande vide !", Alert.AlertType.ERROR);
+        if(!this.verifySoldeClient()){
             return;
         }
 
@@ -172,15 +167,39 @@ public class ClientOrderPizzaController {
 
         if(isConfirm){
             DialogUtils.showDialog("Commande confirmé ! \n Votre commande sera débité lors de la livraison !");
-            this.onClearCartButton(event);
+            this.clearCart();
         }
     }
 
     @FXML
     protected void onClearCartButton(MouseEvent event){
+        this.clearCommande();
+        this.clearCart();
+    }
+
+    private void clearCommande(){
+        CommandeDAO commandeDAO = CommandeDAO.getInstance();
+        ContenirDAO contenirDAO = ContenirDAO.getInstance();
+        contenirDAO.deleteByCommande(this.currentCommande);
+        commandeDAO.delete(this.currentCommande);
+    }
+
+    private void clearCart(){
         this.updateCommmande();
         this.updateMontant();
         this.updateCart();
         DialogUtils.showDialog("Panier effacé !");
+    }
+
+    private boolean verifySoldeClient(){
+        UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
+        ClientDAO clientDAO = ClientDAO.getInstance();
+        Client client = clientDAO.getById(userSessionUtil.getUtilisateur().getId());
+
+        if(client.getSolde() < this.currentCommande.getMontant()){
+            DialogUtils.showDialog("Votre solde est insuffisant pour cette commande !", "Erreur : solde insuffisant !", Alert.AlertType.ERROR);
+            return false;
+        }
+        return true;
     }
 }

@@ -48,7 +48,6 @@ public class CommandeDAO extends DAO<Commande> {
         return result.size() == 1 ? result.get(0) : null;
     }
 
-
     public Commande getByIdStatut(int id) {
         String query = "SELECT Commande.* " +
                 "FROM Commande " +
@@ -98,34 +97,17 @@ public class CommandeDAO extends DAO<Commande> {
         return super.find(query, Arrays.asList(idClient, idStatut));
     }
 
-    public Commande getTotMontantCommandeEnCoursByClient(int id)  {
-        String query = "SELECT Commande.id_commande, Commande.dateHeure_commande, Commande.dateHeureLivraison, SUM(Commande.montant) AS montant, Commande.retard," +
-                "Commande.id_utilisateur, Commande.immatriculation, Commande.id_utilisateur_1, Commande.id_statut " +
+    public Commande getTotMontantCommandeEnCoursByClient(int idClient)  {
+        String query = "SELECT Commande.id_commande, Commande.dateHeure_commande, Commande.dateHeure_livraison, " +
+                "Client.retard, SUM(Commande.montant) AS montant" +
                 "FROM Commande " +
                 "INNER JOIN Livreur ON Commande.id_utilisateur = Livreur.id_utilisateur " +
                 "INNER JOIN Vehicule ON Commande.immatriculation = Vehicule.immatriculation " +
                 "INNER JOIN Client ON Commande.id_utilisateur_1 = Client.id_utilisateur " +
                 "INNER JOIN Statut ON Commande.id_statut = Statut.id_statut " +
-                "WHERE Commande.id_utilisateur_1 = ? AND Statut.nom = ? OR Statut.nom = ?" +
-                "GROUP BY Commande.id_utilisateur_1 " +
-                "ORDER BY Commande.dateHeure_commande DESC;";
-        List<Object> params = Arrays.asList(id, "En cours de préparation", "Livraison en cours");
-        List<Commande> result = super.find(query, params);
-        return result.size() == 1 ? result.get(0) : null;
-    }
-
-    public Commande getTotMontantCommandeEnCoursOuLivreByClient(int id)  {
-        String query = "SELECT Commande.id_commande, Commande.dateHeure_commande, Commande.dateHeureLivraison, SUM(Commande.montant) AS montant, Commande.retard," +
-                "Commande.id_utilisateur, Commande.immatriculation, Commande.id_utilisateur_1, Commande.id_statut " +
-                "FROM Commande " +
-                "INNER JOIN Livreur ON Commande.id_utilisateur = Livreur.id_utilisateur " +
-                "INNER JOIN Vehicule ON Commande.immatriculation = Vehicule.immatriculation " +
-                "INNER JOIN Client ON Commande.id_utilisateur_1 = Client.id_utilisateur " +
-                "INNER JOIN Statut ON Commande.id_statut = Statut.id_statut " +
-                "WHERE Commande.id_utilisateur_1 = ? AND Statut.nom != ? OR Statut.nom != ?" +
-                "GROUP BY Commande.id_utilisateur_1 " +
-                "ORDER BY Commande.dateHeure_commande DESC;";
-        List<Object> params = Arrays.asList(id, "En attente", "Refusé");
+                "WHERE Commande.id_utilisateur_1 = ? AND (Statut.nom != ? OR Statut.nom != ?) " +
+                "GROUP BY Commande.id_utilisateur_1;";
+        List<Object> params = Arrays.asList(idClient, "En attente", "Refusé");
         List<Commande> result = super.find(query, params);
         return result.size() == 1 ? result.get(0) : null;
     }
