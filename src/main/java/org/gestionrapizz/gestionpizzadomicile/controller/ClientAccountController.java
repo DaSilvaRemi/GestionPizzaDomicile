@@ -18,21 +18,13 @@ import java.util.List;
 
 public class ClientAccountController {
     @FXML
-    private Button myoldorders_button;
-    @FXML
     private Label clientname_label;
     @FXML
     private Label soldeclient_label;
     @FXML
-    private Button makeadeposit_button;
-    @FXML
-    private Button orderpizza_button;
-    @FXML
     private TableView<Object> lastorders_tab;
     @FXML
     private TableView<Object> trendings_tabs;
-    @FXML
-    private VBox ClientMenuBar;
 
     public void initialize(){
         UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);

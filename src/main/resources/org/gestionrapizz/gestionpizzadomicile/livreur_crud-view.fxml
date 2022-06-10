@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.LivreurCRUDController">
+   <children>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0">
+         <children>
+            <TableView fx:id="livreur_tableview" layoutX="32.0" layoutY="76.0" prefHeight="348.0" prefWidth="731.0">
+              <columns>
+                <TableColumn fx:id="id_tableColumn" prefWidth="49.0" text="Id" />
+                <TableColumn fx:id="nom_tableColumn" prefWidth="159.0" text="Nom" />
+                  <TableColumn fx:id="prenom_tableColumn" prefWidth="125.0" text="Prenom" />
+                  <TableColumn fx:id="email_tableColumn" prefWidth="397.0" text="Email" />
+              </columns>
+            </TableView>
+            <Button layoutX="32.0" layoutY="448.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Ajouter" onMouseClicked="#onAddLivreurButtonClick" />
+            <Button layoutX="309.0" layoutY="448.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Modifier" onMouseClicked="#onUpdateLivreurButtonClick" />
+            <Button layoutX="567.0" layoutY="448.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Supprimer" onMouseClicked="#onDeleteLivreurButtonClick" />
+         </children>
+      </Pane>
+   </children>
+</VBox>

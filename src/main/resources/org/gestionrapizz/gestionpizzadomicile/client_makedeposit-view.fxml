@@ -14,7 +14,7 @@
                <font>
                   <Font name="Source Code Pro Black" size="24.0" />
                </font></Label>
-            <Button fx:id="deposit_button" layoutX="259.0" layoutY="235.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: #1E9F00;" text="Déposer" textFill="WHITE" onMouseClicked="#onDepositButtonClick">
+            <Button layoutX="259.0" layoutY="235.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: #1E9F00;" text="Déposer" textFill="WHITE" onMouseClicked="#onDepositButtonClick">
                <font>
                   <Font name="Source Code Pro Medium" size="13.0" />
                </font></Button>

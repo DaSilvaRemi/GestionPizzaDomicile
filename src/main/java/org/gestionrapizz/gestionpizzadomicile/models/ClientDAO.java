@@ -1,7 +1,6 @@
 package org.gestionrapizz.gestionpizzadomicile.models;
 
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Client;
-import org.gestionrapizz.gestionpizzadomicile.models.entity.Utilisateur;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -75,6 +74,14 @@ public class ClientDAO extends DAO<Client> {
 
     @Override
     public boolean update(Client obj) {
+        return UtilisateurDAO.getInstance().update(obj.getUtilisateur()) && updateClient(obj);
+    }
+
+    public boolean updateWithoutPassword(Client obj) {
+        return UtilisateurDAO.getInstance().updateWithoutPassword(obj.getUtilisateur()) && updateClient(obj);
+    }
+
+    private boolean updateClient(Client obj){
         String query = "UPDATE Client " +
                 "SET telephone = ?, " +
                 "adresse_rue = ?, " +
@@ -89,7 +96,7 @@ public class ClientDAO extends DAO<Client> {
                 obj.getCodePostal(),
                 obj.getSolde(),
                 obj.getId());
-        return UtilisateurDAO.getInstance().updateWithoutPassword(obj.getUtilisateur()) && super.modify(query, params) > 0;
+        return super.modify(query, params) > 0;
     }
 
     @Override

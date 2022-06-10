@@ -1,12 +1,10 @@
 package org.gestionrapizz.gestionpizzadomicile.models;
 
-import org.gestionrapizz.gestionpizzadomicile.models.entity.Client;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Livreur;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LivreurDAO extends DAO<Livreur> {
@@ -64,6 +62,10 @@ public class LivreurDAO extends DAO<Livreur> {
     @Override
     public boolean update(Livreur obj) {
         return  UtilisateurDAO.getInstance().update(obj.getUtilisateur());
+    }
+
+    public boolean updateWithoutPassword(Livreur obj) {
+        return UtilisateurDAO.getInstance().updateWithoutPassword(obj.getUtilisateur());
     }
 
     @Override
