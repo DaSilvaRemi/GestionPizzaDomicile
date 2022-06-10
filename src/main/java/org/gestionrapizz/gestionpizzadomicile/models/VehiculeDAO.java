@@ -54,7 +54,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
     @Override
     public int insert(Vehicule obj) {
         List<Object> params = Arrays.asList(obj.getImmatriculation(), obj.getType().getId());
-        return super.add("INSERT INTO Vehicule(immatriculation, id_type) VALUES(?, ?);", params);
+        return super.modify("INSERT INTO Vehicule(immatriculation, id_type) VALUES(?, ?);", params);
     }
 
     @Override

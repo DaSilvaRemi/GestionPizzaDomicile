@@ -42,7 +42,7 @@ public class StatistiquesController {
         StatistiquesPizzaPlusDemandee top1pizza = statPizzaTOP1.getPizzaPlusDemandeeTOP1();
         stats_pizza_top1_label.setText(
             top1pizza.getNom() +
-            " (" +
+            "\n(" +
             top1pizza.getNbCommandesPizza() +
             " achetée(s))");
 
@@ -54,7 +54,7 @@ public class StatistiquesController {
             topClient.getPrenom() +
             " " +
             topClient.getNom() +
-            " (" +
+            "\n(" +
             topClient.getMontantTotal() +
             " € dépensés)");
 
@@ -66,7 +66,7 @@ public class StatistiquesController {
             pireLivreur.getPrenom() +
             " " +
             pireLivreur.getNom() +
-            " (" +
+            "\n(" +
             pireLivreur.getNbRetards() +
             " retard(s))");
 
@@ -76,9 +76,9 @@ public class StatistiquesController {
         StatistiquesMeilleurIngredient meilleurIngred = statMeilleurIngred.getMeilleurIngredient();
         stats_meilleur_ingredient_label.setText(
             meilleurIngred.getNom() +
-            " (" +
+            "\n(Inclus dans " +
             meilleurIngred.getNbApparition() +
-            " pizza(s) commandée(s) avec cet ingrédient)"
+            " commandes)"
         );
 
 
@@ -87,7 +87,7 @@ public class StatistiquesController {
         StatistiquesPizzaMoinsAchetee pirePizza = statPirePizza.getPizzaMoinsAchetee();
         stats_pizza_moins_achetee_label.setText(
             pirePizza.getNom() +
-            " (" +
+            "\n(" +
             pirePizza.getNbCommandesPizza() +
             " achetée(s))");
     }

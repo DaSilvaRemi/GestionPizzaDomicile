@@ -33,6 +33,11 @@ public class TypeDAO extends DAO<Type> {
         return result.size() == 1 ? result.get(0) : null;
     }
 
+    public Type getByName(String nom) {
+        List<Type> result = super.find("SELECT Type.* FROM Type WHERE Type.nom = ?;", List.of(nom));
+        return result.size() == 1 ? result.get(0) : null;
+    }
+
     @Override
     public int insert(Type obj) {
         return super.add("INSERT INTO Type(nom) VALUES(?);", List.of(obj.getNom()));
