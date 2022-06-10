@@ -88,7 +88,7 @@ BEGIN
         INNER JOIN Statut on Commande.id_statut = Statut.id_statut
         WHERE Commande.id_commande = id_commande_contenir AND Statut.nom != 'Refusé'
         ORDER BY Pizza.prix
-        ), montant_commande));
+        ), 0.0));
 
     CALL verif_solde_client_on_commande(id_client, montant_commande, id_statut_commande);
 
