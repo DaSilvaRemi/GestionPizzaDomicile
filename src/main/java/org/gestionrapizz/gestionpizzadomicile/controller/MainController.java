@@ -22,13 +22,7 @@ import java.sql.SQLException;
 
 public class MainController {
     @FXML
-    private Button login_button;
-    @FXML
     private TextField emailadress_input;
-    @FXML
-    private Button exit_button;
-    @FXML
-    private Button signin_button;
     @FXML
     private PasswordField password_input;
 
