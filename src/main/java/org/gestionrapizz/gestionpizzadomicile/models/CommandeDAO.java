@@ -93,7 +93,7 @@ public class CommandeDAO extends DAO<Commande> {
                 "INNER JOIN Vehicule ON Commande.immatriculation = Vehicule.immatriculation " +
                 "INNER JOIN Client ON Commande.id_utilisateur_1 = Client.id_utilisateur " +
                 "INNER JOIN Statut ON Commande.id_statut = Statut.id_statut " +
-                "WHERE Commande.id_utilisateur = ? AND Statut.nom = ? " +
+                "WHERE Commande.id_utilisateur = ? AND Statut.id_statut = ? " +
                 "ORDER BY Commande.dateHeure_commande;";;
         return super.find(query, Arrays.asList(idLivreur, idStatut));
     }
