@@ -3,15 +3,22 @@ package org.gestionrapizz.gestionpizzadomicile.controller;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Node;
 import org.apache.commons.validator.routines.EmailValidator;
+import org.gestionrapizz.gestionpizzadomicile.AdminAccountApplication;
 import org.gestionrapizz.gestionpizzadomicile.ClientAccountApplication;
+import org.gestionrapizz.gestionpizzadomicile.LivreurCRUDApplication;
 import org.gestionrapizz.gestionpizzadomicile.SigninApplication;
+import org.gestionrapizz.gestionpizzadomicile.models.AdministrateurDAO;
+import org.gestionrapizz.gestionpizzadomicile.models.ClientDAO;
+import org.gestionrapizz.gestionpizzadomicile.models.LivreurDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.UtilisateurDAO;
+import org.gestionrapizz.gestionpizzadomicile.models.entity.Administrateur;
+import org.gestionrapizz.gestionpizzadomicile.models.entity.Client;
+import org.gestionrapizz.gestionpizzadomicile.models.entity.Livreur;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Utilisateur;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
@@ -57,8 +64,32 @@ public class MainController {
             return;
         }
 
-        UserSessionUtil.getInstance(utilisateur);
-        JavaFXOpenWindowUtil.openAndCloseAWindow( new ClientAccountApplication(), ((Node) event.getSource()));
+        ClientDAO clientDAO = ClientDAO.getInstance();
+        AdministrateurDAO administrateurDAO = AdministrateurDAO.getInstance();
+        LivreurDAO livreurDAO = LivreurDAO.getInstance();
+
+        Client client = clientDAO.getById(utilisateur.getId());
+        if(client != null){
+            UserSessionUtil.getInstance(client);
+            JavaFXOpenWindowUtil.openAndCloseAWindow( new ClientAccountApplication(), ((Node) event.getSource()));
+            return;
+        }
+
+        Administrateur administrateur = administrateurDAO.getById(utilisateur.getId());
+        if(administrateur != null){
+            UserSessionUtil.getInstance(administrateur);
+            JavaFXOpenWindowUtil.openAndCloseAWindow( new AdminAccountApplication(), ((Node) event.getSource()));
+            return;
+        }
+
+        Livreur livreur = livreurDAO.getById(utilisateur.getId());
+        if(livreur != null){
+            UserSessionUtil.getInstance(livreur);
+            JavaFXOpenWindowUtil.openAndCloseAWindow( new LivreurCRUDApplication(), ((Node) event.getSource()));
+            return;
+        }
+
+        DialogUtils.showDialog("Impossible de détecter votre role utilisateur !", "Identification impossible !", Alert.AlertType.ERROR);
     }
 
     @FXML

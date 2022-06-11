@@ -46,7 +46,8 @@ public class LivreurDAO extends DAO<Livreur> {
                 "FROM Livreur " +
                 "INNER JOIN Utilisateur ON Livreur.id_utilisateur = Utilisateur.id_utilisateur " +
                 "WHERE Utilisateur.id_utilisateur = ?;";
-        return super.find(query, List.of(id)).get(0);
+        List<Livreur> result = super.find(query, List.of(id));
+        return result.size() == 1 ? result.get(0) : null;
     }
 
     @Override
