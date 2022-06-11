@@ -10,7 +10,7 @@ import org.gestionrapizz.gestionpizzadomicile.models.view.MenuPizzeria;
 
 import java.util.List;
 
-public class MenuPizzasController {
+public class ClientMenuPizzasController {
     @FXML
     private TableView<LigneMenuPizzeria> menupizzas_tableview;
     @FXML

@@ -5,8 +5,9 @@
 <?import javafx.scene.text.*?>
 
 
-<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.MenuPizzasController">
-   <children>
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.ClientMenuPizzasController">
+    <fx:include fx:id="ClientMenuBar" source="client_menubar-view.fxml" />
+    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0">
          <children>
             <TableView fx:id="menupizzas_tableview" layoutX="23.0" layoutY="94.0" prefHeight="392.0" prefWidth="748.0">
