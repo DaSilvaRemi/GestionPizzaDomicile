@@ -11,8 +11,6 @@ import org.gestionrapizz.gestionpizzadomicile.models.entity.Client;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
-import java.util.List;
-
 public class ClientAccountController {
     @FXML
     private Label clientname_label;
@@ -46,5 +44,10 @@ public class ClientAccountController {
     @FXML
     private void onOrderPizzaButtonClick(MouseEvent event) {
         JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientOrderPizzaApplication(), ((Node) event.getSource()));
+    }
+
+    @FXML
+    private void onMenuPizzeriaButtonClick(MouseEvent event){
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientMenuPizzasApplication(), ((Node) event.getSource()));
     }
 }

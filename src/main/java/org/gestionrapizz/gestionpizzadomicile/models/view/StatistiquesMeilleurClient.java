@@ -114,4 +114,21 @@ public class StatistiquesMeilleurClient {
     public void setMontantTotal(int montantTotal) {
         this.montantTotal = montantTotal;
     }
+
+    @Override
+    public String toString() {
+        return "StatistiquesMeilleurClient{" +
+                "id_utilisateur=" + id_utilisateur +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", email='" + email + '\'' +
+                ", motdepasse='" + motdepasse + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", adresse_rue='" + adresse_rue + '\'' +
+                ", adresse_codepostal='" + adresse_codepostal + '\'' +
+                ", adresse_ville='" + adresse_ville + '\'' +
+                ", solde=" + solde +
+                ", montantTotal=" + montantTotal +
+                '}';
+    }
 }

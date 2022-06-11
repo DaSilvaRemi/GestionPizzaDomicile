@@ -7,9 +7,9 @@
 <children>
     <MenuBar maxWidth="800.0" minWidth="800.0" prefWidth="800.0" style="-fx-background-color: #dd4135;">
         <menus>
-            <Menu fx:id="menu_bar" mnemonicParsing="false" text="Menu">
+            <Menu fx:id="menu_bar" mnemonicParsing="false" text="Pages">
                <items>
-                  <MenuItem fx:id="menu_menuitem" mnemonicParsing="false" onAction="#onMenuClick" onMenuValidation="#onMenuClick" text="Main" />
+                  <MenuItem fx:id="acceuil_menuitem" mnemonicParsing="false" onAction="#onAcceuilClick" onMenuValidation="#onAcceuilClick" text="Accueil" />
                   <MenuItem fx:id="orderpizza_menuitem" mnemonicParsing="false" onAction="#onOrderPizzaClick" onMenuValidation="#onOrderPizzaClick" text="Commander une pizza" />
                   <MenuItem fx:id="myorder_menuitem" mnemonicParsing="false" onAction="#onMyOrderClick" onMenuValidation="#onMyOrderClick" text="Mes commandes" />
                   <MenuItem fx:id="makeadeposit_menuitem" mnemonicParsing="false" onAction="#onMakeADepositClick" onMenuValidation="#onMakeADepositClick" text="Faire un dépot" />
