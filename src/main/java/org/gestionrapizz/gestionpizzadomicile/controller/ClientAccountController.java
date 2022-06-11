@@ -36,18 +36,18 @@ public class ClientAccountController {
     }
 
     @FXML
-    protected void onMyOldOrdersButtonClick(MouseEvent event) {
+    private void onMyOldOrdersButtonClick(MouseEvent event) {
         JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientMyOrdersApplication(), ((Node) event.getSource()));
     }
 
     @FXML
-    protected void onMakeADepositButtonClick(MouseEvent event) {
+    private void onMakeADepositButtonClick(MouseEvent event) {
         JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientMakeDepositApplication(), ((Node) event.getSource()));
 
     }
 
     @FXML
-    protected void onOrderPizzaButtonClick(MouseEvent event) {
+    private void onOrderPizzaButtonClick(MouseEvent event) {
         JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientOrderPizzaApplication(), ((Node) event.getSource()));
     }
 }

@@ -35,7 +35,7 @@ public class SigninController {
     private PasswordField confirmpassword_input;
 
     @FXML
-    protected void onSignInButtonClick(MouseEvent event){
+    private void onSignInButtonClick(MouseEvent event){
         if (!UserCRUDController.verifyUsersFieldsToInsert(name_input, prenom_input, emailadress_input, password_input, confirmpassword_input))  {
             return;
         }
@@ -73,13 +73,6 @@ public class SigninController {
                 zipcode_input.getText()
         );
 
-        UtilisateurDAO utilisateurDAO = UtilisateurDAO.getInstance();
-        Utilisateur utilisateur = clientToInsert.getUtilisateur();
-        if(utilisateurDAO.getByEmail(utilisateur.getEmail()) != null){
-            DialogUtils.showDialog("Adresse email déjà existante !", "Erreur : adresse mail dupliqué", Alert.AlertType.ERROR);
-            return;
-        }
-
         clientDAO.insert(clientToInsert);
 
         DialogUtils.showDialog("Signin successful !", "Welcom to our community !");
@@ -87,7 +80,7 @@ public class SigninController {
     }
 
     @FXML
-    protected void onReturnInButtonClick(MouseEvent event){
+    private void onReturnInButtonClick(MouseEvent event){
         JavaFXOpenWindowUtil.openAndCloseAWindow( new MainApplication(), ((Node) event.getSource()));
     }
 }

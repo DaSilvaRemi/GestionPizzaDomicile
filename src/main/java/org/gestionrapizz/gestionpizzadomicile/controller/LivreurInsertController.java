@@ -2,6 +2,7 @@ package org.gestionrapizz.gestionpizzadomicile.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -35,8 +36,14 @@ public class LivreurInsertController {
         }
 
         LivreurDAO livreurDAO = LivreurDAO.getInstance();
-        livreurDAO.insert(new Livreur(0, name_input.getText(), prenom_input.getText(), emailadress_input.getText(), password_input.getText()));
+        int idLivreur = livreurDAO.insert(new Livreur(0, name_input.getText(), prenom_input.getText(), emailadress_input.getText(), password_input.getText()));
+        if(idLivreur == 0){
+            DialogUtils.showDialog("Insertion livreur échoué ! ", "Erreur Insertion !", Alert.AlertType.ERROR);
+            return;
+        }
+
         DialogUtils.showDialog("Livreur inséré ! ", "Insertion réussi !");
+        onReturnButtonClick(event);
     }
 
     @FXML

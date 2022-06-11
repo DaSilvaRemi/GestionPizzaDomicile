@@ -9,6 +9,10 @@ public class Livreur extends Utilisateur {
         super(id, nom, prenom, email, motdepasse);
     }
 
+    public Livreur(Livreur livreur){
+        this(livreur.getId(), livreur.getUtilisateur());
+    }
+
     @Override
     public String toString() {
         return "Livreur{" +

@@ -23,7 +23,7 @@ import java.util.List;
 public class VehiculeUpdateController {
 
     @FXML
-    private Label vehicule_update_immatriculation;
+    private TextField immatriculation_textfield;
 
     @FXML
     private ChoiceBox<String> vehicule_update_type;
@@ -42,7 +42,7 @@ public class VehiculeUpdateController {
         String immatriculation = String.valueOf(usu.getVAR_SESSION().get("id_immatriculation"));
         String type = String.valueOf(usu.getVAR_SESSION().get("id_type"));
 
-        vehicule_update_immatriculation.setText(immatriculation);
+        immatriculation_textfield.setText(immatriculation);
         vehicule_update_type.setValue(type);
 
         immatriculation_init = immatriculation;
@@ -56,7 +56,7 @@ public class VehiculeUpdateController {
 
     @FXML
     protected void onRemiseInitButtonClick(MouseEvent event){
-        vehicule_update_immatriculation.setText(immatriculation_init);
+        immatriculation_textfield.setText(immatriculation_init);
         vehicule_update_type.setValue(type_init);
     }
 
