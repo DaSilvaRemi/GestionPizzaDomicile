@@ -194,7 +194,7 @@ public class ClientOrderPizzaController {
         }
 
         this.currentCommande.setStatut(statutDAO.getByNom("Livraison en cours"));
-        boolean isConfirm = commandeDAO.confirmACommand(this.currentCommande);
+        boolean isConfirm = commandeDAO.updateWithoutDateLivraison(this.currentCommande);
 
         if(isConfirm){
             DialogUtils.showDialog("Commande confirmé ! \n Votre commande sera débité lors de la livraison !");
