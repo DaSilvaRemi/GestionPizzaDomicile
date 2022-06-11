@@ -25,12 +25,8 @@ public class LivreurUpdateController {
     private PasswordField password_input;
     @FXML
     private PasswordField confirmpassword_input;
-    @FXML
-    private Button update_button;
-    @FXML
-    private Button return_button;
-
     private Livreur selectedLivreur;
+    private Livreur saveSelectedLivreur;
 
     public void initialize(){
         UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
@@ -38,15 +34,24 @@ public class LivreurUpdateController {
         if(userSessionUtil.getVAR_SESSION().isEmpty()){
             JavaFXOpenWindowUtil.openAndCloseAWindow(new LivreurCRUDApplication(), name_input.getScene().getWindow());
         }
-        //userSessionUtil.LoginVerification(new MainApplication(), name_input.getScene().getWindow());
 
         LivreurDAO livreurDAO = LivreurDAO.getInstance();
         int idLivreur = (int) userSessionUtil.getVAR_SESSION().get("id_livreur");
-        this.selectedLivreur = livreurDAO.getById(idLivreur);
+        this.saveSelectedLivreur = livreurDAO.getById(idLivreur);
+        this.Reinitialiser();
+        userSessionUtil.getVAR_SESSION().clear();
+    }
+
+    private void Reinitialiser(){
+        this.selectedLivreur = new Livreur(this.saveSelectedLivreur);
         name_input.setText(this.selectedLivreur.getNom());
         prenom_input.setText(this.selectedLivreur.getPrenom());
         emailadress_input.setText(this.selectedLivreur.getEmail());
-        userSessionUtil.getVAR_SESSION().clear();
+    }
+
+    @FXML
+    private void onReinitialiserButtonClick(MouseEvent mouseEvent){
+        this.Reinitialiser();
     }
 
     @FXML
@@ -82,6 +87,7 @@ public class LivreurUpdateController {
         }
 
         if(!isUpdate){
+            DialogUtils.showDialog("Modification du livreur échoué !", "Erreur modification livreur", Alert.AlertType.ERROR);
             return;
         }
 

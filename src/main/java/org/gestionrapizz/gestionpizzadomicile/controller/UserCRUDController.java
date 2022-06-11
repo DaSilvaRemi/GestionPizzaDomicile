@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.apache.commons.validator.routines.EmailValidator;
+import org.gestionrapizz.gestionpizzadomicile.models.UtilisateurDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 
 public class UserCRUDController {
@@ -48,6 +49,13 @@ public class UserCRUDController {
             DialogUtils.showDialog("Les mot de passes ne correspondent pas !", "Erreur : verification mot de passe", Alert.AlertType.ERROR);
             return false;
         }
+
+        UtilisateurDAO utilisateurDAO = UtilisateurDAO.getInstance();
+        if(utilisateurDAO.getByEmail(emailadress_input.getText()) != null){
+            DialogUtils.showDialog("Adresse email déjà existante !", "Erreur : adresse mail dupliqué", Alert.AlertType.ERROR);
+            return false;
+        }
+
         return true;
     }
 }

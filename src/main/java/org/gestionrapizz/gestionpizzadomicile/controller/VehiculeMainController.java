@@ -34,23 +34,26 @@ public class VehiculeMainController {
 
         vehicule_main_type_tableColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         vehicule_main_immatriculation_tableColumn.setCellValueFactory(new PropertyValueFactory<>("immatriculation"));
+        this.updateVehiculeMainTableView();
+    }
 
+    private void updateVehiculeMainTableView() {
         VehiculeDAO vehiculeDAO = VehiculeDAO.getInstance();
         List<Vehicule> allVehicules = vehiculeDAO.get();
         for (Vehicule vehicule : allVehicules){
             vehicule_main_tableview.getItems().add(
-                new MesVehicules(vehicule)
+                    new MesVehicules(vehicule)
             );
         }
     }
 
     @FXML
-    protected void onCreateVehiculeButtonClick(MouseEvent event){
+    private void onCreateVehiculeButtonClick(MouseEvent event){
         JavaFXOpenWindowUtil.openAndCloseAWindow( new VehiculeCreateApplication(), ((Node) event.getSource()));
     }
 
     @FXML
-    protected void onUpdateVehiculeButtonClick(MouseEvent event){
+    private void onUpdateVehiculeButtonClick(MouseEvent event){
         UserSessionUtil usu = UserSessionUtil.getInstance(null);
         MesVehicules mesVehicules = vehicule_main_tableview.getSelectionModel().getSelectedItem();
 
@@ -67,7 +70,7 @@ public class VehiculeMainController {
     }
 
     @FXML
-    protected void onDeleteVehiculeButtonClick(MouseEvent event){
+    private void onDeleteVehiculeButtonClick(MouseEvent event){
         UserSessionUtil usu = UserSessionUtil.getInstance(null);
         MesVehicules mesVehicules = vehicule_main_tableview.getSelectionModel().getSelectedItem();
 
@@ -105,5 +108,6 @@ public class VehiculeMainController {
             mesVehicules.getImmatriculation() +
             " supprimé."
         );
+        this.updateVehiculeMainTableView();
     }
 }

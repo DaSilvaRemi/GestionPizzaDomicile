@@ -30,27 +30,27 @@ public class ClientMenuBarController {
     private MenuItem logout_menuitem;
 
     @FXML
-    protected void onMenuClick(Event event){
+    private void onMenuClick(Event event){
         JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientAccountApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
     }
 
     @FXML
-    protected void onOrderPizzaClick(Event event){
+    private void onOrderPizzaClick(Event event){
         JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientOrderPizzaApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
     }
 
     @FXML
-    protected void onMyOrderClick(Event event){
+    private void onMyOrderClick(Event event){
         JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientMyOrdersApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
     }
 
     @FXML
-    protected void onMakeADepositClick(Event event){
+    private void onMakeADepositClick(Event event){
         JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientMakeDepositApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
     }
 
     @FXML
-    protected void onLogoutClick(Event event){
+    private void onLogoutClick(Event event){
         UserSessionUtil.getInstance(null).clearUserSession();
         JavaFXOpenWindowUtil.openAndCloseAWindow(new MainApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
     }
