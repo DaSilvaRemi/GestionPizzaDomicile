@@ -36,7 +36,8 @@ public class ClientDAO extends DAO<Client> {
                 "FROM Client " +
                 "INNER JOIN Utilisateur ON Client.id_utilisateur = Utilisateur.id_utilisateur " +
                 "WHERE Utilisateur.id_utilisateur = ?;";
-        return super.find(query, List.of(id)).get(0);
+        List<Client> result = super.find(query, List.of(id));
+        return result.size() == 1 ? result.get(0) : null;
     }
 
     public Client getByEmail(String email) {
@@ -44,7 +45,8 @@ public class ClientDAO extends DAO<Client> {
                 "FROM Client " +
                 "INNER JOIN Utilisateur ON Client.id_utilisateur = Utilisateur.id_utilisateur " +
                 "WHERE Utilisateur.email = ?;";
-        return super.find(query, List.of(email)).get(0);
+        List<Client> result = super.find(query, List.of(email));
+        return result.size() == 1 ? result.get(0) : null;
     }
 
     public Client getByTelephone(String telephone) {
@@ -52,7 +54,8 @@ public class ClientDAO extends DAO<Client> {
                 "FROM Client " +
                 "INNER JOIN Utilisateur ON Client.id_utilisateur = Utilisateur.id_utilisateur" +
                 "WHERE Client.id_telephone = ?;";
-        return super.find(query, List.of(telephone)).get(0);
+        List<Client> result = super.find(query, List.of(telephone));
+        return result.size() == 1 ? result.get(0) : null;
     }
 
     @Override

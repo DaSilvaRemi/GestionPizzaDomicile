@@ -2,15 +2,12 @@ package org.gestionrapizz.gestionpizzadomicile.controller;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import org.gestionrapizz.gestionpizzadomicile.MainApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.ClientDAO;
-import org.gestionrapizz.gestionpizzadomicile.models.UtilisateurDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Client;
-import org.gestionrapizz.gestionpizzadomicile.models.entity.Utilisateur;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 

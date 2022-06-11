@@ -35,7 +35,8 @@ public class AdministrateurDAO extends DAO<Administrateur> {
                 "FROM Administrateur " +
                 "INNER JOIN Utilisateur ON Administrateur.id_utilisateur = Utilisateur.id_utilisateur " +
                 "WHERE Utilisateur.id_utilisateur = ?;";
-        return super.find(query, List.of(id)).get(0);
+        List<Administrateur> result = super.find(query, List.of(id));
+        return result.size() == 1 ? result.get(0) : null;
     }
 
     @Override
