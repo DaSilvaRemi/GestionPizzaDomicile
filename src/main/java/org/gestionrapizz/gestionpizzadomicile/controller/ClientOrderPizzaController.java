@@ -107,10 +107,14 @@ public class ClientOrderPizzaController {
     private boolean verifySoldeClient(){
         UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
         ClientDAO clientDAO = ClientDAO.getInstance();
-        Client client = clientDAO.getById(userSessionUtil.getUtilisateur().getId());
+        CommandeDAO commandeDAO = CommandeDAO.getInstance();
 
-        if(client.getSolde() < this.currentCommande.getMontant()){
-            DialogUtils.showDialog("Votre solde est insuffisant pour cette commande !", "Erreur : solde insuffisant !", Alert.AlertType.ERROR);
+        Client client = clientDAO.getById(userSessionUtil.getUtilisateur().getId());
+        Commande commande = commandeDAO.getTotMontantCommandeEnCoursByClient(client.getId());
+        if(client.getSolde() < this.currentCommande.getMontant() + commande.getMontant()){
+            Double soldeRestant =  client.getSolde() - commande.getMontant();
+            DialogUtils.showDialog("Votre solde est insuffisant pour cette commande ! \n Il vous reste : " + soldeRestant,
+                    "Erreur : solde insuffisant !", Alert.AlertType.ERROR);
             return false;
         }
         return true;
@@ -133,12 +137,14 @@ public class ClientOrderPizzaController {
             return;
         }
 
+        Produit produit = produitDAO.getByIdTailleAndPizza(idTaille, idPizza);
+        this.currentCommande.setMontant(this.currentCommande.getMontant() + produit.getPrixProduit());
+
         if(!this.verifySoldeClient()){
+            this.currentCommande.setMontant(this.currentCommande.getMontant() - produit.getPrixProduit());
             return;
         }
 
-        Produit produit = produitDAO.getByIdTailleAndPizza(idTaille, idPizza);
-        this.currentCommande.setMontant(this.currentCommande.getMontant() + produit.getPrixProduit());
         boolean isUpdate = commandeDAO.update(this.currentCommande);
         if(!isUpdate){
             DialogUtils.showDialog("Impossible de mettre à jour la table !", "");

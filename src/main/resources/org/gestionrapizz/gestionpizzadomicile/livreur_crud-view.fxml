@@ -2,8 +2,8 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Font?>
 <VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.LivreurCRUDController">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0">
@@ -16,17 +16,17 @@
                   <TableColumn fx:id="email_tableColumn" prefWidth="397.0" text="Email" />
               </columns>
             </TableView>
-            <Button layoutX="32.0" layoutY="448.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Ajouter" onMouseClicked="#onAddLivreurButtonClick">
+            <Button layoutX="32.0" layoutY="448.0" mnemonicParsing="false" onMouseClicked="#onAddLivreurButtonClick" prefHeight="25.0" prefWidth="196.0" style="-fx-background-color: #1E9F00;" text="Ajouter" textFill="WHITE">
                 <font>
                     <Font name="Source Code Pro Medium" size="12.0" />
                 </font>
             </Button>
-            <Button layoutX="309.0" layoutY="448.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Modifier" onMouseClicked="#onUpdateLivreurButtonClick">
+            <Button layoutX="309.0" layoutY="448.0" mnemonicParsing="false" onMouseClicked="#onUpdateLivreurButtonClick" prefHeight="25.0" prefWidth="196.0" style="-fx-background-color: #9c27b0;" text="Modifier" textFill="WHITE">
                 <font>
                     <Font name="Source Code Pro Medium" size="12.0" />
                 </font>
             </Button>
-            <Button layoutX="567.0" layoutY="448.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Supprimer" onMouseClicked="#onDeleteLivreurButtonClick">
+            <Button layoutX="567.0" layoutY="448.0" mnemonicParsing="false" onMouseClicked="#onDeleteLivreurButtonClick" prefHeight="25.0" prefWidth="196.0" style="-fx-background-color: #f44336;" text="Supprimer" textFill="WHITE">
                 <font>
                     <Font name="Source Code Pro Medium" size="12.0" />
                 </font>
