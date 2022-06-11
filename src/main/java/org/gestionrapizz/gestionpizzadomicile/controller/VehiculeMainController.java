@@ -17,7 +17,6 @@ import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
-import java.lang.invoke.VarHandle;
 import java.util.List;
 
 public class VehiculeMainController {
