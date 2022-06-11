@@ -48,6 +48,19 @@ public class CommandeDAO extends DAO<Commande> {
         return result.size() == 1 ? result.get(0) : null;
     }
 
+    public List<Commande> getByImmatriculation(String immatriculation) {
+        String query = "SELECT Commande.* " +
+                "FROM Commande " +
+                "INNER JOIN Livreur ON Commande.id_utilisateur = Livreur.id_utilisateur " +
+                "INNER JOIN Vehicule ON Commande.immatriculation = Vehicule.immatriculation " +
+                "INNER JOIN Client ON Commande.id_utilisateur_1 = Client.id_utilisateur " +
+                "INNER JOIN Statut ON Commande.id_statut = Statut.id_statut " +
+                "WHERE Commande.immatriculation= ? " +
+                "ORDER BY Commande.dateHeure_commande DESC;";
+        return super.find(query, List.of(immatriculation));
+    }
+
+
     public Commande getByIdStatut(int id) {
         String query = "SELECT Commande.* " +
                 "FROM Commande " +
