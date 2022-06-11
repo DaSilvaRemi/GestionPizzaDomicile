@@ -93,7 +93,7 @@ public class CommandeDAO extends DAO<Commande> {
                 "INNER JOIN Vehicule ON Commande.immatriculation = Vehicule.immatriculation " +
                 "INNER JOIN Client ON Commande.id_utilisateur_1 = Client.id_utilisateur " +
                 "INNER JOIN Statut ON Commande.id_statut = Statut.id_statut " +
-                "WHERE Commande.id_utilisateur = ? AND Statut.nom = ? " +
+                "WHERE Commande.id_utilisateur = ? AND Statut.id_statut = ? " +
                 "ORDER BY Commande.dateHeure_commande;";;
         return super.find(query, Arrays.asList(idLivreur, idStatut));
     }
@@ -179,9 +179,31 @@ public class CommandeDAO extends DAO<Commande> {
         return super.modify(query, params) > 0;
     }
 
-    public boolean confirmACommand(Commande obj) {
+    public boolean updateWithoutDateLivraison(Commande obj) {
         String query = "UPDATE Commande SET " +
                 "dateHeure_commande = CURRENT_TIMESTAMP(), " +
+                "montant = ?, " +
+                "retard = ?, " +
+                "id_statut = ?, " +
+                "id_utilisateur = ?, " +
+                "immatriculation = ?, " +
+                "id_utilisateur_1 = ? " +
+                "WHERE Commande.id_commande = ?;";
+        List<Object> params = Arrays.asList(
+                obj.getMontant(),
+                obj.isRetard(),
+                obj.getStatut().getId(),
+                obj.getLivreur().getId(),
+                obj.getVehicule().getImmatriculation(),
+                obj.getClient().getId(),
+                obj.getId()
+        );
+        return super.modify(query, params) > 0;
+    }
+
+    public boolean updateWithoutDateCommande(Commande obj) {
+        String query = "UPDATE Commande SET " +
+                "dateHeure_livraison = CURRENT_TIMESTAMP(), " +
                 "montant = ?, " +
                 "retard = ?, " +
                 "id_statut = ?, " +
