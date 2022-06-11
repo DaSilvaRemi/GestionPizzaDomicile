@@ -24,4 +24,12 @@ public class StatistiquesPizzaMoinsAchetee {
     public void setNbCommandesPizza(int nbCommandesPizza) {
         this.nbCommandesPizza = nbCommandesPizza;
     }
+
+    @Override
+    public String toString() {
+        return "StatistiquesPizzaMoinsAchetee{" +
+                "nom='" + nom + '\'' +
+                ", nbCommandesPizza=" + nbCommandesPizza +
+                '}';
+    }
 }

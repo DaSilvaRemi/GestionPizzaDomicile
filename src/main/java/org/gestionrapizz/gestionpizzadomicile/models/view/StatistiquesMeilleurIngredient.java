@@ -24,4 +24,12 @@ public class StatistiquesMeilleurIngredient {
     public void setNbApparition(int nbApparition) {
         this.nbApparition = nbApparition;
     }
+
+    @Override
+    public String toString() {
+        return "StatistiquesMeilleurIngredient{" +
+                "nom='" + nom + '\'' +
+                ", nbApparition=" + nbApparition +
+                '}';
+    }
 }

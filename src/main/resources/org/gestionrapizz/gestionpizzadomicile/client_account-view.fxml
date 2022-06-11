@@ -13,21 +13,11 @@
                <font>
                   <Font name="Source Code Pro Black" size="36.0" />
                </font></Label>
-            <TableView fx:id="trendings_tabs" layoutX="14.0" layoutY="241.0" prefHeight="249.0" prefWidth="168.0">
-              <columns>
-                <TableColumn editable="false" prefWidth="167.0" text="Trendings" />
-              </columns>
-            </TableView>
             <Label layoutX="214.0" layoutY="171.0" text="Votre Solde :">
                <font>
                   <Font name="Source Code Pro Medium" size="24.0" />
                </font>
             </Label>
-            <TableView fx:id="lastorders_tab" layoutX="592.0" layoutY="239.0" prefHeight="249.0" prefWidth="185.0">
-              <columns>
-                <TableColumn prefWidth="184.0" text="Your Last Orders" />
-              </columns>
-            </TableView>
             <Button layoutX="214.0" layoutY="241.0" mnemonicParsing="false" onMouseClicked="#onOrderPizzaButtonClick" prefHeight="35.0" prefWidth="350.0" style="-fx-background-color: #e91e63" text="Commander des pizzas" textFill="WHITE">
                <font>
                   <Font name="Source Code Pro Medium" size="14.0" />
@@ -53,6 +43,11 @@
                   <Font name="Source Code Pro Medium" size="24.0" />
                </font>
             </Label>
+            <Button layoutX="216.0" layoutY="364.0" mnemonicParsing="false" onMouseClicked="#onMenuPizzeriaButtonClick" prefHeight="35.0" prefWidth="350.0" style="-fx-background-color: #e91e63" text="Menu de la pizzeria" textFill="WHITE">
+               <font>
+                  <Font name="Source Code Pro Medium" size="14.0" />
+               </font>
+            </Button>
          </children></Pane>
    </children>
 </VBox>
