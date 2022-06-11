@@ -47,4 +47,9 @@ public class ClientAccountController {
     private void onOrderPizzaButtonClick(MouseEvent event) {
         JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientOrderPizzaApplication(), ((Node) event.getSource()));
     }
+
+    @FXML
+    private void onMenuPizzeriaButtonClick(MouseEvent event){
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new MenuPizzasApplication(), ((Node) event.getSource()));
+    }
 }

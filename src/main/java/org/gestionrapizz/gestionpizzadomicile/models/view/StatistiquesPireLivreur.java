@@ -74,4 +74,17 @@ public class StatistiquesPireLivreur {
     public void setNbRetards(int nbRetards) {
         this.nbRetards = nbRetards;
     }
+
+    @Override
+    public String toString() {
+        return "StatistiquesPireLivreur{" +
+                "id_utilisateur=" + id_utilisateur +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", email='" + email + '\'' +
+                ", motdepasse='" + motdepasse + '\'' +
+                ", immatriculation='" + immatriculation + '\'' +
+                ", nbRetards=" + nbRetards +
+                '}';
+    }
 }

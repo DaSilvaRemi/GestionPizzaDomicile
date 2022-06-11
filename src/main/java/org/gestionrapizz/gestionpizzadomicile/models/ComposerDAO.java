@@ -24,7 +24,7 @@ public class ComposerDAO extends DAO<Composer>{
 
     @Override
     public List<Composer> get() {
-        return super.find("SELECT Produit.* FROM Produit;", new ArrayList<>());
+        return super.find("SELECT Composer.* FROM Composer;", new ArrayList<>());
     }
 
     @Override
@@ -58,18 +58,18 @@ public class ComposerDAO extends DAO<Composer>{
     }
 
     public boolean updateByTaille(Composer obj) {
-        String query = "UPDATE Produit SET Produit.id_pizza = ? WHERE Produit.id_ingredient = ?;";
+        String query = "UPDATE Composer SET Composer.id_pizza = ? WHERE Composer.id_ingredient = ?;";
         return super.modify(query, Arrays.asList(obj.getPizza().getId(), obj.getIngredients().getId())) > 0;
     }
 
     public boolean updateByPizza(Composer obj) {
-        String query = "UPDATE Produit SET Produit.id_ingredient = ? WHERE Produit.id_pizza = ?;";
+        String query = "UPDATE Composer SET Composer.id_ingredient = ? WHERE Composer.id_pizza = ?;";
         return super.modify(query, Arrays.asList(obj.getIngredients().getId(), obj.getPizza().getId())) > 0;
     }
 
     @Override
     public boolean delete(Composer obj) {
-        String query = "DELETE FROM Produit WHERE Produit.id_pizza = ? AND Produit.id_ingredient = ?;";
+        String query = "DELETE FROM Composer WHERE Composer.id_pizza = ? AND Composer.id_ingredient = ?;";
         return super.modify(query, Arrays.asList(obj.getPizza().getId(), obj.getIngredients().getId())) > 0;
     }
 

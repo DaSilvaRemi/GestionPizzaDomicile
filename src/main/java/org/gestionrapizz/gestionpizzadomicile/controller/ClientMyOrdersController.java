@@ -15,7 +15,7 @@ public class ClientMyOrdersController {
     @FXML
     private TableColumn<MesCommandes, Integer> id_commande_tablecolumn;
     @FXML
-        private TableColumn<MesCommandes, String> dateheure_commande_tablecolumn;
+    private TableColumn<MesCommandes, String> dateheure_commande_tablecolumn;
     @FXML
     private TableColumn<MesCommandes, String> dateheure_livraison_tablecolumn;
     @FXML

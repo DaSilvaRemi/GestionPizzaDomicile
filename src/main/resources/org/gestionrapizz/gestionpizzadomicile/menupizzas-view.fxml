@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.MenuPizzasController">
+   <children>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0">
+         <children>
+            <TableView fx:id="menupizzas_tableview" layoutX="23.0" layoutY="94.0" prefHeight="392.0" prefWidth="748.0">
+              <columns>
+                <TableColumn fx:id="nompizza_tablecolumn" prefWidth="126.0" text="Nom Pizza" />
+                <TableColumn fx:id="ingredientspizza_tablecolumn" prefWidth="499.0" text="Ingrédients" />
+                  <TableColumn fx:id="prixpizza_tablecolumn" prefWidth="107.0" text="Prix" />
+              </columns>
+            </TableView>
+            <Label layoutX="270.0" layoutY="50.0" text="Menu de la pizzeria">
+               <font>
+                  <Font name="Source Code Pro Medium" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</VBox>
