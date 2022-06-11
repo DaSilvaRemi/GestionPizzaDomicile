@@ -4,9 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import org.gestionrapizz.gestionpizzadomicile.MainApplication;
 import org.gestionrapizz.gestionpizzadomicile.VehiculeMainApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.*;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.*;
@@ -33,7 +31,6 @@ public class VehiculeCreateController {
 
     @FXML
     protected void onClickAddVehiculeButton(MouseEvent event){
-        VehiculeDAO vehiculeDao = VehiculeDAO.getInstance();
         TypeDAO type = TypeDAO.getInstance();
 
         String new_immat = vehicule_create_immatriculation.getText();
@@ -51,6 +48,24 @@ public class VehiculeCreateController {
         // Vérif plaque non vide
         if(new_immat == ""){
             DialogUtils.showDialog("Choisir une immatriculation");
+            return;
+        }
+
+        /*List<Vehicule> vehicules = VehiculeDAO.getInstance().get();
+        boolean vehiculeExiste = false;
+        for (Vehicule vehicule: vehicules) {
+            if (vehicule.getImmatriculation().equals(new_immat)){
+                vehiculeExiste = true;
+                break;
+            }
+        }
+        if(vehiculeExiste){
+            DialogUtils.showDialog("Le véhicule existe déjà");
+            return;
+        }*/
+        VehiculeDAO vehiculeDao = VehiculeDAO.getInstance();
+        if(vehiculeDao.getById(new_immat) != null){
+            DialogUtils.showDialog("Le véhicule existe déjà");
             return;
         }
 
