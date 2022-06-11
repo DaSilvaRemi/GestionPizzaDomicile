@@ -32,7 +32,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
     @Override
     @Deprecated
     public Vehicule getById(int id) {
-        return null;
+        return this.getById(String.valueOf(id));
     }
 
 
