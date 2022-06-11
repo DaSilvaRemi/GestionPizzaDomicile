@@ -90,9 +90,38 @@ public class ClientOrderPizzaController {
         }
     }
 
+    private void clearCommande(){
+        CommandeDAO commandeDAO = CommandeDAO.getInstance();
+        ContenirDAO contenirDAO = ContenirDAO.getInstance();
+        contenirDAO.deleteByCommande(this.currentCommande);
+        commandeDAO.delete(this.currentCommande);
+    }
+
+    private void clearCart(){
+        this.updateCommmande();
+        this.updateMontant();
+        this.updateCart();
+        DialogUtils.showDialog("Panier effacé !");
+    }
+
+    private boolean verifySoldeClient(){
+        UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
+        ClientDAO clientDAO = ClientDAO.getInstance();
+        CommandeDAO commandeDAO = CommandeDAO.getInstance();
+
+        Client client = clientDAO.getById(userSessionUtil.getUtilisateur().getId());
+        Commande commande = commandeDAO.getTotMontantCommandeEnCoursByClient(client.getId());
+        if(client.getSolde() < this.currentCommande.getMontant() + commande.getMontant()){
+            Double soldeRestant =  client.getSolde() - commande.getMontant();
+            DialogUtils.showDialog("Votre solde est insuffisant pour cette commande ! \n Il vous reste : " + soldeRestant,
+                    "Erreur : solde insuffisant !", Alert.AlertType.ERROR);
+            return false;
+        }
+        return true;
+    }
 
     @FXML
-    protected void onClickAddPizzaButton(MouseEvent event){
+    private void onClickAddPizzaButton(MouseEvent event){
         String selectedPizza = pizzaschoice_selector.getSelectionModel().getSelectedItem();
         String selectedTaille = sizepizzachoice_selector.getSelectionModel().getSelectedItem();
         int idPizza = Integer.parseInt(selectedPizza.substring(0, selectedPizza.indexOf("-") - 1));
@@ -108,12 +137,14 @@ public class ClientOrderPizzaController {
             return;
         }
 
+        Produit produit = produitDAO.getByIdTailleAndPizza(idTaille, idPizza);
+        this.currentCommande.setMontant(this.currentCommande.getMontant() + produit.getPrixProduit());
+
         if(!this.verifySoldeClient()){
+            this.currentCommande.setMontant(this.currentCommande.getMontant() - produit.getPrixProduit());
             return;
         }
 
-        Produit produit = produitDAO.getByIdTailleAndPizza(idTaille, idPizza);
-        this.currentCommande.setMontant(this.currentCommande.getMontant() + produit.getPrixProduit());
         boolean isUpdate = commandeDAO.update(this.currentCommande);
         if(!isUpdate){
             DialogUtils.showDialog("Impossible de mettre à jour la table !", "");
@@ -125,7 +156,7 @@ public class ClientOrderPizzaController {
     }
 
     @FXML
-    protected void onClickRemovePizzaButton(MouseEvent event){
+    private void onClickRemovePizzaButton(MouseEvent event){
         LignePanier lignePanier = cart_tableview.getSelectionModel().getSelectedItem();
 
         if(lignePanier == null || lignePanier.getNomPizza().isBlank() || lignePanier.getTaillePizza().isBlank()) {
@@ -148,7 +179,7 @@ public class ClientOrderPizzaController {
     }
 
     @FXML
-    protected void onConfirmOrderButton(MouseEvent event){
+    private void onConfirmOrderButton(MouseEvent event){
         StatutDAO statutDAO = StatutDAO.getInstance();
         CommandeDAO commandeDAO = CommandeDAO.getInstance();
         ContenirDAO contenirDAO = ContenirDAO.getInstance();
@@ -172,34 +203,8 @@ public class ClientOrderPizzaController {
     }
 
     @FXML
-    protected void onClearCartButton(MouseEvent event){
+    private void onClearCartButton(MouseEvent event){
         this.clearCommande();
         this.clearCart();
-    }
-
-    private void clearCommande(){
-        CommandeDAO commandeDAO = CommandeDAO.getInstance();
-        ContenirDAO contenirDAO = ContenirDAO.getInstance();
-        contenirDAO.deleteByCommande(this.currentCommande);
-        commandeDAO.delete(this.currentCommande);
-    }
-
-    private void clearCart(){
-        this.updateCommmande();
-        this.updateMontant();
-        this.updateCart();
-        DialogUtils.showDialog("Panier effacé !");
-    }
-
-    private boolean verifySoldeClient(){
-        UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
-        ClientDAO clientDAO = ClientDAO.getInstance();
-        Client client = clientDAO.getById(userSessionUtil.getUtilisateur().getId());
-
-        if(client.getSolde() < this.currentCommande.getMontant()){
-            DialogUtils.showDialog("Votre solde est insuffisant pour cette commande !", "Erreur : solde insuffisant !", Alert.AlertType.ERROR);
-            return false;
-        }
-        return true;
     }
 }

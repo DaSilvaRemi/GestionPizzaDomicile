@@ -1,10 +1,7 @@
 package org.gestionrapizz.gestionpizzadomicile.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.Node;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -12,6 +9,7 @@ import org.gestionrapizz.gestionpizzadomicile.LivreurInsertApplication;
 import org.gestionrapizz.gestionpizzadomicile.LivreurUpdateApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.LivreurDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Livreur;
+import org.gestionrapizz.gestionpizzadomicile.models.tabs.MesLivreurs;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
@@ -21,27 +19,30 @@ import java.util.Optional;
 
 public class LivreurCRUDController {
     @FXML
-    private TableView<Livreur> livreur_tableview;
+    private TableView<MesLivreurs> livreur_tableview;
     @FXML
-    private TableColumn<Livreur, Integer> id_tableColumn;
+    private TableColumn<MesLivreurs, Integer> id_tableColumn;
     @FXML
-    private TableColumn<Livreur, String> nom_tableColumn;
+    private TableColumn<MesLivreurs, String> nom_tableColumn;
     @FXML
-    private TableColumn<Livreur, String> prenom_tableColumn;
+    private TableColumn<MesLivreurs, String> prenom_tableColumn;
     @FXML
-    private TableColumn<Livreur, String> email_tableColumn;
+    private TableColumn<MesLivreurs, String> email_tableColumn;
 
     public void initialize(){
         id_tableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nom_tableColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenom_tableColumn.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         email_tableColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        this.updateTable();
+    }
 
+    private void updateTable(){
         LivreurDAO livreurDAO = LivreurDAO.getInstance();
         List<Livreur> livreurs = livreurDAO.get();
 
         for (Livreur livreur : livreurs) {
-            this.livreur_tableview.getItems().add(livreur);
+            this.livreur_tableview.getItems().add(new MesLivreurs(livreur));
         }
     }
 
@@ -53,17 +54,26 @@ public class LivreurCRUDController {
     @FXML
     private void onUpdateLivreurButtonClick(MouseEvent event){
         UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
-        Livreur selectedLivreur = this.livreur_tableview.getSelectionModel().getSelectedItem();
+        MesLivreurs selectedLivreur = this.livreur_tableview.getSelectionModel().getSelectedItem();
         userSessionUtil.getVAR_SESSION().put("id_livreur", selectedLivreur.getId());
         JavaFXOpenWindowUtil.openAndCloseAWindow(new LivreurUpdateApplication(), ((Node) event.getSource()));
     }
 
     @FXML
     private void onDeleteLivreurButtonClick(MouseEvent event){
-        Optional<ButtonType> options = DialogUtils.showDialog("Etes vous sur de vouloir supprimer ce livreur ? ");
+        Optional<ButtonType> options = DialogUtils.showDialog("Etes vous sur de vouloir supprimer ce livreur ? ", "Confirmation suppresion", Alert.AlertType.CONFIRMATION);
         if(options.orElse(ButtonType.CANCEL).equals(ButtonType.OK)){
             LivreurDAO livreurDAO = LivreurDAO.getInstance();
-            livreurDAO.delete(this.livreur_tableview.getSelectionModel().getSelectedItem());
+            MesLivreurs mesLivreurs = this.livreur_tableview.getSelectionModel().getSelectedItem();
+            Livreur livreur = livreurDAO.getById(mesLivreurs.getId());
+            boolean isDelete = livreurDAO.delete(livreur);
+
+            if(!isDelete){
+                DialogUtils.showDialog("Suppresion échoué !", "Erreur : Suppression", Alert.AlertType.ERROR);
+                return;
+            }
+            DialogUtils.showDialog("Suppresion réussi !");
+            this.updateTable();
         }
     }
 }

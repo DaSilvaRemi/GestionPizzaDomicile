@@ -27,7 +27,7 @@ public class MainController {
     private PasswordField password_input;
 
     @FXML
-    protected void onLoginButtonClick(MouseEvent event) {
+    private void onLoginButtonClick(MouseEvent event) {
         if(emailadress_input.getText().isBlank()){
             DialogUtils.showDialog("Le nom est non renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
             return;
@@ -62,13 +62,13 @@ public class MainController {
     }
 
     @FXML
-    protected void onExitButtonClick(MouseEvent event) {
+    private void onExitButtonClick(MouseEvent event) {
         Platform.exit();
         System.exit(0);
     }
 
     @FXML
-    protected void onSigninButtonClick(MouseEvent event){
+    private void onSigninButtonClick(MouseEvent event){
         JavaFXOpenWindowUtil.openAndCloseAWindow( new SigninApplication(), ((Node) event.getSource()));
     }
 }

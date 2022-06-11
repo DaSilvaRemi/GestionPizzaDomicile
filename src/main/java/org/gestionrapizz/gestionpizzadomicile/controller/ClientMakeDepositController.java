@@ -26,7 +26,7 @@ public class ClientMakeDepositController {
     }
 
     @FXML
-    protected void onDepositButtonClick(MouseEvent mouseEvent){
+    private void onDepositButtonClick(MouseEvent mouseEvent){
         UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
         ClientDAO clientDAO = ClientDAO.getInstance();
         Client client = clientDAO.getById(userSessionUtil.getUtilisateur().getId());

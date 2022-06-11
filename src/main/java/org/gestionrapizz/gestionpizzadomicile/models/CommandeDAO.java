@@ -48,6 +48,19 @@ public class CommandeDAO extends DAO<Commande> {
         return result.size() == 1 ? result.get(0) : null;
     }
 
+    public List<Commande> getByImmatriculation(String immatriculation) {
+        String query = "SELECT Commande.* " +
+                "FROM Commande " +
+                "INNER JOIN Livreur ON Commande.id_utilisateur = Livreur.id_utilisateur " +
+                "INNER JOIN Vehicule ON Commande.immatriculation = Vehicule.immatriculation " +
+                "INNER JOIN Client ON Commande.id_utilisateur_1 = Client.id_utilisateur " +
+                "INNER JOIN Statut ON Commande.id_statut = Statut.id_statut " +
+                "WHERE Commande.immatriculation= ? " +
+                "ORDER BY Commande.dateHeure_commande DESC;";
+        return super.find(query, List.of(immatriculation));
+    }
+
+
     public Commande getByIdStatut(int id) {
         String query = "SELECT Commande.* " +
                 "FROM Commande " +
@@ -99,15 +112,16 @@ public class CommandeDAO extends DAO<Commande> {
 
     public Commande getTotMontantCommandeEnCoursByClient(int idClient)  {
         String query = "SELECT Commande.id_commande, Commande.dateHeure_commande, Commande.dateHeure_livraison, " +
-                "Client.retard, SUM(Commande.montant) AS montant" +
+                "Commande.retard, SUM(Commande.montant) AS montant, Commande.id_utilisateur, Commande.immatriculation, " +
+                "Commande.id_utilisateur_1, Commande.id_statut " +
                 "FROM Commande " +
                 "INNER JOIN Livreur ON Commande.id_utilisateur = Livreur.id_utilisateur " +
                 "INNER JOIN Vehicule ON Commande.immatriculation = Vehicule.immatriculation " +
                 "INNER JOIN Client ON Commande.id_utilisateur_1 = Client.id_utilisateur " +
                 "INNER JOIN Statut ON Commande.id_statut = Statut.id_statut " +
-                "WHERE Commande.id_utilisateur_1 = ? AND (Statut.nom != ? OR Statut.nom != ?) " +
+                "WHERE Commande.id_utilisateur_1 = ? AND (Statut.nom != ? AND Statut.nom != ?) " +
                 "GROUP BY Commande.id_utilisateur_1;";
-        List<Object> params = Arrays.asList(idClient, "En attente", "Refusé");
+        List<Object> params = Arrays.asList(idClient, "Livré", "Refusé");
         List<Commande> result = super.find(query, params);
         return result.size() == 1 ? result.get(0) : null;
     }
