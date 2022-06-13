@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="AdminMenuBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar fx:id="admin_menuBar" maxWidth="800.0" prefWidth="800.0" style="-fx-background-color: #dd4135 #dd4135;">
+        <menus>
+          <Menu fx:id="menu_home" mnemonicParsing="false" text="Menu">
+            <items>
+              <MenuItem fx:id="menu_item_home" mnemonicParsing="false" text="Accueil" />
+            </items>
+          </Menu>
+          <Menu fx:id="menu_ingredients" mnemonicParsing="false" text="Ingrédients">
+            <items>
+              <MenuItem fx:id="menu_item_ingredients" mnemonicParsing="false" text="Voir" />
+            </items>
+          </Menu>
+          <Menu fx:id="menu_pizzas" mnemonicParsing="false" text="Pizzas">
+            <items>
+              <MenuItem fx:id="menu_item_pizzas" mnemonicParsing="false" text="Voir" />
+            </items>
+          </Menu>
+            <Menu fx:id="menu_users" mnemonicParsing="false" text="Utilisateurs">
+              <items>
+                <MenuItem fx:id="menu_item_users" mnemonicParsing="false" text="Voir" />
+              </items>
+            </Menu>
+            <Menu fx:id="menu_vehicules" mnemonicParsing="false" text="Véhicules">
+              <items>
+                <MenuItem fx:id="menu_item_vehicules" mnemonicParsing="false" text="Voir" />
+              </items>
+            </Menu>
+            <Menu fx:id="menu_stats" mnemonicParsing="false" text="Statistiques">
+              <items>
+                <MenuItem fx:id="menu_item_stats" mnemonicParsing="false" text="Voir" />
+              </items>
+            </Menu>
+            <Menu fx:id="menu_logout" mnemonicParsing="false" text="Se déconnecter">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</VBox>
