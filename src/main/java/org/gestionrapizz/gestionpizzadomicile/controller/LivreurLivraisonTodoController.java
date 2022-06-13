@@ -38,8 +38,6 @@ public class LivreurLivraisonTodoController {
         UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
         List<Commande> allCommandes = commandeDAO.getByIdLivreurAndIdStatut(userSessionUtil.getUtilisateur().getId() , statutDAO.getByNom("Livraison en cours").getId());
 
-        livraison_dateCommande_tableColumn.setCellValueFactory(new PropertyValueFactory<>("id_commande"));
-
         livraison_dateCommande_tableColumn.setCellValueFactory(new PropertyValueFactory<>("dateCommande"));
         livraison_montant_tableColumn.setCellValueFactory(new PropertyValueFactory<>("montant"));
         livraison_immatriculation_tableColumn.setCellValueFactory(new PropertyValueFactory<>("immatriculation"));
