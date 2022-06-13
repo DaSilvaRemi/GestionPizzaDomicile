@@ -10,7 +10,7 @@ import javafx.scene.Node;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.gestionrapizz.gestionpizzadomicile.AdminAccountApplication;
 import org.gestionrapizz.gestionpizzadomicile.ClientAccountApplication;
-import org.gestionrapizz.gestionpizzadomicile.LivreurCRUDApplication;
+import org.gestionrapizz.gestionpizzadomicile.AdminLivreurCRUDApplication;
 import org.gestionrapizz.gestionpizzadomicile.SigninApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.AdministrateurDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.ClientDAO;
@@ -23,9 +23,6 @@ import org.gestionrapizz.gestionpizzadomicile.models.entity.Utilisateur;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class MainController {
     @FXML
@@ -85,7 +82,7 @@ public class MainController {
         Livreur livreur = livreurDAO.getById(utilisateur.getId());
         if(livreur != null){
             UserSessionUtil.getInstance(livreur);
-            JavaFXOpenWindowUtil.openAndCloseAWindow( new LivreurCRUDApplication(), ((Node) event.getSource()));
+            JavaFXOpenWindowUtil.openAndCloseAWindow( new AdminLivreurCRUDApplication(), ((Node) event.getSource()));
             return;
         }
 

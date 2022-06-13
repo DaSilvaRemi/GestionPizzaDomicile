@@ -6,8 +6,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import org.gestionrapizz.gestionpizzadomicile.VehiculeCreateApplication;
-import org.gestionrapizz.gestionpizzadomicile.VehiculeUpdateApplication;
+import org.gestionrapizz.gestionpizzadomicile.AdminVehiculeCreateApplication;
+import org.gestionrapizz.gestionpizzadomicile.AdminVehiculeUpdateApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.CommandeDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.TypeDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.VehiculeDAO;
@@ -19,7 +19,7 @@ import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
 import java.util.List;
 
-public class VehiculeMainController {
+public class AdminVehiculeMainController {
 
     @FXML
     private TableView<MesVehicules> vehicule_main_tableview;
@@ -48,7 +48,7 @@ public class VehiculeMainController {
 
     @FXML
     private void onCreateVehiculeButtonClick(MouseEvent event){
-        JavaFXOpenWindowUtil.openAndCloseAWindow( new VehiculeCreateApplication(), ((Node) event.getSource()));
+        JavaFXOpenWindowUtil.openAndCloseAWindow( new AdminVehiculeCreateApplication(), ((Node) event.getSource()));
     }
 
     @FXML
@@ -65,7 +65,7 @@ public class VehiculeMainController {
         usu.getVAR_SESSION().put("id_immatriculation", mesVehicules.getImmatriculation());
         usu.getVAR_SESSION().put("id_type", mesVehicules.getType());
 
-        JavaFXOpenWindowUtil.openAndCloseAWindow(new VehiculeUpdateApplication(), ((Node) event.getSource()));
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminVehiculeUpdateApplication(), ((Node) event.getSource()));
     }
 
     @FXML

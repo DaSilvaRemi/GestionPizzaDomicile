@@ -5,7 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import org.gestionrapizz.gestionpizzadomicile.VehiculeMainApplication;
+import org.gestionrapizz.gestionpizzadomicile.AdminVehiculeMainApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.*;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.*;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
@@ -13,7 +13,7 @@ import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 
 import java.util.List;
 
-public class VehiculeCreateController {
+public class AdminVehiculeCreateController {
 
     @FXML
     private ChoiceBox<String> vehicule_create_type;
@@ -87,6 +87,6 @@ public class VehiculeCreateController {
 
     @FXML
     protected void onReturnToMainVehiculeButtonClick(MouseEvent event){
-        JavaFXOpenWindowUtil.openAndCloseAWindow( new VehiculeMainApplication(), ((Node) event.getSource()));
+        JavaFXOpenWindowUtil.openAndCloseAWindow( new AdminVehiculeMainApplication(), ((Node) event.getSource()));
     }
 }

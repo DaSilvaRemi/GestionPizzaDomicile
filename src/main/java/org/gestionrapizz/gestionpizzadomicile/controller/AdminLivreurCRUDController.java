@@ -5,8 +5,8 @@ import javafx.scene.control.*;
 import javafx.scene.Node;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import org.gestionrapizz.gestionpizzadomicile.LivreurInsertApplication;
-import org.gestionrapizz.gestionpizzadomicile.LivreurUpdateApplication;
+import org.gestionrapizz.gestionpizzadomicile.AdminLivreurInsertApplication;
+import org.gestionrapizz.gestionpizzadomicile.AdminLivreurUpdateApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.LivreurDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Livreur;
 import org.gestionrapizz.gestionpizzadomicile.models.tabs.MesLivreurs;
@@ -17,7 +17,7 @@ import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 import java.util.List;
 import java.util.Optional;
 
-public class LivreurCRUDController {
+public class AdminLivreurCRUDController {
     @FXML
     private TableView<MesLivreurs> livreur_tableview;
     @FXML
@@ -48,7 +48,7 @@ public class LivreurCRUDController {
 
     @FXML
     private void onAddLivreurButtonClick(MouseEvent event){
-        JavaFXOpenWindowUtil.openAndCloseAWindow(new LivreurInsertApplication(), ((Node) event.getSource()));
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminLivreurInsertApplication(), ((Node) event.getSource()));
     }
 
     @FXML
@@ -56,7 +56,7 @@ public class LivreurCRUDController {
         UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
         MesLivreurs selectedLivreur = this.livreur_tableview.getSelectionModel().getSelectedItem();
         userSessionUtil.getVAR_SESSION().put("id_livreur", selectedLivreur.getId());
-        JavaFXOpenWindowUtil.openAndCloseAWindow(new LivreurUpdateApplication(), ((Node) event.getSource()));
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminLivreurUpdateApplication(), ((Node) event.getSource()));
     }
 
     @FXML

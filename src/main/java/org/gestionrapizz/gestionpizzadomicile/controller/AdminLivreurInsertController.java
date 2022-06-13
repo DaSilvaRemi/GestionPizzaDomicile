@@ -7,13 +7,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import org.gestionrapizz.gestionpizzadomicile.LivreurCRUDApplication;
+import org.gestionrapizz.gestionpizzadomicile.AdminLivreurCRUDApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.LivreurDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Livreur;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 
-public class LivreurInsertController {
+public class AdminLivreurInsertController {
     @FXML
     private TextField name_input;
     @FXML
@@ -48,6 +48,6 @@ public class LivreurInsertController {
 
     @FXML
     private void onReturnButtonClick(MouseEvent event){
-        JavaFXOpenWindowUtil.openAndCloseAWindow(new LivreurCRUDApplication(), ((Node) event.getSource()));
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminLivreurCRUDApplication(), ((Node) event.getSource()));
     }
 }

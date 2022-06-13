@@ -7,10 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LivreurCRUDApplication extends Application {
+public class AdminLivreurCRUDApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(LivreurCRUDApplication.class.getResource("livreur_crud-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminLivreurCRUDApplication.class.getResource("admin_livreur-crud-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("CRUD Livreur");
         stage.setScene(scene);

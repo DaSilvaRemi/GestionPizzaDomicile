@@ -5,12 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class VehiculeCreateApplication extends Application {
+public class AdminVehiculeMainApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(VehiculeUpdateApplication.class.getResource("vehicule_create-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminVehiculeMainApplication.class.getResource("admin_vehicule-main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Créer un véhicule");
+        stage.setTitle("Véhicules");
         stage.setScene(scene);
         stage.show();
     }
