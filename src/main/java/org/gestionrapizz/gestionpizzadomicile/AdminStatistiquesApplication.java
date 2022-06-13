@@ -8,10 +8,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class StatistiquesApplication extends Application {
+public class AdminStatistiquesApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(StatistiquesApplication.class.getResource("statistiques-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminStatistiquesApplication.class.getResource("admin_statistiques-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Statistiques de Rapizz");
         stage.setScene(scene);

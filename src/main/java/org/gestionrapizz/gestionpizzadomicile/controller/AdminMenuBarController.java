@@ -36,7 +36,7 @@ public class AdminMenuBarController {
 
     @FXML
     private void onStatsClick(Event event){
-        JavaFXOpenWindowUtil.openAndCloseAWindow(new StatistiquesApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminStatistiquesApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
 
     }
 

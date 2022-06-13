@@ -5,7 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import org.gestionrapizz.gestionpizzadomicile.AdminLivreurCRUDApplication;
-import org.gestionrapizz.gestionpizzadomicile.StatistiquesApplication;
+import org.gestionrapizz.gestionpizzadomicile.AdminStatistiquesApplication;
 import org.gestionrapizz.gestionpizzadomicile.AdminVehiculeMainApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.AdministrateurDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Administrateur;
@@ -46,6 +46,6 @@ public class AdminAccountController {
 
     @FXML
     private void onStatistiquesButtonClick(MouseEvent event){
-        JavaFXOpenWindowUtil.openAndCloseAWindow(new StatistiquesApplication(), ((Node) event.getSource()));
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminStatistiquesApplication(), ((Node) event.getSource()));
     }
 }
