@@ -10,7 +10,7 @@ import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
 public class ClientMenuBarController {
     @FXML
-    private void onAcceuilClick(Event event){
+    private void onAccueilClick(Event event){
         JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientAccountApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
     }
 
