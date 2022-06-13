@@ -21,9 +21,6 @@ import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 public class MainController {
     @FXML
     private TextField emailadress_input;
