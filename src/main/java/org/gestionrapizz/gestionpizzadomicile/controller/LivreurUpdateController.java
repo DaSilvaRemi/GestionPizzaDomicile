@@ -1,0 +1,101 @@
+package org.gestionrapizz.gestionpizzadomicile.controller;
+
+import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import org.gestionrapizz.gestionpizzadomicile.LivreurCRUDApplication;
+import org.gestionrapizz.gestionpizzadomicile.models.LivreurDAO;
+import org.gestionrapizz.gestionpizzadomicile.models.entity.Livreur;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
+
+import java.util.Optional;
+
+public class LivreurUpdateController {
+    @FXML
+    private TextField name_input;
+    @FXML
+    private TextField prenom_input;
+    @FXML
+    private TextField emailadress_input;
+    @FXML
+    private PasswordField password_input;
+    @FXML
+    private PasswordField confirmpassword_input;
+    private Livreur selectedLivreur;
+    private Livreur saveSelectedLivreur;
+
+    public void initialize(){
+        UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
+
+        if(userSessionUtil.getVAR_SESSION().isEmpty()){
+            JavaFXOpenWindowUtil.openAndCloseAWindow(new LivreurCRUDApplication(), name_input.getScene().getWindow());
+        }
+
+        LivreurDAO livreurDAO = LivreurDAO.getInstance();
+        int idLivreur = (int) userSessionUtil.getVAR_SESSION().get("id_livreur");
+        this.saveSelectedLivreur = livreurDAO.getById(idLivreur);
+        this.Reinitialiser();
+        userSessionUtil.getVAR_SESSION().clear();
+    }
+
+    private void Reinitialiser(){
+        this.selectedLivreur = new Livreur(this.saveSelectedLivreur);
+        name_input.setText(this.selectedLivreur.getNom());
+        prenom_input.setText(this.selectedLivreur.getPrenom());
+        emailadress_input.setText(this.selectedLivreur.getEmail());
+    }
+
+    @FXML
+    private void onReinitialiserButtonClick(MouseEvent mouseEvent){
+        this.Reinitialiser();
+    }
+
+    @FXML
+    private void onUpdateButtonClick(MouseEvent event){
+        Optional<ButtonType> options = DialogUtils.showDialog("Voulez vous vraiment ce livreur ?, ", "Confirmation Insertion", Alert.AlertType.CONFIRMATION);
+        if(!options.orElse(ButtonType.CANCEL).equals(ButtonType.OK)){
+            return;
+        }
+
+        String nomLivreur = this.name_input.getText();
+        String prenomLivreur = this.prenom_input.getText();
+        String emailadress_input = this.emailadress_input.getText();
+        String password_input = this.password_input.getText();
+        String confirmpassword_input = this.confirmpassword_input.getText();
+
+        if(!nomLivreur.isBlank()){
+            this.selectedLivreur.setNom(nomLivreur);
+        }
+
+        if(!prenomLivreur.isBlank()){
+            this.selectedLivreur.setPrenom(prenomLivreur);
+        }
+
+        if(!emailadress_input.isBlank()){
+            this.selectedLivreur.setNom(nomLivreur);
+        }
+
+        LivreurDAO livreurDAO = LivreurDAO.getInstance();
+        boolean isUpdate = livreurDAO.updateWithoutPassword(this.selectedLivreur);
+        if(!password_input.isBlank() && !confirmpassword_input.isBlank() && password_input.equals(confirmpassword_input)){
+            this.selectedLivreur.setNom(nomLivreur);
+            isUpdate = livreurDAO.update(this.selectedLivreur);
+        }
+
+        if(!isUpdate){
+            DialogUtils.showDialog("Modification du livreur échoué !", "Erreur modification livreur", Alert.AlertType.ERROR);
+            return;
+        }
+
+        DialogUtils.showDialog("Livreur modifié !");
+        onReturnButtonClick(event);
+    }
+
+    @FXML
+    private void onReturnButtonClick(MouseEvent event){
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new LivreurCRUDApplication(), ((Node) event.getSource()));
+    }
+}

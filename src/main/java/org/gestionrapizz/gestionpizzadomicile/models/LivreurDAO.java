@@ -1,12 +1,10 @@
 package org.gestionrapizz.gestionpizzadomicile.models;
 
-import org.gestionrapizz.gestionpizzadomicile.models.entity.Client;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Livreur;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LivreurDAO extends DAO<Livreur> {
@@ -31,26 +29,43 @@ public class LivreurDAO extends DAO<Livreur> {
         return super.find(query, new ArrayList<>());
     }
 
+    public List<Livreur> getLivreurDisponible() {
+        String query = "SELECT Utilisateur.* FROM Livreur " +
+                "INNER JOIN Utilisateur ON Livreur.id_utilisateur = Utilisateur.id_utilisateur " +
+                "WHERE Utilisateur.id_utilisateur NOT IN " +
+                "(SELECT Commande.id_utilisateur " +
+                "FROM Commande " +
+                "WHERE Commande.id_statut IN " +
+                "(SELECT Statut.id_statut FROM Statut WHERE Statut.nom = ?))";
+        return super.find(query, List.of("Livraison en cours"));
+    }
+
     @Override
     public Livreur getById(int id) {
         String query = "SELECT Utilisateur.*" +
                 "FROM Livreur " +
                 "INNER JOIN Utilisateur ON Livreur.id_utilisateur = Utilisateur.id_utilisateur " +
                 "WHERE Utilisateur.id_utilisateur = ?;";
-        return super.find(query, List.of(id)).get(0);
+        List<Livreur> result = super.find(query, List.of(id));
+        return result.size() == 1 ? result.get(0) : null;
     }
 
     @Override
     public int insert(Livreur obj) {
         int idUser = UtilisateurDAO.getInstance().insert(obj.getUtilisateur());
-        String query = "INSERT INTO Livreur (id_utilisateur) " +
-                "VALUES(?);";
-        return super.add(query, List.of(idUser));
+        if(idUser == 0) return 0;
+
+        String query = "INSERT INTO Livreur (id_utilisateur) VALUES(?);";
+        return super.modify(query, List.of(idUser));
     }
 
     @Override
     public boolean update(Livreur obj) {
         return  UtilisateurDAO.getInstance().update(obj.getUtilisateur());
+    }
+
+    public boolean updateWithoutPassword(Livreur obj) {
+        return UtilisateurDAO.getInstance().updateWithoutPassword(obj.getUtilisateur());
     }
 
     @Override
@@ -65,6 +80,7 @@ public class LivreurDAO extends DAO<Livreur> {
         return new Livreur(
                 resultSet.getInt("id_utilisateur"),
                 resultSet.getString("nom"),
+                resultSet.getString("prenom"),
                 resultSet.getString("email"),
                 resultSet.getString("motdepasse")
         );

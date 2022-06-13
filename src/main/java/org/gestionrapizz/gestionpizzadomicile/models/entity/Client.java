@@ -8,15 +8,15 @@ public class Client extends Utilisateur {
     private Double solde;
 
     public Client(Utilisateur utilisateur, String telephone, String adresseRue, String ville, String codePostal) {
-        this(utilisateur.getId(), utilisateur.getNom(), utilisateur.getEmail(), utilisateur.getMotdepasse(), telephone, adresseRue, ville, codePostal, 0.0);
+        this(utilisateur.getId(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getMotdepasse(), telephone, adresseRue, ville, codePostal, 0.0);
     }
 
-    public Client(int id, String nom, String email, String motdepasse, String telephone, String adresseRue, String ville, String codePostal) {
-        this(id, nom, email, motdepasse, telephone, adresseRue, ville, codePostal, 0.0);
+    public Client(int id, String nom, String prenom, String email, String motdepasse, String telephone, String adresseRue, String ville, String codePostal) {
+        this(id, nom, prenom, email, motdepasse, telephone, adresseRue, ville, codePostal, 0.0);
     }
 
-    public Client(int id, String nom, String email, String motdepasse, String telephone, String adresseRue, String ville, String codePostal, Double solde) {
-        super(id, nom, email, motdepasse);
+    public Client(int id, String nom, String prenom, String email, String motdepasse, String telephone, String adresseRue, String ville, String codePostal, Double solde) {
+        super(id, nom, prenom, email, motdepasse);
         this.telephone = telephone;
         this.adresseRue = adresseRue;
         this.ville = ville;
@@ -74,6 +74,7 @@ public class Client extends Utilisateur {
                 ", solde=" + solde +
                 ", id=" + id +
                 ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
                 ", email='" + email + '\'' +
                 ", motdepasse='" + motdepasse + '\'' +
                 '}';

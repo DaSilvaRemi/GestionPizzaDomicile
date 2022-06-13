@@ -2,7 +2,6 @@ package org.gestionrapizz.gestionpizzadomicile.controller;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -12,11 +11,11 @@ import org.gestionrapizz.gestionpizzadomicile.models.entity.Client;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 
-import java.sql.SQLException;
-
 public class SigninController {
     @FXML
     private TextField name_input;
+    @FXML
+    private TextField prenom_input;
     @FXML
     private TextField emailadress_input;
     @FXML
@@ -31,38 +30,54 @@ public class SigninController {
     private PasswordField password_input;
     @FXML
     private PasswordField confirmpassword_input;
-    @FXML
-    private Button signin_button;
-    @FXML
-    private Button return_button;
 
     @FXML
-    protected void onSignInButtonClick(MouseEvent event){
-        if(!password_input.getText().equals(confirmpassword_input.getText())){
-            DialogUtils.showDialog("Entered passwords don't matche !", "Error : password verification", Alert.AlertType.ERROR);
+    private void onSignInButtonClick(MouseEvent event){
+        if (!UserCRUDController.verifyUsersFieldsToInsert(name_input, prenom_input, emailadress_input, password_input, confirmpassword_input))  {
+            return;
+        }
+
+        if(zipcode_input.getText().isBlank()){
+            DialogUtils.showDialog("Le code postal est non renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
+            return;
+        }
+
+        if(phonenumber_input.getText().isBlank()){
+            DialogUtils.showDialog("Le numéro de téléphone n'est pas renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
+            return;
+        }
+
+        if(adress_input.getText().isBlank()){
+            DialogUtils.showDialog("L'adresse n'est pas renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
+            return;
+        }
+
+        if(city_input.getText().isBlank()){
+            DialogUtils.showDialog("La ville n'est pas renseigné !", "Erreur : champ vide", Alert.AlertType.ERROR);
             return;
         }
 
         ClientDAO clientDAO = ClientDAO.getInstance();
-        clientDAO.insert(
-                new Client(
-                        0,
-                        name_input.getText(),
-                        emailadress_input.getText(),
-                        password_input.getText(),
-                        phonenumber_input.getText(),
-                        adress_input.getText(),
-                        city_input.getText(),
-                        zipcode_input.getText()
-                )
+        Client clientToInsert = new Client(
+                0,
+                name_input.getText(),
+                prenom_input.getText(),
+                emailadress_input.getText(),
+                password_input.getText(),
+                phonenumber_input.getText(),
+                adress_input.getText(),
+                city_input.getText(),
+                zipcode_input.getText()
         );
+
+        clientDAO.insert(clientToInsert);
 
         DialogUtils.showDialog("Signin successful !", "Welcom to our community !");
         this.onReturnInButtonClick(event);
     }
 
     @FXML
-    protected void onReturnInButtonClick(MouseEvent event){
+    private void onReturnInButtonClick(MouseEvent event){
         JavaFXOpenWindowUtil.openAndCloseAWindow( new MainApplication(), ((Node) event.getSource()));
     }
 }

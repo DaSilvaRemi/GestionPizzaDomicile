@@ -3,16 +3,20 @@ package org.gestionrapizz.gestionpizzadomicile.models.utils;
 import javafx.application.Application;
 import javafx.stage.Window;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Administrateur;
-import org.gestionrapizz.gestionpizzadomicile.models.entity.Client;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Livreur;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Utilisateur;
+
+import java.util.HashMap;
 
 public final class UserSessionUtil {
     private static UserSessionUtil instance;
     private Utilisateur utilisateur;
 
+    private final HashMap<String, Object> VAR_SESSION;
+
     private UserSessionUtil(Utilisateur utilisateur) {
         this.setUtilisateur(utilisateur);
+        this.VAR_SESSION = new HashMap<>();
     }
 
     public static UserSessionUtil getInstance(Utilisateur utilisateur) {
@@ -46,8 +50,14 @@ public final class UserSessionUtil {
         this.utilisateur = utilisateur;
     }
 
+    public HashMap<String, Object> getVAR_SESSION() {
+        return VAR_SESSION;
+    }
+
     public void clearUserSession() {
         this.setUtilisateur(null);
+        this.getVAR_SESSION().clear();
+        UserSessionUtil.instance = null;
     }
 
     public void LoginVerification(Application redirectionApplication, Window windowsToCloseIfFailed) {

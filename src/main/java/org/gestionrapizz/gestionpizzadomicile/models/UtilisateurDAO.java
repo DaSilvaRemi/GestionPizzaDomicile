@@ -50,17 +50,30 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 
     @Override
     public int insert(Utilisateur obj) {
-        return super.add("INSERT INTO Utilisateur (nom, email, motdepasse) VALUES(?, ?, PASSWORD(?));", Arrays.asList(obj.getNom(), obj.getEmail(), obj.getMotdepasse()));
+        String query = "INSERT INTO Utilisateur (nom, prenom, email, motdepasse) VALUES(?, ?, ?, PASSWORD(?));";
+        return super.add(query, Arrays.asList(obj.getNom(), obj.getPrenom(), obj.getEmail(), obj.getMotdepasse()));
     }
 
     @Override
     public boolean update(Utilisateur obj) {
         String query = "UPDATE Utilisateur SET " +
                 "Utilisateur.nom = ?, " +
+                "Utilisateur.prenom = ?, " +
                 "Utilisateur.email = ?, " +
                 "Utilisateur.motdepasse = PASSWORD(?) " +
                 "WHERE Utilisateur.id_utilisateur = ?;";
-        return super.modify(query, Arrays.asList(obj.getNom(), obj.getEmail(), obj.getMotdepasse())) > 0;
+        List<Object> params = Arrays.asList(obj.getNom(), obj.getPrenom(), obj.getEmail(), obj.getMotdepasse(), obj.getId());
+        return super.modify(query, params) > 0;
+    }
+
+    public boolean updateWithoutPassword(Utilisateur obj) {
+        String query = "UPDATE Utilisateur SET " +
+                "Utilisateur.nom = ?, " +
+                "Utilisateur.prenom = ?, " +
+                "Utilisateur.email = ? " +
+                "WHERE Utilisateur.id_utilisateur = ?;";
+        List<Object> params = Arrays.asList(obj.getNom(), obj.getPrenom(), obj.getEmail(), obj.getId());
+        return super.modify(query, params) > 0;
     }
 
     @Override
@@ -74,6 +87,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
         return new Utilisateur(
                 resultSet.getInt("id_utilisateur"),
                 resultSet.getString("nom"),
+                resultSet.getString("prenom"),
                 resultSet.getString("email"),
                 resultSet.getString("motdepasse")
         );

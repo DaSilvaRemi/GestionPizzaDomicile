@@ -1,44 +1,37 @@
 package org.gestionrapizz.gestionpizzadomicile.controller;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Menu;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.MenuItem;
+import org.gestionrapizz.gestionpizzadomicile.*;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
-public class ClientMenuBarController extends VBox {
+public class ClientMenuBarController {
     @FXML
-    private Menu menu_menuitem;
-    @FXML
-    private Menu orderpizza_menuitem;
-    @FXML
-    private Menu myorder_menuitem;
-    @FXML
-    private Menu makeadeposit_menuitem;
-    @FXML
-    private Menu logout_menuitem;
-
-    @FXML
-    protected void onMenuClick(MouseEvent event){
-
+    private void onAcceuilClick(Event event){
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientAccountApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
     }
 
     @FXML
-    protected void onOrderPizzaClick(MouseEvent event){
-
+    private void onOrderPizzaClick(Event event){
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientOrderPizzaApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
     }
 
     @FXML
-    protected void onMyOrderClick(MouseEvent event){
-
+    private void onMyOrderClick(Event event){
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientMyOrdersApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
     }
 
     @FXML
-    protected void onMakeADepositClick(MouseEvent event){
-
+    private void onMakeADepositClick(Event event){
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new ClientMakeDepositApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
     }
 
     @FXML
-    protected void onLogoutClick(MouseEvent event){
-
+    private void onLogoutClick(Event event){
+        UserSessionUtil.getInstance(null).clearUserSession();
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new MainApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
     }
 }
