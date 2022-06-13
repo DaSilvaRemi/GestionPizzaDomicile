@@ -23,7 +23,7 @@
                 <TableColumn fx:id="list_ingredients_name" minWidth="250.0" prefWidth="-1.0" text="Nom" />
               </columns>
             </TableView>
-            <ButtonBar fx:id="ingredient_list_btns" layoutX="198.0" layoutY="400.0" prefHeight="40.0">
+            <ButtonBar fx:id="ingredient_list_btns" layoutX="192.0" layoutY="400.0" prefHeight="40.0">
               <buttons>
                 <Button fx:id="update_ingredient_btn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #3f51b5#3f51b5;" text="Mettre à jour" textFill="WHITE" />
                   <Button fx:id="add_ingredient_btn" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #3f51b5#3f51b5;" text="Ajouter ingrédient" textFill="WHITE" />

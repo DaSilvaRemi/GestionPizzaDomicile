@@ -7,11 +7,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LivreurUpdateApplication extends Application {
+public class AdminMenuBarApplication extends Application {
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(LivreurInsertApplication.class.getResource("livreur_update-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ClientMenuBarApplication.class.getResource("admin_menubar-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("CRUD Livreur");
         stage.setScene(scene);
         stage.show();
     }

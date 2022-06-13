@@ -7,12 +7,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LivreurInsertApplication extends Application {
+public class AdminPizzasApplication extends Application {
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(LivreurInsertApplication.class.getResource("livreur_insert-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ClientMenuBarApplication.class.getResource("admin_pizzas-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("CRUD Livreur");
         stage.setScene(scene);
         stage.show();
     }

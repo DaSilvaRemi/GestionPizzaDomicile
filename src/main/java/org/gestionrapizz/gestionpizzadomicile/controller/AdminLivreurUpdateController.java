@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import org.gestionrapizz.gestionpizzadomicile.LivreurCRUDApplication;
+import org.gestionrapizz.gestionpizzadomicile.AdminLivreurCRUDApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.LivreurDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Livreur;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
@@ -13,7 +13,7 @@ import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
 import java.util.Optional;
 
-public class LivreurUpdateController {
+public class AdminLivreurUpdateController {
     @FXML
     private TextField name_input;
     @FXML
@@ -31,7 +31,7 @@ public class LivreurUpdateController {
         UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
 
         if(userSessionUtil.getVAR_SESSION().isEmpty()){
-            JavaFXOpenWindowUtil.openAndCloseAWindow(new LivreurCRUDApplication(), name_input.getScene().getWindow());
+            JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminLivreurCRUDApplication(), name_input.getScene().getWindow());
         }
 
         LivreurDAO livreurDAO = LivreurDAO.getInstance();
@@ -96,6 +96,6 @@ public class LivreurUpdateController {
 
     @FXML
     private void onReturnButtonClick(MouseEvent event){
-        JavaFXOpenWindowUtil.openAndCloseAWindow(new LivreurCRUDApplication(), ((Node) event.getSource()));
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminLivreurCRUDApplication(), ((Node) event.getSource()));
     }
 }

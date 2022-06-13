@@ -5,7 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import org.gestionrapizz.gestionpizzadomicile.VehiculeMainApplication;
+import org.gestionrapizz.gestionpizzadomicile.AdminVehiculeMainApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.TypeDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.VehiculeDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Type;
@@ -13,11 +13,10 @@ import org.gestionrapizz.gestionpizzadomicile.models.entity.Vehicule;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
-import org.w3c.dom.Text;
 
 import java.util.List;
 
-public class VehiculeUpdateController {
+public class AdminVehiculeUpdateController {
 
     @FXML
     private TextField immatriculation_textfield;
@@ -48,7 +47,7 @@ public class VehiculeUpdateController {
 
     @FXML
     protected void onReturnToMainVehiculeButtonClick(MouseEvent event){
-        JavaFXOpenWindowUtil.openAndCloseAWindow( new VehiculeMainApplication(), ((Node) event.getSource()));
+        JavaFXOpenWindowUtil.openAndCloseAWindow( new AdminVehiculeMainApplication(), ((Node) event.getSource()));
     }
 
     @FXML

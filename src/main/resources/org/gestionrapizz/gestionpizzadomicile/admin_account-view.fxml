@@ -8,6 +8,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.AdminAccountController">
    <children>
+      <fx:include fx:id="AdminMenuBar" source="admin_menubar-view.fxml" />
       <Pane maxHeight="500.0" maxWidth="800.0" minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0">
          <children>
             <Label contentDisplay="CENTER" layoutX="200.0" layoutY="44.0" text="Bonjour," textAlignment="CENTER">
