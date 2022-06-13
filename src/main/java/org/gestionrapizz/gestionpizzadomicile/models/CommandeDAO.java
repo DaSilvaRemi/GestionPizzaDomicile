@@ -232,15 +232,15 @@ public class CommandeDAO extends DAO<Commande> {
     @Override
     public Commande resultSetToAbstract(ResultSet resultSet) throws SQLException {
         return new Commande(
-          resultSet.getInt("id_commande"),
-          resultSet.getTimestamp("dateHeure_commande"),
-                resultSet.getTimestamp("dateHeure_livraison"),
-                resultSet.getDouble("montant"),
-                resultSet.getBoolean("retard"),
-                LivreurDAO.getInstance().getById(resultSet.getInt("id_utilisateur")),
-                VehiculeDAO.getInstance().getById(resultSet.getString("immatriculation")),
-                ClientDAO.getInstance().getById(resultSet.getInt("id_utilisateur_1")),
-                StatutDAO.getInstance().getById(resultSet.getInt("id_statut"))
+            resultSet.getInt("id_commande"),
+            resultSet.getTimestamp("dateHeure_commande"),
+            resultSet.getTimestamp("dateHeure_livraison"),
+            resultSet.getDouble("montant"),
+            resultSet.getBoolean("retard"),
+            LivreurDAO.getInstance().getById(resultSet.getInt("id_utilisateur")),
+            VehiculeDAO.getInstance().getById(resultSet.getString("immatriculation")),
+            ClientDAO.getInstance().getById(resultSet.getInt("id_utilisateur_1")),
+            StatutDAO.getInstance().getById(resultSet.getInt("id_statut"))
         );
     }
 }

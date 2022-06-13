@@ -8,10 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Node;
 import org.apache.commons.validator.routines.EmailValidator;
-import org.gestionrapizz.gestionpizzadomicile.AdminAccountApplication;
-import org.gestionrapizz.gestionpizzadomicile.ClientAccountApplication;
-import org.gestionrapizz.gestionpizzadomicile.AdminLivreurCRUDApplication;
-import org.gestionrapizz.gestionpizzadomicile.SigninApplication;
+import org.gestionrapizz.gestionpizzadomicile.*;
 import org.gestionrapizz.gestionpizzadomicile.models.AdministrateurDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.ClientDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.LivreurDAO;
@@ -82,7 +79,7 @@ public class MainController {
         Livreur livreur = livreurDAO.getById(utilisateur.getId());
         if(livreur != null){
             UserSessionUtil.getInstance(livreur);
-            JavaFXOpenWindowUtil.openAndCloseAWindow( new AdminLivreurCRUDApplication(), ((Node) event.getSource()));
+            JavaFXOpenWindowUtil.openAndCloseAWindow( new LivreurLivraisonTodoApplication(), ((Node) event.getSource()));
             return;
         }
 
