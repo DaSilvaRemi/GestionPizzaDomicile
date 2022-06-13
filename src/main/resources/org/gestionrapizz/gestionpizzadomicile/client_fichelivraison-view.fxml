@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.ClientFicheLivraisonController">
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.ClientFicheLivraisonController">
    <children>
       <fx:include fx:id="ClientMenuBar" source="client_menubar-view.fxml" />
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0">
@@ -130,6 +127,16 @@
                </font>
             </Label>
             <Label fx:id="codepostal_label" layoutX="131.0" layoutY="173.0" text="XXXXX">
+               <font>
+                  <Font name="Source Code Pro Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="497.0" layoutY="206.0" text="Retard :">
+               <font>
+                  <Font name="Source Code Pro Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="retardcommande_label" layoutX="678.0" layoutY="206.0" text="Non">
                <font>
                   <Font name="Source Code Pro Medium" size="14.0" />
                </font>

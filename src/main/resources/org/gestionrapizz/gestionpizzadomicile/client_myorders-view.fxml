@@ -27,7 +27,7 @@
                <font>
                   <Font name="Source Code Pro Medium" size="24.0" />
                </font></Label>
-            <Button fx:id="bonlivraison_button" layoutX="266.0" layoutY="461.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: #1E9F00;" text="Voir bon livraison" textFill="WHITE">
+            <Button fx:id="bonlivraison_button" layoutX="266.0" layoutY="461.0" mnemonicParsing="false" onMouseClicked="#onBonLivraisonButtonClicked" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: #1E9F00;" text="Voir bon livraison" textFill="WHITE">
                <font>
                   <Font name="Source Code Pro Medium" size="14.0" />
                </font>

@@ -44,11 +44,13 @@ public class ClientFicheLivraisonController {
     private Label cityclient_label;
     @FXML
     private Label codepostal_label;
+    @FXML
+    private Label retardcommande_label;
 
     public void initialize(){
-        nompizza_tablecolumn.setCellValueFactory(new PropertyValueFactory<>("nomPizza"));
-        taillepizza_tablecolumn.setCellValueFactory(new PropertyValueFactory<>("taillePizza"));
-        montantpizza_tablecolumn.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        this.nompizza_tablecolumn.setCellValueFactory(new PropertyValueFactory<>("nomPizza"));
+        this.taillepizza_tablecolumn.setCellValueFactory(new PropertyValueFactory<>("taillePizza"));
+        this.montantpizza_tablecolumn.setCellValueFactory(new PropertyValueFactory<>("prix"));
         this.updateDatas();
     }
 
@@ -60,21 +62,22 @@ public class ClientFicheLivraisonController {
 
         if(contenirList.size() > 0){
             Commande commande = contenirList.get(0).getCommande();
-            clientname_label.setText(commande.getClient().getNom());
-            clientfirstname_label.setText(commande.getClient().getPrenom());
-            adresseclient_label.setText(commande.getClient().getAdresseRue());
-            nomlivreur_label.setText(commande.getLivreur().getNom());
-            prenomlivreur_label.setText(commande.getLivreur().getPrenom());
-            immatriculation_label.setText(commande.getVehicule().getImmatriculation());
-            typevehicule_label.setText(commande.getVehicule().getType().getNom());
-            idcommande_label.setText(String.valueOf(commande.getId()));
-            cityclient_label.setText(commande.getClient().getVille());
-            codepostal_label.setText(commande.getClient().getCodePostal());
+            this.clientname_label.setText(commande.getClient().getNom());
+            this.clientfirstname_label.setText(commande.getClient().getPrenom());
+            this.adresseclient_label.setText(commande.getClient().getAdresseRue());
+            this.nomlivreur_label.setText(commande.getLivreur().getNom());
+            this.prenomlivreur_label.setText(commande.getLivreur().getPrenom());
+            this.immatriculation_label.setText(commande.getVehicule().getImmatriculation());
+            this.typevehicule_label.setText(commande.getVehicule().getType().getNom());
+            this.idcommande_label.setText(String.valueOf(commande.getId()));
+            this.cityclient_label.setText(commande.getClient().getVille());
+            this.codepostal_label.setText(commande.getClient().getCodePostal());
+            this.retardcommande_label.setText(String.valueOf(commande.isRetard()));
         }
 
         for (Contenir contenir: contenirList) {
             Produit produit = contenir.getProduit();
-            contenucommande_tableview.getItems().add(new LignePanier(produit.getPizza().getNom(), produit.getTaille().getNom(), contenir.getCommande().getMontant()));
+            this.contenucommande_tableview.getItems().add(new LignePanier(produit.getPizza().getNom(), produit.getTaille().getNom(), contenir.getCommande().getMontant()));
         }
     }
 }

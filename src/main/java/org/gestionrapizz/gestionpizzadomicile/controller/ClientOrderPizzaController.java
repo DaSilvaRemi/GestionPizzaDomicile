@@ -113,7 +113,7 @@ public class ClientOrderPizzaController {
         Commande commande = commandeDAO.getTotMontantCommandeEnCoursByClient(client.getId());
         if(client.getSolde() < this.currentCommande.getMontant() + commande.getMontant()){
             Double soldeRestant =  client.getSolde() - commande.getMontant();
-            DialogUtils.showDialog("Votre solde est insuffisant pour cette commande ! \n Il vous reste : " + soldeRestant,
+            DialogUtils.showDialog("Votre solde est insuffisant pour cette commande ! \n Il vous reste : " + soldeRestant + " €",
                     "Erreur : solde insuffisant !", Alert.AlertType.ERROR);
             return false;
         }
