@@ -9,7 +9,7 @@ BEGIN
                 INNER JOIN Vehicule ON Commande.immatriculation = Vehicule.immatriculation
                 INNER JOIN Client ON Commande.id_utilisateur_1 = Client.id_utilisateur
                 INNER JOIN Statut ON Commande.id_statut = Statut.id_statut
-                WHERE Commande.id_utilisateur_1 = id_client AND (Statut.nom = 'En attente' OR Statut.nom = 'En cours de préparation' OR Statut.nom = 'Livraison en cours')
+                WHERE Commande.id_utilisateur_1 = id_client AND (Statut.nom = 'En attente' OR Statut.nom = 'Livraison en cours')
                 GROUP BY Commande.id_utilisateur_1
             ),
                 0.0
@@ -48,7 +48,7 @@ BEGIN
                         INNER JOIN Contenir ON Produit.id_taille = Contenir.id_taille AND Produit.id_pizza = Contenir.id_pizza
                         INNER JOIN Commande ON Contenir.id_commande = Commande.id_commande
                         INNER JOIN Statut on Commande.id_statut = Statut.id_statut
-                        WHERE Commande.id_commande = 8
+                        WHERE Commande.id_commande = id_new_commande
                         ORDER BY Pizza.prix
                         LIMIT 1
                 ))
@@ -56,8 +56,7 @@ BEGIN
     END IF;
 END;
 
-CREATE OR REPLACE PROCEDURE verif_retard_commande(IN date_heure_commande DATETIME, IN date_heure_livraison DATETIME,
-                                                INOUT montant DOUBLE, INOUT retard BOOLEAN)
+CREATE OR REPLACE PROCEDURE verif_retard_commande(IN date_heure_commande DATETIME, IN date_heure_livraison DATETIME, INOUT montant DOUBLE, INOUT retard BOOLEAN)
 BEGIN
     IF (SELECT TIMESTAMPDIFF(MINUTE, date_heure_commande, date_heure_livraison) >= 30 FROM Commande WHERE date_heure_livraison IS NOT NULL LIMIT 1) = 1 THEN
         SET retard = TRUE;
