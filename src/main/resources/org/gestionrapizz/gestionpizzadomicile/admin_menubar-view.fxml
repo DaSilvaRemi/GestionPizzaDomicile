@@ -41,7 +41,7 @@
             </Menu>
             <Menu fx:id="menu_logout" mnemonicParsing="false" text="Se déconnecter">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" onAction="#onAdminLogoutClick" text="Valider" />
               </items>
             </Menu>
         </menus>
