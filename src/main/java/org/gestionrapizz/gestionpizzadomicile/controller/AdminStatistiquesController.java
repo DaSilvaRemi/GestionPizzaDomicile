@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import org.gestionrapizz.gestionpizzadomicile.models.*;
 import org.gestionrapizz.gestionpizzadomicile.models.view.*;
 
-public class StatistiquesController {
+public class AdminStatistiquesController {
     @FXML
     private Label stats_chiffre_affaires_label;
 

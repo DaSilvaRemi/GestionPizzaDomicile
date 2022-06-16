@@ -12,7 +12,7 @@ public class ClientMyOrdersApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ClientMyOrdersApplication.class.getResource("client_myorders-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Gestion Pizzas");
+        stage.setTitle("Mes commandes");
         stage.setScene(scene);
         stage.show();
     }
