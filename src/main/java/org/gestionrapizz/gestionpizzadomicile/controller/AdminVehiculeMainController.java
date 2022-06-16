@@ -37,6 +37,7 @@ public class AdminVehiculeMainController {
     }
 
     private void updateVehiculeMainTableView() {
+        vehicule_main_tableview.getItems().clear();
         VehiculeDAO vehiculeDAO = VehiculeDAO.getInstance();
         List<Vehicule> allVehicules = vehiculeDAO.get();
         for (Vehicule vehicule : allVehicules){
