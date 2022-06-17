@@ -6,12 +6,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import org.gestionrapizz.gestionpizzadomicile.AdminIngredientsApplication;
-import org.gestionrapizz.gestionpizzadomicile.AdminLivreurCRUDApplication;
+import org.gestionrapizz.gestionpizzadomicile.AdminIngredientsCRUDApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.IngredientsDAO;
-import org.gestionrapizz.gestionpizzadomicile.models.LivreurDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Ingredients;
-import org.gestionrapizz.gestionpizzadomicile.models.entity.Livreur;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
@@ -29,7 +26,7 @@ public class AdminIngredientsUpdateController {
         UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
 
         if(userSessionUtil.getVAR_SESSION().isEmpty()){
-            JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminIngredientsApplication(), update_ingredient_name_field.getScene().getWindow());
+            JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminIngredientsCRUDApplication(), update_ingredient_name_field.getScene().getWindow());
         }
 
         IngredientsDAO ingredientsDAO = IngredientsDAO.getInstance();
@@ -70,6 +67,6 @@ public class AdminIngredientsUpdateController {
     }
     @FXML
     private void onReturnUpdateIngredientButtonClick(MouseEvent event){
-        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminIngredientsApplication(), ((Node) event.getSource()));
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminIngredientsCRUDApplication(), ((Node) event.getSource()));
     }
 }

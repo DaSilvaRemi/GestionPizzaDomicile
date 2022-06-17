@@ -4,8 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import org.gestionrapizz.gestionpizzadomicile.AdminIngredientsApplication;
-import org.gestionrapizz.gestionpizzadomicile.AdminPizzasApplication;
+import org.gestionrapizz.gestionpizzadomicile.AdminIngredientsCRUDApplication;
+import org.gestionrapizz.gestionpizzadomicile.AdminPizzasCRUDApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.ComposerDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.IngredientsDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.PizzaDAO;
@@ -17,6 +17,7 @@ import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +26,7 @@ public class AdminPizzasUpdateController {
     private TextField update_pizza_name_field;
 
     @FXML
-    private TextField update_pizza_price_field;
+    private Spinner<Double> update_pizza_price_field;
 
     @FXML
     private ListView<ListeIngredients> update_pizza_ingredients_list;
@@ -33,43 +34,64 @@ public class AdminPizzasUpdateController {
     private Pizza current_pizza;
 
     private Pizza updated_pizza;
-    private List<ListeIngredients> current_ingredients;
+    private List<ListeIngredients> ingredientsList;
+    private List<ListeIngredients> listeIngredientsPizza;
 
     private List<ListeIngredients> updated_ingredients;
 
     private List<Composer> current_composed;
-    private List<Composer> updated_composed;
-
 
     public void initialize(){
         UserSessionUtil userSessionUtil = UserSessionUtil.getInstance(null);
+        this.ingredientsList = new ArrayList<>();
+        this.listeIngredientsPizza = new ArrayList<>();
+        this.updated_ingredients = new ArrayList<>();
+        this.current_composed = new ArrayList<>();
+        this.update_pizza_ingredients_list.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         if(userSessionUtil.getVAR_SESSION().isEmpty()){
-            JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminIngredientsApplication(), update_pizza_name_field.getScene().getWindow());
+            JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminIngredientsCRUDApplication(), update_pizza_name_field.getScene().getWindow());
         }
-        update_pizza_ingredients_list.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
         PizzaDAO pizzaDAO = PizzaDAO.getInstance();
-        ComposerDAO composerDAO = ComposerDAO.getInstance();
-        //IngredientsDAO ingredientsDAO = IngredientsDAO.getInstance();
         int idPizza = (int) userSessionUtil.getVAR_SESSION().get("id_pizza");
-        this.current_composed = composerDAO.getByIdPizza(idPizza);
-        for(Composer composer : current_composed){
-            current_ingredients.add(new ListeIngredients(composer.getIngredients()));
-        }
         this.current_pizza = pizzaDAO.getById(idPizza);
-        this.Reinitialize();
+
+        this.reset();
         userSessionUtil.getVAR_SESSION().clear();
     }
 
-    private void Reinitialize(){
+    private void reset(){
         this.updated_pizza = this.current_pizza;
-        update_pizza_name_field.setText(this.current_pizza.getNom());
-        update_pizza_price_field.setText(this.current_pizza.getPrix()+"");
-        for(ListeIngredients ingredient : current_ingredients){
-            update_pizza_ingredients_list.getItems().add(ingredient);
-            update_pizza_ingredients_list.getSelectionModel().getSelectedItems().add(ingredient);
+        this.update_pizza_name_field.setText(this.current_pizza.getNom());
+        this.update_pizza_price_field.getValueFactory().setValue(this.current_pizza.getPrix());
+
+        IngredientsDAO ingredientsDAO = IngredientsDAO.getInstance();
+        ComposerDAO composerDAO = ComposerDAO.getInstance();
+        List<Ingredients> ingredientsList = ingredientsDAO.get();
+
+        this.current_composed = composerDAO.getByIdPizza(this.current_pizza.getId());
+
+        for (Composer composer: this.current_composed) {
+            ListeIngredients listeIngredients = new ListeIngredients(composer.getIngredients());
+            this.ingredientsList.add(listeIngredients);
+            this.listeIngredientsPizza.add(listeIngredients);
         }
 
+        for(Ingredients ingredients : ingredientsList){
+            ListeIngredients listeIngredients = new ListeIngredients(ingredients);
+            if(!this.ingredientsList.contains(listeIngredients)){
+                this.ingredientsList.add(listeIngredients);
+            }
+        }
+
+        for(ListeIngredients listeIngredients : this.ingredientsList){
+            this.update_pizza_ingredients_list.getItems().add(listeIngredients);
+        }
+
+        for(ListeIngredients listeIngredients : this.listeIngredientsPizza){
+            this.update_pizza_ingredients_list.getSelectionModel().select(listeIngredients);
+        }
     }
 
     @FXML
@@ -79,28 +101,37 @@ public class AdminPizzasUpdateController {
             return;
         }
         String pizza_name = this.update_pizza_name_field.getText();
-        String pizza_price = this.update_pizza_price_field.getText();
+        Double pizza_price = this.update_pizza_price_field.getValue();
         if(!pizza_name.isBlank()){
             this.updated_pizza.setNom(pizza_name);
         }
-        if(!pizza_price.isBlank()){
-            this.updated_pizza.setPrix(Double.parseDouble(pizza_price));
+        if(pizza_price != this.updated_pizza.getPrix()){
+            this.updated_pizza.setPrix(pizza_price);
         }
 
-        updated_ingredients = this.update_pizza_ingredients_list.getSelectionModel().getSelectedItems();
+        this.updated_ingredients = this.update_pizza_ingredients_list.getSelectionModel().getSelectedItems();
 
+        if(this.updated_ingredients.size() == 0){
+            this.updated_ingredients = new ArrayList<>(this.listeIngredientsPizza);
+        }
 
         ComposerDAO composerDAO = ComposerDAO.getInstance();
         PizzaDAO pizzaDAO = PizzaDAO.getInstance();
-        IngredientsDAO ingredientsDAO = IngredientsDAO.getInstance();
         boolean pizzaUpdated = pizzaDAO.update(this.updated_pizza);
-        for(ListeIngredients ingredient : updated_ingredients){
-            if(!current_ingredients.contains(ingredient)){
-                composerDAO.insert(new Composer(updated_pizza,new Ingredients(ingredient.getIngredient_id(),ingredient.getIngredient_name())));
-            }else{
-                composerDAO.delete(composerDAO.getByIdPizzaAndIdIngredient(updated_pizza.getId(),ingredient.getIngredient_id()));
+
+        for(ListeIngredients ingredient : this.listeIngredientsPizza){
+            if(!this.updated_ingredients.contains(ingredient)){
+               pizzaUpdated = pizzaUpdated && composerDAO.delete(composerDAO.getByIdPizzaAndIdIngredient(this.updated_pizza.getId(), ingredient.getIngredient_id()));
             }
         }
+
+        for (ListeIngredients ingredient : this.updated_ingredients) {
+            if(!this.listeIngredientsPizza.contains(ingredient)){
+                Composer composer = new Composer(this.updated_pizza,new Ingredients(ingredient.getIngredient_id(),ingredient.getIngredient_name()));
+                pizzaUpdated = pizzaUpdated && composerDAO.insert(composer) > 0;
+            }
+        }
+
         if(!pizzaUpdated){
             DialogUtils.showDialog("Modification de la pizza échouée !", "Erreur modification pizza", Alert.AlertType.ERROR);
             return;
@@ -111,7 +142,12 @@ public class AdminPizzasUpdateController {
     }
 
     @FXML
+    private void onResetButtonClicked(MouseEvent event){
+        this.reset();
+    }
+
+    @FXML
     private void onReturnUpdatePizzaButtonClick(MouseEvent event){
-        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminPizzasApplication(), ((Node) event.getSource()));
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminPizzasCRUDApplication(), ((Node) event.getSource()));
     }
 }

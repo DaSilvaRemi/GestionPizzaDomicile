@@ -4,9 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import org.gestionrapizz.gestionpizzadomicile.AdminLivreurCRUDApplication;
-import org.gestionrapizz.gestionpizzadomicile.AdminStatistiquesApplication;
-import org.gestionrapizz.gestionpizzadomicile.AdminVehiculeMainApplication;
+import org.gestionrapizz.gestionpizzadomicile.*;
 import org.gestionrapizz.gestionpizzadomicile.models.AdministrateurDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Administrateur;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
@@ -26,12 +24,12 @@ public class AdminAccountController {
 
     @FXML
     private void onCRUDPizzaButtonClick(MouseEvent event){
-
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminPizzasCRUDApplication(), ((Node) event.getSource()));
     }
 
     @FXML
     private void onCRUDIngredientsButtonClick(MouseEvent event){
-
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminIngredientsCRUDApplication(), ((Node) event.getSource()));
     }
 
     @FXML

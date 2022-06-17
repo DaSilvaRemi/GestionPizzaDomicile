@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox fx:id="update_pizza_vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.AdminPizzasUpdateController">
+<VBox fx:id="update_pizza_vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.AdminPizzasUpdateController">
     <children>
         <fx:include fx:id="AdminMenuBar" source="admin_menubar-view.fxml" />
         <Pane fx:id="update_pizza_panel" prefHeight="500.0" prefWidth="800.0">
             <children>
-                <Label fx:id="update_pizza_title" alignment="CENTER" contentDisplay="CENTER" layoutX="306.0" layoutY="48.0" text="Ajouter une pizza">
+                <Label fx:id="update_pizza_title" alignment="CENTER" contentDisplay="CENTER" layoutX="258.0" layoutY="51.0" text="Modifier une pizza">
                     <font>
                         <Font name="Source Code Pro Bold" size="20.0" />
                     </font>
@@ -20,17 +21,26 @@
                   <Font name="Source Code Pro" size="13.0" />
                </font></Label>
                 <ListView fx:id="update_pizza_ingredients_list" layoutX="438.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" />
-                <Label fx:id="update_pizza_ingredients_label" layoutX="438.0" layoutY="125.0" text="Ingrédients" ><font>
+                <Label fx:id="update_pizza_ingredients_label" layoutX="438.0" layoutY="125.0" text="Ingrédients"><font>
                 <Font name="Source Code Pro" size="13.0" />
                 </font></Label>
-                <TextField fx:id="update_pizza_price_field" layoutX="161.0" layoutY="279.0" promptText="11.99" />
-                <Label fx:id="update_pizza_price_label" layoutX="161.0" layoutY="250.0" text="Prix" ><font>
+                <Label fx:id="update_pizza_price_label" layoutX="161.0" layoutY="250.0" text="Prix"><font>
                 <Font name="Source Code Pro" size="13.0" />
                 </font></Label>
                 <Separator layoutX="378.0" layoutY="150.0" orientation="VERTICAL" prefHeight="200.0" />
-                <Button fx:id="update_pizza_btn" layoutX="354.0" layoutY="402.0" mnemonicParsing="false" style="-fx-background-color: #1E9F00;" text="Valider" textFill="#fffefe" onMouseClicked="#onConfirmUpdatePizzaBtnClick" ><font>
+                <Button fx:id="update_pizza_btn" layoutX="158.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#onConfirmUpdatePizzaBtnClick" prefHeight="30.0" prefWidth="230.0" style="-fx-background-color: #1E9F00;" text="Valider" textFill="#fffefe"><font>
                 <Font name="Source Code Pro" size="13.0" />
                 </font></Button>
+            <Button fx:id="resetupdate_button" layoutX="409.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#onConfirmUpdatePizzaBtnClick" prefHeight="30.0" prefWidth="230.0" style="-fx-background-color: #f44336;" text="Renitialiser" textFill="#fffefe">
+               <font>
+                  <Font name="Source Code Pro" size="13.0" />
+               </font>
+            </Button>
+            <Spinner fx:id="update_pizza_price_field" editable="true" layoutX="158.0" layoutY="275.0" prefHeight="25.0" prefWidth="155.0">
+                <valueFactory>
+                    <SpinnerValueFactory.DoubleSpinnerValueFactory amountToStepBy="1" initialValue="1.0" max="1000.0" min="1.0" />
+                </valueFactory>
+            </Spinner>
             </children>
         </Pane>
     </children>

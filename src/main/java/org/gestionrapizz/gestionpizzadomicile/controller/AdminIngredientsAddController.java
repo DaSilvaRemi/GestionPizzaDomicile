@@ -5,13 +5,11 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import org.gestionrapizz.gestionpizzadomicile.AdminIngredientsApplication;
-import org.gestionrapizz.gestionpizzadomicile.AdminPizzasApplication;
+import org.gestionrapizz.gestionpizzadomicile.AdminIngredientsCRUDApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.IngredientsDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Ingredients;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
-import org.w3c.dom.events.Event;
 
 public class AdminIngredientsAddController {
 
@@ -30,7 +28,7 @@ public class AdminIngredientsAddController {
         onReturnAddIngredientBtnClick(event);
     }
     private void onReturnAddIngredientBtnClick(MouseEvent event){
-        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminIngredientsApplication(), ((Node) event.getSource()));
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminIngredientsCRUDApplication(), ((Node) event.getSource()));
     }
 }
 
