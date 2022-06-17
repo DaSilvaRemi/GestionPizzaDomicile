@@ -74,7 +74,6 @@ public class ClientOrderPizzaController {
     }
 
     private void updateMontant(){
-        this.currentCommande = CommandeDAO.getInstance().getById(this.currentCommande.getId());
         String newSolde = String.format("%.2f €", this.currentCommande.getMontant());
         this.totalAmount_label.setText(newSolde);
     }
@@ -112,7 +111,7 @@ public class ClientOrderPizzaController {
         Client client = clientDAO.getById(userSessionUtil.getUtilisateur().getId());
         Commande commande = commandeDAO.getTotMontantCommandeEnCoursByClient(client.getId());
         if(client.getSolde() < this.currentCommande.getMontant() + commande.getMontant()){
-            Double soldeRestant =  client.getSolde() - commande.getMontant();
+            String soldeRestant =  String.format("%.2f", client.getSolde() - commande.getMontant());
             DialogUtils.showDialog("Votre solde est insuffisant pour cette commande ! \n Il vous reste : " + soldeRestant + " €",
                     "Erreur : solde insuffisant !", Alert.AlertType.ERROR);
             return false;
@@ -151,6 +150,7 @@ public class ClientOrderPizzaController {
         }
 
         contenirDAO.insert(new Contenir(this.currentCommande, produit));
+        this.updateCommmande();
         this.updateCart();
         this.updateMontant();
     }
@@ -174,6 +174,7 @@ public class ClientOrderPizzaController {
         contenirDAO.delete(contenir);
         this.currentCommande.setMontant(this.currentCommande.getMontant() - contenir.getProduit().getPrixProduit());
         commandeDAO.update(this.currentCommande);
+        this.updateCommmande();
         this.updateCart();
         this.updateMontant();
     }
