@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AdminPizzasApplication extends Application {
+public class AdminIngredientsCRUDApplication extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -15,7 +15,7 @@ public class AdminPizzasApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AdminPizzasApplication.class.getResource("admin_pizzas-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminIngredientsCRUDApplication.class.getResource("admin_ingredients-crud-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();

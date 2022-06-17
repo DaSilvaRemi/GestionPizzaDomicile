@@ -49,7 +49,7 @@ public class ComposerDAO extends DAO<Composer>{
 
     @Override
     public int insert(Composer obj) {
-        return super.add("INSERT INTO Composer(id_pizza, id_ingredient) VALUES(?, ?);", Arrays.asList(obj.getPizza().getId(), obj.getIngredients().getId()));
+        return super.modify("INSERT INTO Composer(id_pizza, id_ingredient) VALUES(?, ?);", Arrays.asList(obj.getPizza().getId(), obj.getIngredients().getId()));
     }
 
     @Override

@@ -40,8 +40,18 @@ public class ListeIngredients {
     }
 
     @Override
-    public String toString() {
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        return ingredient_name.get();
+        ListeIngredients that = (ListeIngredients) o;
+
+        if (!this.getIngredient_name().equals(that.getIngredient_name())) return false;
+        return this.getIngredient_id() == that.getIngredient_id();
+    }
+
+    @Override
+    public String toString() {
+        return this.getIngredient_name();
     }
 }

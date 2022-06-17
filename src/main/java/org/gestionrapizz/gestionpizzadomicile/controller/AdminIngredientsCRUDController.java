@@ -7,24 +7,17 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import org.gestionrapizz.gestionpizzadomicile.AdminAddIngredientApplication;
-import org.gestionrapizz.gestionpizzadomicile.AdminAddPizzaApplication;
-import org.gestionrapizz.gestionpizzadomicile.AdminLivreurUpdateApplication;
 import org.gestionrapizz.gestionpizzadomicile.AdminUpdateIngredientApplication;
 import org.gestionrapizz.gestionpizzadomicile.models.IngredientsDAO;
-import org.gestionrapizz.gestionpizzadomicile.models.LivreurDAO;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Ingredients;
-import org.gestionrapizz.gestionpizzadomicile.models.entity.Livreur;
-import org.gestionrapizz.gestionpizzadomicile.models.tabs.LigneMenuPizzeria;
 import org.gestionrapizz.gestionpizzadomicile.models.tabs.ListeIngredients;
-import org.gestionrapizz.gestionpizzadomicile.models.tabs.MesLivreurs;
-import org.gestionrapizz.gestionpizzadomicile.models.tabs.MesPizzas;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
 import java.util.List;
 
-public class AdminIngredientsController {
+public class AdminIngredientsCRUDController {
     @FXML
     private TableView<ListeIngredients> ingredient_list;
     @FXML

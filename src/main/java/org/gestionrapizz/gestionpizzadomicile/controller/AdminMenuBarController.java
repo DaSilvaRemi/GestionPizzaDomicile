@@ -16,11 +16,11 @@ public class AdminMenuBarController {
     }
     @FXML
     private void onIngredientsClick(Event event){
-        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminIngredientsApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminIngredientsCRUDApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
     }
     @FXML
     private void onPizzasClick(Event event){
-        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminPizzasApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminPizzasCRUDApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
 
     }
     @FXML
