@@ -27,6 +27,7 @@ public class AdminIngredientsUpdateController {
 
         if(userSessionUtil.getVAR_SESSION().isEmpty()){
             JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminIngredientsCRUDApplication(), update_ingredient_name_field.getScene().getWindow());
+            return;
         }
 
         IngredientsDAO ingredientsDAO = IngredientsDAO.getInstance();

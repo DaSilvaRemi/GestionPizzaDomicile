@@ -9,6 +9,11 @@ public class Produit {
 
     private double prixProduit;
 
+    public Produit(Pizza pizza, Taille taille) {
+        this(pizza, taille, 0.0);
+    }
+
+
     public Produit(Pizza pizza, Taille taille, double prixProduit) {
         this.pizza = pizza;
         this.taille = taille;

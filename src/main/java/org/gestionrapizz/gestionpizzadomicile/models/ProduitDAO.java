@@ -88,7 +88,7 @@ public class ProduitDAO extends DAO<Produit> {
 
     @Override
     public int insert(Produit obj) {
-        return super.add("INSERT INTO Produit(id_taille, id_pizza) VALUES(?, ?);", Arrays.asList(obj.getTaille().getId(), obj.getPizza().getId()));
+        return super.modify("INSERT INTO Produit(id_taille, id_pizza) VALUES(?, ?);", Arrays.asList(obj.getTaille().getId(), obj.getPizza().getId()));
     }
 
     @Override

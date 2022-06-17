@@ -31,7 +31,7 @@
                 <Button fx:id="update_pizza_btn" layoutX="158.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#onConfirmUpdatePizzaBtnClick" prefHeight="30.0" prefWidth="230.0" style="-fx-background-color: #1E9F00;" text="Valider" textFill="#fffefe"><font>
                 <Font name="Source Code Pro" size="13.0" />
                 </font></Button>
-            <Button fx:id="resetupdate_button" layoutX="409.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#onConfirmUpdatePizzaBtnClick" prefHeight="30.0" prefWidth="230.0" style="-fx-background-color: #f44336;" text="Renitialiser" textFill="#fffefe">
+            <Button fx:id="resetupdate_button" layoutX="409.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#onResetButtonClicked" prefHeight="30.0" prefWidth="230.0" style="-fx-background-color: #f44336;" text="Renitialiser" textFill="#fffefe">
                <font>
                   <Font name="Source Code Pro" size="13.0" />
                </font>

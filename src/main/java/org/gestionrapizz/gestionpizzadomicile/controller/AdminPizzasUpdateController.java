@@ -102,7 +102,7 @@ public class AdminPizzasUpdateController {
         }
         String pizza_name = this.update_pizza_name_field.getText();
         Double pizza_price = this.update_pizza_price_field.getValue();
-        if(!pizza_name.isBlank()){
+        if(!pizza_name.isBlank() && pizza_name.length() <= 50){
             this.updated_pizza.setNom(pizza_name);
         }
         if(pizza_price != this.updated_pizza.getPrix()){
