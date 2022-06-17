@@ -16,7 +16,7 @@
           </Menu>
           <Menu fx:id="menu_ingredients" mnemonicParsing="false" text="Ingrédients">
             <items>
-              <MenuItem fx:id="menu_item_ingredients" mnemonicParsing="false" onAction="#onIngredientsClick" text="Voir" />
+              <MenuItem fx:id="menu_item_ingredients" mnemonicParsing="false" onAction="#onIngredientsClick" text="   Voir   " />
             </items>
           </Menu>
           <Menu fx:id="menu_pizzas" mnemonicParsing="false" text="Pizzas">
@@ -31,7 +31,7 @@
             </Menu>
             <Menu fx:id="menu_vehicules" mnemonicParsing="false" text="Véhicules">
               <items>
-                <MenuItem fx:id="menu_item_vehicules" mnemonicParsing="false" onAction="#onVehiclesClick"  text="Voir" />
+                <MenuItem fx:id="menu_item_vehicules" mnemonicParsing="false" onAction="#onVehiclesClick" text="Voir" />
               </items>
             </Menu>
             <Menu fx:id="menu_stats" mnemonicParsing="false" text="Statistiques">
@@ -41,7 +41,7 @@
             </Menu>
             <Menu fx:id="menu_logout" mnemonicParsing="false" text="Se déconnecter">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" onAction="#onAdminLogoutClick" text="Valider" />
               </items>
             </Menu>
         </menus>

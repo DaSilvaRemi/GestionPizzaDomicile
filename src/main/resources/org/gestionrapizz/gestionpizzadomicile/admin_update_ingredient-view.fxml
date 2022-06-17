@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="update_ingredient_vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="update_ingredient_vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.AdminIngredientsUpdateController">
     <children>
         <fx:include fx:id="AdminMenuBar" source="admin_menubar-view.fxml" />
         <Pane fx:id="update_ingredient_panel" prefHeight="500.0" prefWidth="800.0">
@@ -17,7 +17,7 @@
                 <TextField fx:id="update_ingredient_name_field" layoutX="320.0" layoutY="178.0" promptText="Nom" />
                 <ButtonBar layoutX="353.0" layoutY="250.0" prefHeight="26.0" prefWidth="15.0">
                     <buttons>
-                        <Button fx:id="update_ingredient_btn" mnemonicParsing="false" text="Valider" />
+                        <Button fx:id="update_ingredient_btn" mnemonicParsing="false" text="Valider"  onMouseClicked="#onConfirmUpdateIngredientBtnClick"/>
                     </buttons>
                 </ButtonBar>
             </children>

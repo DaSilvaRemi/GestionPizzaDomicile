@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import org.gestionrapizz.gestionpizzadomicile.*;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
+import org.gestionrapizz.gestionpizzadomicile.models.utils.UserSessionUtil;
 
 public class AdminMenuBarController {
 
@@ -38,6 +39,11 @@ public class AdminMenuBarController {
     private void onStatsClick(Event event){
         JavaFXOpenWindowUtil.openAndCloseAWindow(new AdminStatistiquesApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
 
+    }
+    @FXML
+    private void onAdminLogoutClick(Event event){
+        UserSessionUtil.getInstance(null).clearUserSession();
+        JavaFXOpenWindowUtil.openAndCloseAWindow(new MainApplication(), (((MenuItem)event.getSource()).getParentPopup().getOwnerWindow()));
     }
 
 }

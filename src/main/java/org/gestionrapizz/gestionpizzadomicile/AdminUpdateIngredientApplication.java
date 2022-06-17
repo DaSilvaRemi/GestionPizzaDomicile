@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AdminMenuBarApplication extends Application {
+public class AdminUpdateIngredientApplication extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -15,7 +15,7 @@ public class AdminMenuBarApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AdminMenuBarApplication.class.getResource("admin_menubar-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminUpdateIngredientApplication.class.getResource("admin_update_ingredient-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();

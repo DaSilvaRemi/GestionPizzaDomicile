@@ -7,15 +7,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AdminMenuBarApplication extends Application {
+public class AdminAddPizzaApplication extends Application {
 
     public static void main(String[] args) {
         launch(args);
     }
 
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AdminMenuBarApplication.class.getResource("admin_menubar-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminAddPizzaApplication.class.getResource("admin_add_pizza-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();

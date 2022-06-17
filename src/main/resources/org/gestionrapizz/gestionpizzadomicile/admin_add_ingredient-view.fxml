@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="add_ingredient_vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="add_ingredient_vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.AdminIngredientsAddController">
    <children>
       <fx:include fx:id="AdminMenuBar" source="admin_menubar-view.fxml" />
       <Pane fx:id="add_ingredient_panel" prefHeight="500.0" prefWidth="800.0">
@@ -21,7 +21,7 @@
             <TextField fx:id="add_ingredient_name_field" layoutX="320.0" layoutY="178.0" promptText="Nom" />
             <ButtonBar layoutX="353.0" layoutY="250.0" prefHeight="26.0" prefWidth="15.0">
               <buttons>
-                <Button fx:id="add_ingredient_btn" mnemonicParsing="false" text="Ajouter" />
+                <Button fx:id="add_ingredient_btn" mnemonicParsing="false" text="Ajouter" onMouseClicked="#onConfirmAddIngredientBtnClick"/>
               </buttons>
             </ButtonBar>
          </children>
