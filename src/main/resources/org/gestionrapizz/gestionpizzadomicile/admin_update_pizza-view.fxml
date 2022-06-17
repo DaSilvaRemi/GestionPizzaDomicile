@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="update_pizza_vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="update_pizza_vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.AdminPizzasUpdateController">
     <children>
         <fx:include fx:id="AdminMenuBar" source="admin_menubar-view.fxml" />
         <Pane fx:id="update_pizza_panel" prefHeight="500.0" prefWidth="800.0">
@@ -28,7 +28,7 @@
                 <Font name="Source Code Pro" size="13.0" />
                 </font></Label>
                 <Separator layoutX="378.0" layoutY="150.0" orientation="VERTICAL" prefHeight="200.0" />
-                <Button fx:id="update_pizza_btn" layoutX="354.0" layoutY="402.0" mnemonicParsing="false" style="-fx-background-color: #1E9F00;" text="Valider" textFill="#fffefe" ><font>
+                <Button fx:id="update_pizza_btn" layoutX="354.0" layoutY="402.0" mnemonicParsing="false" style="-fx-background-color: #1E9F00;" text="Valider" textFill="#fffefe" onMouseClicked="#onConfirmUpdatePizzaBtnClick" ><font>
                 <Font name="Source Code Pro" size="13.0" />
                 </font></Button>
             </children>

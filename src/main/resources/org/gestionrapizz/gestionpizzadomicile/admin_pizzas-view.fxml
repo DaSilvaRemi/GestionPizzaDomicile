@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="list_pizza_vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="list_pizza_vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.AdminPizzasController">
    <children>
        <fx:include fx:id="AdminMenuBar" source="admin_menubar-view.fxml" />
       <Pane fx:id="list_pizza_panel" maxHeight="500.0" maxWidth="800.0" prefHeight="500.0" prefWidth="800.0">
@@ -18,24 +18,24 @@
                <font>
                   <Font name="Source Code Pro Bold" size="20.0" />
                </font></Label>
-            <TableView fx:id="pizza_list" layoutX="195.0" layoutY="75.0" prefHeight="300.0" prefWidth="400.0">
+            <TableView fx:id="pizza_list" layoutX="150.0" layoutY="75.0" prefHeight="300.0" prefWidth="500.0">
               <columns>
                 <TableColumn fx:id="list_pizza_name" minWidth="50.0" prefWidth="100.0" text="Nom" />
-                <TableColumn fx:id="list_pizza_ingredients" minWidth="100.0" prefWidth="200.0" text="Ingrédients" />
+                <TableColumn fx:id="list_pizza_ingredients" minWidth="100.0" prefWidth="300.0" text="Ingrédients" />
                   <TableColumn fx:id="list_pizza_price" minWidth="50.0" prefWidth="100.0" text="Prix" />
               </columns>
             </TableView>
             <ButtonBar fx:id="admin_pizza_btns" buttonMinWidth="75.0" layoutX="101.0" layoutY="409.0" prefHeight="26.0" prefWidth="431.0">
               <buttons>
-                <Button fx:id="update_pizza_btn" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #3f51b5#3f51b5;" text="Mettre à jour" textFill="WHITE">
+                <Button fx:id="update_pizza_btn" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #3f51b5#3f51b5;" text="Mettre à jour" textFill="WHITE" onMouseClicked="#onOpenUpdatePizzaButtonClick">
                      <font>
                         <Font name="Source Code Pro" size="13.0" />
                      </font></Button>
-                  <Button fx:id="add_pizza_btn" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #3f51b5#3f51b5;" text="Ajouter" textFill="WHITE">
+                  <Button fx:id="add_pizza_btn" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #3f51b5#3f51b5;" text="Ajouter" textFill="WHITE" onMouseClicked="#onOpenAddPizzaButtonClick">
                       <font>
                           <Font name="Source Code Pro" size="13.0" />
                       </font></Button>
-                  <Button fx:id="delete_pizza_btn" alignment="CENTER" mnemonicParsing="false" prefHeight="26.0" style="-fx-background-color: #3f51b5#3f51b5;" text="Supprimer" textFill="WHITE">
+                  <Button fx:id="delete_pizza_btn" alignment="CENTER" mnemonicParsing="false" prefHeight="26.0" style="-fx-background-color: #3f51b5#3f51b5;" text="Supprimer" textFill="WHITE" onMouseClicked="#onDeletePizzaButtonClick">
                       <font>
                           <Font name="Source Code Pro" size="13.0" />
                       </font></Button>

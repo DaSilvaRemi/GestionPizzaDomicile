@@ -49,7 +49,7 @@ public class MainController {
         Utilisateur utilisateur = utilisateurDAO.getByEmailAndPassword(emailadress_input.getText(), password_input.getText());
 
         if(utilisateur == null){
-            DialogUtils.showDialog("indentifiants incorrects !", "Error : identifiants incorrects", Alert.AlertType.ERROR);
+            DialogUtils.showDialog("identifiants incorrects !", "Error : identifiants incorrects", Alert.AlertType.ERROR);
 
             utilisateur = utilisateurDAO.getByEmail(emailadress_input.getText());
             if(utilisateur == null){
