@@ -57,6 +57,26 @@ public class SigninController {
             return;
         }
 
+        if(zipcode_input.getText().length() > 5){
+            DialogUtils.showDialog("Le code postal est trop long !", "Erreur : champ trop long", Alert.AlertType.ERROR);
+            return;
+        }
+
+        if(phonenumber_input.getText().length() > 10){
+            DialogUtils.showDialog("Le numéro de téléphone est trop long !", "Erreur : champ trop long", Alert.AlertType.ERROR);
+            return;
+        }
+
+        if(adress_input.getText().length() > 60){
+            DialogUtils.showDialog("L'adresse est trop long !", "Erreur : champ trop long", Alert.AlertType.ERROR);
+            return;
+        }
+
+        if(city_input.getText().length() > 60){
+            DialogUtils.showDialog("La ville est trop long !", "Erreur : champ trop long", Alert.AlertType.ERROR);
+            return;
+        }
+
         ClientDAO clientDAO = ClientDAO.getInstance();
         Client clientToInsert = new Client(
                 0,
@@ -72,7 +92,7 @@ public class SigninController {
 
         clientDAO.insert(clientToInsert);
 
-        DialogUtils.showDialog("Signin successful !", "Welcom to our community !");
+        DialogUtils.showDialog("Inscription réussite !", "Inscreiption réussi !");
         this.onReturnInButtonClick(event);
     }
 

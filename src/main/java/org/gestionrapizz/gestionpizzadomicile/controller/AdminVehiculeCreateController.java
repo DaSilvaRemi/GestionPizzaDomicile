@@ -2,6 +2,7 @@ package org.gestionrapizz.gestionpizzadomicile.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -12,6 +13,7 @@ import org.gestionrapizz.gestionpizzadomicile.models.utils.DialogUtils;
 import org.gestionrapizz.gestionpizzadomicile.models.utils.JavaFXOpenWindowUtil;
 
 import java.util.List;
+import java.util.Objects;
 
 public class AdminVehiculeCreateController {
 
@@ -34,20 +36,21 @@ public class AdminVehiculeCreateController {
         TypeDAO type = TypeDAO.getInstance();
 
         String new_immat = vehicule_create_immatriculation.getText();
-        Type new_type;
+        Type new_type = type.getByName(vehicule_create_type.getSelectionModel().getSelectedItem());
 
-        // Vérif type non inséré
-        try {
-            new_type = type.getByName(vehicule_create_type.getSelectionModel().getSelectedItem());
-        }
-        catch(Exception e) {
-            DialogUtils.showDialog("Choisir un type de véhicule");
+        if(new_type == null){
+            DialogUtils.showDialog("Choisir un type", "Erreur : champ invalide !", Alert.AlertType.ERROR);
             return;
         }
 
         // Vérif plaque non vide
-        if(new_immat == ""){
-            DialogUtils.showDialog("Choisir une immatriculation");
+        if(new_immat.isBlank()){
+            DialogUtils.showDialog("Choisir une immatriculation", "Erreur : champ invalide !", Alert.AlertType.ERROR);
+            return;
+        }
+
+        if(new_immat.length() == 10){
+            DialogUtils.showDialog("Longueur invalide", "Erreur : champ invalide !", Alert.AlertType.ERROR);
             return;
         }
 

@@ -34,11 +34,11 @@ public class ComposerDAO extends DAO<Composer>{
 
 
     public List<Composer> getByIdPizza(int id) {
-        return super.find("SELECT Composer.* FROM Type WHERE Composer.id_pizza = ?;", List.of(id));
+        return super.find("SELECT Composer.* FROM Composer WHERE Composer.id_pizza = ?;", List.of(id));
     }
 
     public List<Composer> getByIdIngredient(int id) {
-        return super.find("SELECT Composer.* FROM Type WHERE Composer.id_ingredient = ?;", List.of(id));
+        return super.find("SELECT Composer.* FROM Composer WHERE Composer.id_ingredient = ?;", List.of(id));
     }
 
     public Composer getByIdPizzaAndIdIngredient(int idPizza, int idIngredient) {
