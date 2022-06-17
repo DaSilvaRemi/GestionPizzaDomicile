@@ -29,7 +29,7 @@ public class IngredientsDAO extends DAO<Ingredients> {
 
     @Override
     public Ingredients getById(int id) {
-        String query = "SELECT Pizza.* FROM Ingredients WHERE Ingredients.id_ingredient = ?;";
+        String query = "SELECT Ingredients.* FROM Ingredients WHERE Ingredients.id_ingredient = ?;";
         List<Ingredients> result = super.find(query, List.of(id));
         return result.size() == 1 ? result.get(0) : null;
     }

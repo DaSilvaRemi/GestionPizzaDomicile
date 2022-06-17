@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="list_ingredient_vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="list_ingredient_vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gestionrapizz.gestionpizzadomicile.controller.AdminIngredientsController">
    <children>
        <fx:include fx:id="AdminMenuBar" source="admin_menubar-view.fxml" />
       <Pane fx:id="liste_ingredients_panel" maxHeight="500.0" maxWidth="800.0" prefHeight="500.0" prefWidth="800.0">
@@ -18,15 +18,15 @@
                <font>
                   <Font name="Source Code Pro Bold" size="20.0" />
                </font></Label>
-            <TableView fx:id="ingredient_list" layoutX="264.0" layoutY="72.0" maxHeight="300.0" maxWidth="400.0" prefHeight="300.0" prefWidth="250.0">
+            <TableView fx:id="ingredient_list" layoutX="264.0" layoutY="72.0" maxHeight="300.0" maxWidth="300.0" prefHeight="300.0" prefWidth="250.0">
               <columns>
-                <TableColumn fx:id="list_ingredients_name" minWidth="250.0" prefWidth="-1.0" text="Nom" />
+                <TableColumn fx:id="list_ingredients_name" minWidth="250.0" prefWidth="250.0" text="Nom" />
               </columns>
             </TableView>
             <ButtonBar fx:id="ingredient_list_btns" layoutX="192.0" layoutY="400.0" prefHeight="40.0">
               <buttons>
-                <Button fx:id="update_ingredient_btn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #3f51b5#3f51b5;" text="Mettre à jour" textFill="WHITE" />
-                  <Button fx:id="add_ingredient_btn" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #3f51b5#3f51b5;" text="Ajouter ingrédient" textFill="WHITE" />
+                <Button fx:id="update_ingredient_btn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #3f51b5#3f51b5;" text="Mettre à jour" textFill="WHITE" onMouseClicked="#onOpenUpdateIngredientButtonClick" />
+                  <Button fx:id="add_ingredient_btn" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #3f51b5#3f51b5;" text="Ajouter ingrédient" textFill="WHITE" onMouseClicked="#onOpenAddIngredientButtonClick"/>
                   <Button fx:id="delete_ingredient_btn" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #3f51b5#3f51b5;" text="Supprimer" textFill="WHITE" />
               </buttons>
             </ButtonBar>

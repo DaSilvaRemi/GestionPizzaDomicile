@@ -15,7 +15,7 @@ public class AdminPizzasApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ClientMenuBarApplication.class.getResource("admin_pizzas-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminPizzasApplication.class.getResource("admin_pizzas-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();
