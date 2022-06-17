@@ -1,7 +1,7 @@
-DROP PROCEDURE IF EXISTS VerifSoldeClientOnCommande;
-DROP PROCEDURE IF EXISTS VerifFideliteClientOnCommande;
-DROP PROCEDURE IF EXISTS VerifRetardCommande;
-DROP PROCEDURE IF EXISTS verif_fidelite_contenir
+DROP PROCEDURE IF EXISTS verif_solde_client_on_commande;
+DROP PROCEDURE IF EXISTS verif_fidelite_client_on_commande;
+DROP PROCEDURE IF EXISTS verif_retard_commande;
+DROP PROCEDURE IF EXISTS verif_fidelite_contenir;
 DROP TRIGGER IF EXISTS verifdatas_commande_insert_trigger;
 DROP TRIGGER IF EXISTS verifdatas_commande_update_trigger;
 DROP TRIGGER IF EXISTS verifdatas_insert_contenir_trigger;
