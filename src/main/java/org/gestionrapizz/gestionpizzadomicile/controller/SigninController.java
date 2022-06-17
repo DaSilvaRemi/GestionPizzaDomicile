@@ -92,7 +92,7 @@ public class SigninController {
 
         clientDAO.insert(clientToInsert);
 
-        DialogUtils.showDialog("Signin successful !", "Welcom to our community !");
+        DialogUtils.showDialog("Inscription réussite !", "Inscreiption réussi !");
         this.onReturnInButtonClick(event);
     }
 

@@ -157,6 +157,7 @@ public class ClientOrderPizzaController {
 
     @FXML
     private void onClickRemovePizzaButton(MouseEvent event){
+        this.updateCommmande();
         LignePanier lignePanier = cart_tableview.getSelectionModel().getSelectedItem();
 
         if(lignePanier == null || lignePanier.getNomPizza().isBlank() || lignePanier.getTaillePizza().isBlank()) {
