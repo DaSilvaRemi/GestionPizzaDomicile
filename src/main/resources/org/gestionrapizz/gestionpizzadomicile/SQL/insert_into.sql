@@ -122,17 +122,17 @@ VALUES ('BA102GH', (SELECT Type.id_type FROM Type WHERE nom = 'Voiture')),
 
 INSERT INTO Utilisateur (nom, prenom, email, motdepasse)
 VALUES ('TRAN', 'Guillaume', 'guillaumetran@rapizz.fr', PASSWORD('rapidoTran')),
-       ('DURAND', 'Martin', 'mdurand@gmail.com', PASSWORD('ih989jKOz_9')),
-       ('My Admin', 'admin', 'support@rapizz.fr', PASSWORD('uhfe896798ee&')),
+       ('DURAND', 'Martin', 'mdurand@gmail.com', PASSWORD('martinDurand')),
+       ('My Admin', 'admin', 'support@rapizz.fr', PASSWORD('admin')),
        ('Rapido', 'Vialet', 'rvialet@rapizz.fr', PASSWORD('rapido')),
-       ('Prof', 'Dotto', 'Prof.Dotto@gmail.com', PASSWORD('8957UGKJUç__yihk')),
-       ('Timide', 'Mammolo', 'Timide.Mammolo@gmail.com', PASSWORD('gui87iug89ç_è')),
-       ('Atchoum', 'Eolo', 'Atchoum.Eolo@gmail.com', PASSWORD('IUUgiufzy_ç7987')),
-       ('Joyeux', 'Gongolo', 'Joyeux.Gongolo@gmail.com', PASSWORD('986876Rjgiè(-è(_è')),
-       ('Simplet', 'Cucciolo', 'Simplet.Cucciolo@gmail.com', PASSWORD('_ç-8758tgdfh')),
-       ('Dormeur', 'Pisolo', 'Dormeur.Pisolo@gmail.com', PASSWORD('986uitjkg__è')),
-       ('Grincheux', 'Brontolo', 'Grincheux.Brontolo@gmail.com', PASSWORD('OUFYAD868ç-_yhkl')),
-       ('PEGULA', 'Jessica', 'jessicapegula@hotmail.com', PASSWORD('uàç_908h'));
+       ('Prof', 'Dotto', 'Prof.Dotto@gmail.com', PASSWORD('dotto')),
+       ('Timide', 'Mammolo', 'Timide.Mammolo@gmail.com', PASSWORD('mammolo')),
+       ('Atchoum', 'Eolo', 'Atchoum.Eolo@gmail.com', PASSWORD('eolo')),
+       ('Joyeux', 'Gongolo', 'Joyeux.Gongolo@gmail.com', PASSWORD('gongolo')),
+       ('Simplet', 'Cucciolo', 'Simplet.Cucciolo@gmail.com', PASSWORD('cucciolo')),
+       ('Dormeur', 'Pisolo', 'Dormeur.Pisolo@gmail.com', PASSWORD('pisolo')),
+       ('Grincheux', 'Brontolo', 'Grincheux.Brontolo@gmail.com', PASSWORD('brontolo')),
+       ('PEGULA', 'Jessica', 'jessicapegula@hotmail.com', PASSWORD('jessica'));
 
 INSERT INTO Client (id_utilisateur, telephone, adresse_rue, adresse_ville, adresse_codepostal, solde)
 VALUES ((SELECT Utilisateur.id_utilisateur FROM Utilisateur WHERE email = 'mdurand@gmail.com'), '0689737629',
@@ -148,8 +148,7 @@ INSERT INTO Administrateur (id_utilisateur)
 VALUES ((SELECT Utilisateur.id_utilisateur FROM Utilisateur WHERE email = 'support@rapizz.fr'));
 
 INSERT INTO Statut (nom)
-VALUES ('En cours de préparation'),
-       ('Livraison en cours'),
+VALUES ('Livraison en cours'),
        ('Livré'),
        ('En attente'),
        ('Refusé');

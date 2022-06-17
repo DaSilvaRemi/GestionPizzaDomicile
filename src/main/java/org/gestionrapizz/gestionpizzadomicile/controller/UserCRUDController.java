@@ -39,6 +39,21 @@ public class UserCRUDController {
             return false;
         }
 
+        if(name_input.getText().length() > 50){
+            DialogUtils.showDialog("Le nom est trop long !", "Erreur : champ trop long", Alert.AlertType.ERROR);
+            return false;
+        }
+
+        if(prenom_input.getText().length() > 50){
+            DialogUtils.showDialog("Le mot de passe est trop long !", "Erreur : champ trop long", Alert.AlertType.ERROR);
+            return false;
+        }
+
+        if(emailadress_input.getText().length() > 50){
+            DialogUtils.showDialog("L'email est trop long' !", "Erreur : champ trop long", Alert.AlertType.ERROR);
+            return false;
+        }
+
         EmailValidator emailValidator = EmailValidator.getInstance();
         if(!emailValidator.isValid(emailadress_input.getText())){
             DialogUtils.showDialog("L'email entré n'est pas correcte !", "Erreur : verification email", Alert.AlertType.ERROR);

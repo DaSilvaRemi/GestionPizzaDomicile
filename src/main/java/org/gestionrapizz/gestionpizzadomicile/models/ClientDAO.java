@@ -24,7 +24,7 @@ public class ClientDAO extends DAO<Client> {
 
     @Override
     public List<Client> get() {
-        String query = "SELECT Utilisateur.*, Client.telephone, Client.adresse_rue, Client.adresse_ville, Client.adresse_codepostal, Client.solde " +
+        String query = "SELECT Utilisateur.*, Client.telephone, Client.adresse_rue, Client.adresse_ville, Client.adresse_codepostal, ROUND(Client.solde, 2) AS solde " +
                 "FROM Client " +
                 "INNER JOIN Utilisateur ON Client.id_utilisateur = Utilisateur.id_utilisateur;";
         return super.find(query, new ArrayList<>());
@@ -32,7 +32,7 @@ public class ClientDAO extends DAO<Client> {
 
     @Override
     public Client getById(int id) {
-        String query = "SELECT Utilisateur.*, Client.telephone, Client.adresse_rue, Client.adresse_ville, Client.adresse_codepostal, Client.solde " +
+        String query = "SELECT Utilisateur.*, Client.telephone, Client.adresse_rue, Client.adresse_ville, Client.adresse_codepostal, ROUND(Client.solde, 2) AS solde " +
                 "FROM Client " +
                 "INNER JOIN Utilisateur ON Client.id_utilisateur = Utilisateur.id_utilisateur " +
                 "WHERE Utilisateur.id_utilisateur = ?;";
@@ -41,7 +41,7 @@ public class ClientDAO extends DAO<Client> {
     }
 
     public Client getByEmail(String email) {
-        String query = "SELECT Utilisateur.*, Client.telephone, Client.adresse_rue, Client.adresse_ville, Client.adresse_codepostal, Client.solde " +
+        String query = "SELECT Utilisateur.*, Client.telephone, Client.adresse_rue, Client.adresse_ville, Client.adresse_codepostal, ROUND(Client.solde, 2) AS solde " +
                 "FROM Client " +
                 "INNER JOIN Utilisateur ON Client.id_utilisateur = Utilisateur.id_utilisateur " +
                 "WHERE Utilisateur.email = ?;";
@@ -50,7 +50,7 @@ public class ClientDAO extends DAO<Client> {
     }
 
     public Client getByTelephone(String telephone) {
-        String query = "SELECT Utilisateur.*, Client.telephone, Client.adresse_rue, Client.adresse_ville, Client.adresse_codepostal, Client.solde " +
+        String query = "SELECT Utilisateur.*, Client.telephone, Client.adresse_rue, Client.adresse_ville, Client.adresse_codepostal, ROUND(Client.solde, 2) AS solde " +
                 "FROM Client " +
                 "INNER JOIN Utilisateur ON Client.id_utilisateur = Utilisateur.id_utilisateur" +
                 "WHERE Client.id_telephone = ?;";
@@ -64,7 +64,7 @@ public class ClientDAO extends DAO<Client> {
         if(idUser == 0) return 0;
 
         String query = "INSERT INTO Client (id_utilisateur, telephone, adresse_rue, adresse_ville, adresse_codepostal, solde) " +
-                "VALUES(?, ?, ?, ?, ?, ?);";
+                "VALUES(?, ?, ?, ?, ?, ROUND(?, 2));";
         List<Object> params = Arrays.asList(
                 idUser,
                 obj.getTelephone(),
@@ -90,7 +90,7 @@ public class ClientDAO extends DAO<Client> {
                 "adresse_rue = ?, " +
                 "adresse_ville = ?, " +
                 "adresse_codepostal = ?, " +
-                "solde = ? " +
+                "solde = ROUND(?, 2) " +
                 "WHERE id_utilisateur = ?;";
         List<Object> params = Arrays.asList(
                 obj.getTelephone(),
