@@ -1,11 +1,13 @@
 package org.gestionrapizz.gestionpizzadomicile.models.tabs;
 
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import org.gestionrapizz.gestionpizzadomicile.models.entity.Commande;
 
 
 public class MesLivraisonsAFaire {
+    private final SimpleIntegerProperty id;
     private final SimpleStringProperty dateCommande;
     private final SimpleDoubleProperty montant;
     private final SimpleStringProperty immatriculation;
@@ -18,6 +20,7 @@ public class MesLivraisonsAFaire {
     private final SimpleStringProperty adresse_codepostal;
 
     public MesLivraisonsAFaire(Commande commande) {
+        this.id = new SimpleIntegerProperty(commande.getId());
         this.dateCommande = new SimpleStringProperty(commande.getDateHeure().toString());
         this.montant = new SimpleDoubleProperty(commande.getMontant());
         this.immatriculation = new SimpleStringProperty(commande.getVehicule().getImmatriculation());
@@ -32,6 +35,22 @@ public class MesLivraisonsAFaire {
 
     public String getDateCommande() {
         return dateCommande.get();
+    }
+
+    public int getId() {
+        return id.get();
+    }
+
+    public SimpleIntegerProperty idProperty() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id.set(id);
+    }
+
+    public void setMontant(double montant) {
+        this.montant.set(montant);
     }
 
     public SimpleStringProperty dateCommandeProperty() {
