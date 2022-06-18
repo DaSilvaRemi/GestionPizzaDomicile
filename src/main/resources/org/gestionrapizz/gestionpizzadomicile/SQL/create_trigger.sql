@@ -147,7 +147,6 @@ BEGIN
     IF (SELECT Statut.nom FROM Statut WHERE Statut.id_statut = NEW.id_statut) != 'Refusé' THEN
         CALL verif_solde_client_on_commande(NEW.id_utilisateur_1, NEW.montant, NEW.id_statut);
         IF (SELECT Statut.nom FROM Statut WHERE Statut.id_statut = NEW.id_statut) != 'Refusé' THEN
-            #CALL verif_fidelite_client_on_commande(NEW.id_commande, NEW.id_utilisateur_1, NEW.montant);
             CALL verif_retard_commande(NEW.dateHeure_commande, NEW.dateHeure_livraison, NEW.montant, NEW.retard);
         END IF;
     END IF;
